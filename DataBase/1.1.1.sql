@@ -1,0 +1,22 @@
+CREATE DATABASE if NOT EXISTS MrBook;
+CREATE TABLE IF NOT EXISTS `Mrbook`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userid` INT NOT NULL,
+  `first_name` VARCHAR(50) NOT NULL,
+  `last_name` VARCHAR(50) NOT NULL,
+  `gender` VARCHAR(6) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `phone` CHAR(13) NULL,
+  `url_address` VARCHAR(100) NULL,
+  `created_at` TIMESTAMP NULL DEFAULT now(),
+  `updated_at` TIMESTAMP NULL DEFAULT now(),
+  PRIMARY KEY (`id`),
+  INDEX `email` (`email` ASC) ,
+  INDEX `userid` (`userid` ASC) ,
+  INDEX `first_Name` (`first_name` ASC) ,
+  INDEX `last_name` (`last_name` ASC) ,
+  INDEX `gender` (`gender` ASC) ,
+  INDEX `url_address` (`url_address` ASC) ,
+  UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) ,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) )
