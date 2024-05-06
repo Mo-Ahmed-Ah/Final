@@ -17,7 +17,7 @@
             echo $result;
             echo "</div>";
         } else {
-            header("Location: Login.php");
+            header("Location: login.php");
             die;
         }
         $first_name = $filtered_data['first_name'];
