@@ -20,7 +20,7 @@ if ($user_data_post['gender'] == "Male"){
             echo $post['post'] ;
         ?>
         <br><br>
-        <a href="">Like</a> . <a href="">comment</a> . 
+        <a href="" class="like">Like</a> . <a href="" class="comment">comment</a> . 
         <span class="post_data">
             <?php 
                 echo $post['date'] ;

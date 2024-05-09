@@ -1,4 +1,13 @@
 <?php 
+    include ("../clsses/Connect.php");
+    include ("../clsses/Login.php");
+    include ("../clsses/User.php");
+    include ("../clsses/Post.php");
+    session_start();
+
+    // isset($_SESSION['mrbook_userid']);
+    $login = new Login();
+    $user_data=$login->check_login($_SESSION['mrbook_userid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,17 +17,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile | MrBook</title>
     <link rel="stylesheet" href="../style/signup.css">
+        <link rel="stylesheet" href="../style/link.css">
+
 </head>
 
 <body>
     <!-- top profile bar -->
-    <div class="blue_bar">
-        <div class="mrbook_pro">
-            MrBook
-            <input type="text" class="search_box" placeholder="Search for people">
-            <img src="../assets/selfie.jpg" alt="" class="mine_pro_img">
-        </div>
-    </div>
+    <?php
+        include ("../supbage/header.php");
+        ?>
     <!-- cover area -->
     <div class="cover_div">
         
@@ -29,7 +36,12 @@
                 <div class="friedns_bar friedns_bar_timeline">
                     <img src="../assets/selfie.jpg" alt="" class="cover_smal_img cover_smal_img_timeline">
                     <br>
-                    Mary Banda
+
+                    <a href="profile.php" class="timeline_pro">
+                        <?php
+                        echo $user_data['first_name'] . " " . $user_data["last_name"]
+                        ?>
+                    </a> 
 
                 </div>
             </div>

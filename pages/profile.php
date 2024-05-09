@@ -3,6 +3,8 @@
     include ("../clsses/Login.php");
     include ("../clsses/User.php");
     include ("../clsses/Post.php");
+    include ("../clsses/Image.php");
+
     session_start();
 
     // isset($_SESSION['mrbook_userid']);
@@ -32,6 +34,8 @@
     $id = $_SESSION['mrbook_userid'];
     $user = new User();
     $friends = $user->get_friends_data($id);
+
+    $image_class = new Image();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,28 +45,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile | MrBook</title>
     <link rel="stylesheet" href="../style/signup.css">
+    <link rel="stylesheet" href="../style/link.css">
 </head>
 
 <body>
     <!-- top profile bar -->
-    <div class="blue_bar">
-        <div class="mrbook_pro">
-            MrBook
-            <input type="text" class="search_box" placeholder="Search for people">
-            <img src="../assets/selfie.jpg" alt="" class="mine_pro_img">
-            <a href="logout.php" class="logout">
-                <span>
-                    Logout
-                </span>
-            </a>
-        </div>
-    </div>
+        <?php
+        include ("../supbage/header.php");
+        ?>
+
     <!-- cover area -->
     <div class="cover_div">
         <div class="cover_img">
-            <img src="../assets/mountain.jpg" alt="" class="cover_cover_img">
+            <?php
+                $image_cover = "../assets/mountain.jpg";
+                if(file_exists($user_data['cover_image'])){
+                    
+                    $image_cover = $image_class ->get_thumb_cover($user_data['cover_image']) ;
+                }
+            ?>
+            <img src=<?= $image_cover;?> alt="" class="cover_cover_img">
+            <span class="profile_image" >
+                <?php
+                $image = '../assets/user_male.jpg';
+                if($user_data['gender'] == "Female"){
+                    
+                    $image = '../assets/user_female.jpg';
+                }
+                if(file_exists( $user_data['profile_image'])){
+                    $image = $image_class ->get_thumb_profile($user_data['profile_image']);
+                }
+                ?>
+                <img src=<?= $image;?> alt="" class="cover_smal_img">
+                <br>
+                <a href="../supbage/change_images.php?change=profile" class="change_image">
+                    change image
+                </a>
+                |
+                <a href="../supbage/change_images.php?change=cover" class="change_image">
+                    change cover
+                </a>
 
-            <img src="../assets/selfie.jpg" alt="" class="cover_smal_img">
+            </span>
             <br>
             <div class="name">
                 <?php echo $user_data['first_name'] . " " . $user_data['last_name']?>
@@ -70,7 +94,7 @@
             <br>
 
             <div class="menu_buttons">
-                <a href="index.php">
+                <a href="index.php" class="timeline">
                     Timeline
                 </a>
             </div>
@@ -90,10 +114,8 @@
                         foreach ($friends as $friend) {
                             
                             include ("../supbage/users.php");
-                        }
-                        
+                        }      
                     }
-                        
                     ?>
                     
                 </div>

@@ -1,0 +1,18 @@
+a{
+text-decoration: none;
+color: white;
+}
+a.timeline_pro {
+    color: #405d9b;
+}
+.menu_buttons a{
+    color: #405d9b;
+}
+
+.like  , .comment {
+color: #405d9b;
+}
+.change_image{
+    color: #405d9b;
+    font-size: 12px;
+}

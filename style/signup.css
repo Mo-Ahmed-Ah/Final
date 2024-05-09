@@ -2,6 +2,9 @@
     font-family: tahoma;
 }
 
+* a{
+    text-decoration: none;
+}
 body {
     background-color: #e9ebee;
     padding: 0;
@@ -246,3 +249,9 @@ body {
     color: white;
     text-decoration: none;
 }
+
+.timeline{
+    text-decoration: none;
+    color: white;
+}
+
