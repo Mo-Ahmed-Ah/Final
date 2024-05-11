@@ -7,7 +7,8 @@
                 $image = '../assets/user_female.jpg';
             }
             if(file_exists( $user_data['profile_image'])){
-                $image = $user_data['profile_image'];
+                $image_class = new Image;
+                $image = $image_class ->get_thumb_profile($user_data['profile_image']);
             }
         ?>
         <a href="index.php" class="timeline">

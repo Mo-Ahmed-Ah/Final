@@ -1,6 +1,6 @@
 <?php 
-    include ("../clsses/Connect.php");
-    include ("../clsses/Signup.php");
+    include ("../classes/Connect.php");
+    include ("../classes/Signup.php");
     // check method post 
     $first_name = "";
     $last_name = "";

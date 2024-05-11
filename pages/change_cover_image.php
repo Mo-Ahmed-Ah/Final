@@ -1,9 +1,9 @@
 <?php 
-include ("../clsses/Connect.php");
-include ("../clsses/Login.php");
-include ("../clsses/User.php");
-include ("../clsses/Post.php");
-include ("../clsses/Image.php");
+include ("../classes/Connect.php");
+include ("../classes/Login.php");
+include ("../classes/User.php");
+include ("../classes/Post.php");
+include ("../classes/Image.php");
 session_start();
 
 $login = new Login();
@@ -34,9 +34,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         $query = "";
                         if(isset($_POST['change']) && $_POST['change'] == 'cover'){
                             $query = "UPDATE users SET cover_image = '$file_name' WHERE userid = '$userid' LIMIT 1";
+                            $_POST["is_cover_image"] = 1;
+
                         }
                         $DB = new Database();
                         $DB->save($query);
+
+                        // create the post 
+                        $post = new Post();
+                        $post->create_post($userid,$_POST,$file_name);
+
                         header("Location: profile.php");
                         die;    
                     }

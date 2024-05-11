@@ -1,15 +1,22 @@
 <?php
-$image = "";
-if ($friend['gender'] == "Male"){
-    $image = "../assets/user_male.jpg";
-}else{
-    $image = "../assets/user_female.jpg";
-}
+    $image = "";
+    if (file_exists($friend['profile_image'])) {
+        $image = $image_class->get_thumb_profile($friend['profile_image']);
+    }else{
+        if ($friend['gender'] == "Male"){
+            $image = "../assets/user_male.jpg";
+        }else{
+            $image = "../assets/user_female.jpg";
+        }
+    }
+
 ?>
 
 <div class="friedn">
-    <img src="<?php echo $image ?>" alt="" class="friedns_img"><br>
-    <?php 
-    echo $friend['first_name'] . " " . $friend['last_name']; 
-    ?>
+    <link rel="stylesheet" href="../style/user.css">
+    <a href="../pages/profile.php?ID=<?=$friend['userid'];?>" class='friend_link' >
+
+        <img src="<?php echo $image ?>" alt="" class="friedns_img"><br>
+        <?php echo $friend['first_name'] . " " . $friend['last_name']; ?>
+    </a>
 </div>

@@ -6,7 +6,7 @@
     text-decoration: none;
 }
 body {
-    background-color: #e9ebee;
+    background-color: #b8cae6;
     padding: 0;
 
 }
@@ -201,10 +201,7 @@ body {
 
 }
 
-.post_img {
-    width: 75px;
-    margin-right: 4px;
-}
+
 
 .posts_bar {
     margin-top: 20px;
@@ -213,22 +210,9 @@ body {
 
 }
 
-.posts {
-    padding: 4px;
-    font-size: 13px;
-    display: flex;
-    margin-bottom:20px ;
-}
 
-.post_num{
-    font-weight: bold;
-    color: #405d9b;
 
-}
-.post_data{
-    color: #999;
 
-}
 
 .cover_smal_img_timeline{
     margin-top: 0px;

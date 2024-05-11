@@ -5,7 +5,7 @@ class Database{
     private $pass = "";
     private $db = "MrBook";
     
-    function connec(){
+    private function connec(){
         try {
             $connection = mysqli_connect($this->host, $this->user_name, $this->pass, $this->db);
             if (!$connection) {

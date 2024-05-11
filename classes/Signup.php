@@ -1,4 +1,6 @@
 <?php
+require_once('Function.php');
+
 class Signup{
     private $error = '';
     
@@ -55,12 +57,14 @@ class Signup{
 
     // Create user
     public function create_user($data){
+        $fun = new Fun();
+
         // Decode HTML entities
         $first_name   =   ucfirst(htmlspecialchars_decode($data["first_name"]));
         $last_name    =   ucfirst(htmlspecialchars_decode($data["last_name"]));
         $gender = $data["gender"];
         $email = $data["email"];
-        $password = $data["password"];
+        $password = $fun->password_hash($data["password"]);
         
         // Create URL address and user ID
         $url_address = $this->create_url($first_name, $last_name);

@@ -1,14 +1,21 @@
 <?php
 
+
 class Login {
     private $error = '';
 
     public function evaluate($data) {
+        // create opject from function class i want that on hash passwrod 
+        $fun = new Fun();
+
         $email = addcslashes($data["email"], "'");
         $password = addcslashes($data["password"], "'");
-
+        
+        
         // Prepare query to search user account
         $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+
+        
 
         // Execute the query
         $DB = new Database();
@@ -16,16 +23,15 @@ class Login {
         
         if ($result) {
             $row = $result[0];
-
             // Check password
-            if ($password == $row['password']) {
+            if ($fun->password_hash($password) == $row['password']) {
                 // Create session data
                 $_SESSION['mrbook_userid'] = $row['userid'];
             } else {
-                $this->error .= "Wrong password <br>";
+                $this->error .= "Wrong Email or password  <br>";
             }
         } else {
-            $this->error .= "No such email was found <br>";
+            $this->error .= "Wrong Email or password <br>";
         }
         
         return $this->error;
@@ -41,7 +47,7 @@ class Login {
             $result = $DB->read($query);
 
             if ($result) {
-                $user_data= $result[0];
+                $user_data = $result[0];
                 return $user_data;
             }else{
                 header("Location: login.php");

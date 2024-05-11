@@ -1,9 +1,6 @@
 <?php 
-    include ("../clsses/Connect.php");
-    include ("../clsses/Login.php");
-    include ("../clsses/User.php");
-    include ("../clsses/Post.php");
-    session_start();
+    include("../classes/autoloder.php");
+    
 
     // isset($_SESSION['mrbook_userid']);
     $login = new Login();

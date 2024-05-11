@@ -1,7 +1,7 @@
 <?php 
 session_start();
-    include ("../clsses/Connect.php");
-    include ("../clsses/Login.php");
+    include ("../classes/Connect.php");
+    include ("../classes/Login.php");
 
     // check method post 
     $email = "";

@@ -1,0 +1,38 @@
+.posts {
+    padding: 4px;
+    font-size: 13px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.post_img {
+    width: 75px;
+    margin-right: 4px;
+    border-radius: 50%;
+}
+
+.post_num {
+    font-weight: bold;
+    color: #405d9b;
+    width: 100%;
+}
+
+.post_data {
+    color: #999;
+}
+
+.post_image{
+    width: 80%;
+}
+.updated_profile_and_cover_post{
+    font-weight: normal;
+    color: #aaa;
+}
+
+.post_edit_and_delete{
+    color: #999;
+    float: right;
+}
+.post_conten{
+    width: 100%;
+}

@@ -1,20 +1,26 @@
-<?php 
-    include ("../clsses/Connect.php");
-    include ("../clsses/Login.php");
-    include ("../clsses/User.php");
-    include ("../clsses/Post.php");
-    include ("../clsses/Image.php");
+<?php
 
-    session_start();
+    include("../classes/autoloder.php");
 
     // isset($_SESSION['mrbook_userid']);
     $login = new Login();
     $user_data=$login->check_login($_SESSION['mrbook_userid']);
+
+    if(isset($_GET['ID']) && is_numeric($_GET['ID'])){
+
+        $profile = new Profile();
+        $profile_data=$profile->get_profile($_GET["ID"]);
+        if(is_array($profile_data) ){
+            $user_data = $profile_data[0];
+        }
+    }
+
+
     //posting starts here
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $id = $_SESSION['mrbook_userid'];
         $post = new Post();
-        $result = $post->create_post($id,$_POST);
+        $result = $post->create_post($id,$_POST,$_FILES);
         if ($result == "") {
             header("Location: profile.php");
             die;
@@ -26,12 +32,12 @@
     }
 
     // collect posts
-    $id = $_SESSION['mrbook_userid'];
+    $id = $user_data['userid'];
     $post = new Post();
     $posts = $post->get_post($id);
 
     // collect friends
-    $id = $_SESSION['mrbook_userid'];
+    $id = $user_data['userid'];
     $user = new User();
     $friends = $user->get_friends_data($id);
 
@@ -46,6 +52,7 @@
     <title>profile | MrBook</title>
     <link rel="stylesheet" href="../style/signup.css">
     <link rel="stylesheet" href="../style/link.css">
+    <link rel="stylesheet" href="../style/post.css">    
 </head>
 
 <body>
@@ -124,8 +131,10 @@
             <div class="post">
                 <div class="post_pox">
                     <!-- post form add post  -->
-                    <form action="profile.php" method='post'>
+                    <form action="profile.php" method='post' enctype="multipart/form-data">
                         <textarea name="post_content" class="post_textarea" placeholder="Whats on your mind"></textarea>
+                        <br>
+                        <input type="file" name="file">
                         <br>
                         <input type="submit" class="post_button" value="post">
                         <br>
