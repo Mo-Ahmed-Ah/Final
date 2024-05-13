@@ -57,7 +57,7 @@ class Signup{
 
     // Create user
     public function create_user($data){
-        $fun = new Fun();
+        $fun = new Flter();
 
         // Decode HTML entities
         $first_name   =   ucfirst(htmlspecialchars_decode($data["first_name"]));
@@ -68,12 +68,11 @@ class Signup{
         
         // Create URL address and user ID
         $url_address = $this->create_url($first_name, $last_name);
-        $userid = $this->create_userid();
 
         // Prepare query to insert user into the database
         $query = "INSERT INTO 
-                    users (userid , first_name , last_name , gender , email , password,url_address)
-                    VALUES ('$userid', '$first_name', '$last_name', '$gender', '$email', '$password', '$url_address')";
+                    users (first_name , last_name , gender , email , password , url_address)
+                    VALUES ('$first_name', '$last_name', '$gender', '$email', '$password', '$url_address')";
 
         // Execute the query
         $DB =  new Database();
@@ -85,20 +84,7 @@ class Signup{
         return strtolower($first_name) . "." . strtolower($last_name);
     }
 
-    // Create user ID
-    private function create_userid(){
-        // Generate a random number as user ID
-        $number = '';
-        do {
-            $length = rand(4, 11);
-            $number = '';
-            for ($i = 1; $i < $length; $i++) { 
-                $new_rand = rand(0, 9);
-                $number .= $new_rand;
-            }
-        } while (strlen($number) > 11 || $number > 2147483647);
-        
-        return $number;
-    }
+
+    
 }
 

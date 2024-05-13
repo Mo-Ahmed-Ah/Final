@@ -1,5 +1,5 @@
 <?php
-class Fun{
+class Flter{
     public function sql_filter($sql_code){
         $sql_code = addslashes($sql_code);
         return $sql_code;

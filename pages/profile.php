@@ -1,6 +1,6 @@
 <?php
 
-    include("../classes/autoloder.php");
+    include_once("../classes/autoloder.php");
 
     // isset($_SESSION['mrbook_userid']);
     $login = new Login();
@@ -32,12 +32,11 @@
     }
 
     // collect posts
-    $id = $user_data['userid'];
+    $id = $user_data['user_id'];
     $post = new Post();
     $posts = $post->get_post($id);
 
     // collect friends
-    $id = $user_data['userid'];
     $user = new User();
     $friends = $user->get_friends_data($id);
 

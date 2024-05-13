@@ -1,5 +1,5 @@
 <?php
-    $html_filter = new Fun();
+    $html_filter = new Flter();
     $image = "";
     if(file_exists( $user_data['profile_image'])){
         $image = $image_class ->get_thumb_profile($user_data['profile_image']);

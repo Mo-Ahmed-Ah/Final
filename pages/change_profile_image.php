@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if($_FILES['image_pro']['type'] == 'image/jpeg'){
                 $allowed_size = 1024 * 1024 * 3;
                 if($_FILES['image_pro']['size'] < $allowed_size ){
-                    $folder = "../upload/" . $user_data["userid"] . '/';
+                    $folder = "../upload/" . $user_data["user_id"] . '/';
                     
                     if(!file_exists($folder)){
                         mkdir($folder, 0777, true);
@@ -27,8 +27,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     // Ensure that the image file exists before cropping
                     if(file_exists($file_name)){
                         $image->resize_image($file_name , $file_name , 1500 , 1500);
-                        $userid = $user_data['userid'];
-                        $query = "UPDATE users SET profile_image = '$file_name' WHERE userid = '$userid' LIMIT 1";
+                        $userid = $user_data['user_id'];
+                        $query = "UPDATE users SET profile_image = '$file_name' WHERE user_id = '$userid' LIMIT 1";
                         $_POST["is_profile_image"] = 1;
                         $DB = new Database();
                         $DB->save($query);

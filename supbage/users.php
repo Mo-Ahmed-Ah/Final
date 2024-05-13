@@ -14,7 +14,7 @@
 
 <div class="friedn">
     <link rel="stylesheet" href="../style/user.css">
-    <a href="../pages/profile.php?ID=<?=$friend['userid'];?>" class='friend_link' >
+    <a href="../pages/profile.php?ID=<?=$friend['user_id'];?>" class='friend_link' >
 
         <img src="<?php echo $image ?>" alt="" class="friedns_img"><br>
         <?php echo $friend['first_name'] . " " . $friend['last_name']; ?>

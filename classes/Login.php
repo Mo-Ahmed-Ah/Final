@@ -1,12 +1,12 @@
 <?php
-
+include_once ("Function.php");
 
 class Login {
     private $error = '';
 
     public function evaluate($data) {
         // create opject from function class i want that on hash passwrod 
-        $fun = new Fun();
+        $fun = new Flter();
 
         $email = addcslashes($data["email"], "'");
         $password = addcslashes($data["password"], "'");
@@ -26,7 +26,7 @@ class Login {
             // Check password
             if ($fun->password_hash($password) == $row['password']) {
                 // Create session data
-                $_SESSION['mrbook_userid'] = $row['userid'];
+                $_SESSION['mrbook_userid'] = $row['user_id'];
             } else {
                 $this->error .= "Wrong Email or password  <br>";
             }
@@ -40,7 +40,7 @@ class Login {
     public function check_login($id) {
         if(is_numeric($id))
         {
-            $query = "SELECT * FROM users WHERE userid = '$id' LIMIT 1";
+            $query = "SELECT * FROM users WHERE user_id = '$id' LIMIT 1";
 
             // Execute the query
             $DB = new Database();

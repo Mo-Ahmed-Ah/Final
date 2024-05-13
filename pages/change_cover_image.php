@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if($_FILES['image_pro']['type'] == 'image/jpeg'){
                 $allowed_size = 1024 * 1024 * 3;
                 if($_FILES['image_pro']['size'] < $allowed_size ){
-                    $folder = "../upload/" . $user_data["userid"] . '/';
+                    $folder = "../upload/" . $user_data["user_id"] . '/';
                     
                     if(!file_exists($folder)){
                         mkdir($folder, 0777, true);
@@ -30,10 +30,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $image->resize_image($file_name , $file_name , 1500 , 1500);
 
                     if(file_exists($file_name)){
-                        $userid = $user_data['userid'];
+                        $userid = $user_data['user_id'];
                         $query = "";
                         if(isset($_POST['change']) && $_POST['change'] == 'cover'){
-                            $query = "UPDATE users SET cover_image = '$file_name' WHERE userid = '$userid' LIMIT 1";
+                            $query = "UPDATE users SET cover_image = '$file_name' WHERE user_id = '$userid' LIMIT 1";
                             $_POST["is_cover_image"] = 1;
 
                         }

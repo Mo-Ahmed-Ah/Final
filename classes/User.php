@@ -1,7 +1,7 @@
 <?php 
 class User {
     public function get_data($id){
-        $query ="select * from users where userid='$id' limit 1";
+        $query ="select * from users where user_id = '$id' limit 1";
         $DB = new Database();
         $result = $DB->read($query);
 
@@ -15,7 +15,7 @@ class User {
 
     public function get_user_data($id)
     {
-        $query ="select * from users where userid != '$id' limit 1";
+        $query ="select * from users where user_id != '$id' limit 1";
         $DB = new Database();
         $result = $DB->read($query);
         if ($result) {
@@ -26,7 +26,7 @@ class User {
     }
     public function get_user_data_post($id)
     {
-        $query ="select * from users where userid = '$id' limit 1";
+        $query ="select * from users where user_id = '$id' limit 1";
         $DB = new Database();
         $result = $DB->read($query);
         if ($result) {
@@ -37,7 +37,7 @@ class User {
     }
 
     public function get_friends_data($id){
-        $query ="select * from users where userid != '$id'";
+        $query ="select * from users where user_id != '$id'";
         $DB = new Database();
         $result = $DB->read($query);
         if ($result) {

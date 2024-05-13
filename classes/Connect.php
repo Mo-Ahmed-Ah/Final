@@ -3,7 +3,7 @@ class Database{
     private $host = "localhost";
     private $user_name = "root";
     private $pass = "";
-    private $db = "MrBook";
+    private $db = "mrbook";
     
     private function connec(){
         try {
