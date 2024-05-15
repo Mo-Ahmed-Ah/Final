@@ -1,3 +1,23 @@
 .friend_link{
     color: #405d9b;
 }
+.friedns {
+    min-height: 400px;
+    flex: 1;
+
+}
+
+.friedns_img {
+    width: 75px;
+    float: left;
+    margin: 8px;
+
+}
+
+.friedns_bar {
+    background-color: white;
+    min-height: 400px;
+    margin-top: 20px;
+    color: #aaa;
+    padding: 8px;
+}

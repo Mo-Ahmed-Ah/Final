@@ -1,0 +1,116 @@
+* {
+    font-family: tahoma;
+}
+
+* a {
+    text-decoration: none;
+}
+
+body {
+    background-color: #b8cae6;
+    padding: 0;
+    width: 100%;
+}
+
+.cover_div {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    min-height: 400px;
+}
+
+.cover_img {
+    background-color: white;
+    text-align: center;
+    color: #405d9b;
+}
+
+.cover_smal_img {
+    width: 20%;
+    /* Adjust this percentage as needed */
+    max-width: 150px;
+    margin-top: -300px;
+    border-radius: 50%;
+    border: solid 2px white;
+}
+
+.change_image {
+    color: #405d9b;
+    font-size: 12px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menu_buttons {
+    width: 100px;
+    display: inline-block;
+    margin: 2px;
+}
+
+.timeline {
+    text-decoration: none;
+    color: white;
+}
+
+/* cover frinds */
+.profile_content {
+    display: flex;
+    flex-wrap: wrap;
+    /* Add flex-wrap for responsiveness */
+}
+
+.friedns_bar {
+    background-color: white;
+    min-height: 200px;
+    /* Adjust as needed */
+    margin-top: 20px;
+    color: #aaa;
+    padding: 8px;
+    flex: 1;
+}
+
+/* post area */
+.post {
+    min-height: 400px;
+    flex: 2.5;
+    padding: 20px;
+    padding-right: 0px;
+}
+
+.post_pox {
+    border: solid 1px #aaa;
+    padding: 8px;
+    background-color: white;
+}
+
+.post_textarea {
+    width: 100%;
+    border: none;
+    font-family: Tehoma;
+    font-size: 14px;
+    height: 60px;
+}
+
+.post_button {
+    float: right;
+    background-color: #405d9b;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.post_button:hover {
+    background-color: gray;
+}
+
+.posts_bar {
+    margin-top: 20px;
+    background-color: white;
+    padding: 10px;
+}

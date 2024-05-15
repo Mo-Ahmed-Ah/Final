@@ -16,11 +16,10 @@ a.timeline_pro {
     color: #405d9b;
 }
 
-.change_image {
-    color: #405d9b;
-    font-size: 12px;
-}
 
 .friend_link {
+    color: #405d9b;
+}
+.posts a{
     color: #405d9b;
 }

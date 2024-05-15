@@ -1,7 +1,7 @@
 <?php
     $html_filter = new Flter();
     $image = "";
-    if(file_exists( $user_data['profile_image'])){
+    if(file_exists($user_data['profile_image'])){
         $image = $image_class ->get_thumb_profile($user_data['profile_image']);
     }else{
         if ($user_data_post['gender'] == "Male"){
@@ -11,6 +11,7 @@
         }
     }
 ?>
+<link rel="stylesheet" href="../style/post.css">
 <div class="posts">
     <div>
         <img src="<?php echo $image ?>" alt="" class="post_img">
@@ -48,6 +49,7 @@
             echo "<img src='$post_image' class='post_image'";
         }
         ?>
+        <br><br>
         <a href="" class="like">Like</a> . <a href="" class="comment">comment</a> . 
         <span class="post_data">
             <?php 
@@ -55,7 +57,13 @@
             ?>
         </span>
         <span class="post_edit_and_delete">
-            Edit. Delete
+            <a> 
+                Edit
+            </a>
+            .
+            <a> 
+                Delete
+            </a>
         </span>
             
     </div>

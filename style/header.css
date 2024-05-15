@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.blue_bar {
+    height: 50px;
+    background-color: #405d9b;
+    color: #d9dfeb;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mrbook_pro {
+    width: 100%;
+    margin: auto;
+    font-size: 30px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.timeline{
+    float: left;
+}
+
+.search_box {
+    width: 400px;
+    height: 20px;
+    margin-left: 20px;
+    border-radius: 5px;
+    border: none;
+    padding: 4px;
+    font-size: 14px;
+    background-image: url(../assets/search.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    
+}
+
+.mine_pro_img {
+    width: 50px;
+    float: right;
+}
+
+.logout {
+    font-size: 13px;
+    float: right;
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    .timeline{
+        position: absolute;
+        left: 50%;
+        top: -5px;
+        transform: translateX(-50%);
+    }
+    .search_box {
+        display: none;
+    }
+
+    .mine_pro_img {
+        display: none;
+    }
+
+    .logout {
+        display: none;
+    }
+}
