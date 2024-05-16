@@ -1,9 +1,9 @@
 <?php 
 include_once("../classes/autoloder.php");
-session_start();
 
 $login = new Login();
 $user_data = $login->check_login($_SESSION['mrbook_userid']);
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_FILES['image_pro'])){
         if(isset($_FILES['image_pro']['name']) && $_FILES['image_pro']['name'] != ""){
@@ -29,7 +29,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         $DB = new Database();
                         $DB->save($query);
 
-                        
                         // create the post 
                         $post = new Post();
                         $post->create_post($userid,$_POST,$file_name);
@@ -65,26 +64,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change profile image | MrBook</title>
-    <link rel="stylesheet" href="../style/signup.css">
+    <link rel="stylesheet" href="../style/change_image.css">
     <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
     <!-- top profile bar -->
-        <?php
-        include ("../supbage/header.php");
-        ?>
+    <?php include ("../supbage/header.php"); ?>
 
     <!-- cover area -->
     <div class="cover_div">
-            <!-- post area -->
+        <!-- post area -->
         <div class="post">
             <div class="post_pox">
                 <!-- post form add post  -->
                 <form action="change_profile_image.php" method='post' enctype="multipart/form-data">
-                    <input type="file" name="image_pro">
+                    <div class="file-input-wrapper">
+                        <input type="file" name="image_pro" class="file-input">
+                        <span class="file-input-label">Choose Image</span>
+                    </div>
                     <br>
-                    <input type="submit" class="post_button change_image_button" value="change">
+                    <input type="submit" class="post_button change_image_button" value="Change">
                     <br>
                 </form>
             </div>

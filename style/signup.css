@@ -59,6 +59,14 @@
     background-color: gray;
 }
 
+
+
+
+
+.cover_img .cover_cover_img {
+    width: 800px;
+}
+
 .friedn {
     clear: both;
     font-size: 12px;

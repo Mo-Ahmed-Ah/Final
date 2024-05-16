@@ -1,8 +1,60 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 800px;
+    margin: auto;
+}
+
+.content {
+    display: flex;
+}
+
+.post-container {
+    min-height: 400px;
+    flex: 2.5;
+    padding: 20px;
+    padding-right: 0px;
+    background-color: transparent;
+}
+
+.post-box {
+    border: solid 1px #aaa;
+    padding: 8px;
+    background-color: white;
+    border-radius: 30px;
+    height: 60%;
+    
+}
+
+.delete-post-button {
+    float: right;
+    background-color: #405d9b;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    vertical-align: middle; /* توزيع الزر بشكل عمودي في المربع */
+}
+
+.delete-post-button:hover {
+    background-color: #233e8b;
+}
+
+/* delete_post.css */
 .cover_div_delete_post {
     width: 800px;
     margin: auto;
     min-height: 400px;
 }
+
 .profile_content_delete_post {
     display: flex;
 }
@@ -20,21 +72,21 @@
     background-color: white;
 }
 
-.delete_post_button {
+.delete-post-button {
     float: right;
     background-color: #405d9b;
     border: none;
     color: white;
-    padding: 4px;
+    padding: 8px 16px;
     font-size: 14px;
-    border-radius: 2px;
-    width: 50px;
-    display: block;
-    transition: cursor 10s ease-in;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    vertical-align: middle; /* توزيع الزر بشكل عمودي في المربع */
 }
 
-.delete_post_button:hover {
-    cursor: pointer;
-    color: #405d9b;
-    background-color: gray;
+.delete-post-button:hover {
+    background-color: #233e8b;
 }
+
+

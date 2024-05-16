@@ -1,6 +1,5 @@
 <?php
-    include_once("../classes/autoloder.php");
-    session_start();
+include_once("../classes/autoloder.php");
 
 $login = new Login();
 $user_data = $login->check_login($_SESSION['mrbook_userid']);
@@ -68,33 +67,35 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change cover image | MrBook</title>
-    <link rel="stylesheet" href="../style/signup.css">
+    <link rel="stylesheet" href="../style/change_image.css">
     <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
     <!-- top profile bar -->
-        <?php
-        include ("../supbage/header.php");
-        ?>
+    <?php
+    include ("../supbage/header.php");
+    ?>
 
     <!-- cover area -->
     <div class="cover_div">
-            <!-- post area -->
+        <!-- post area -->
         <div class="post">
             <div class="post_pox">
                 <!-- post form add post  -->
                 <form action="change_cover_image.php" method='post' enctype="multipart/form-data">
-                    <input type="file" name="image_pro">
+                    <div class="file-input-wrapper">
+                        <input type="file" name="image_pro" id="image_pro" class="file-input">
+                        <label for="image_pro" class="file-input-label">Choose Image</label>
+                    </div>
                     <input type="hidden" name="change" value="cover"> <!-- تحديد نوع الصورة -->
                     <br>
-                    <input type="submit" class="post_button change_image_button" value="change">
+                    <input type="submit" class="post_button change_image_button" value="Change">
                     <br>
                 </form>
             </div>
         </div>
     </div>
-    
 </body>
 
 </html>

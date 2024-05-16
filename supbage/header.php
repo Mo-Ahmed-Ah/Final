@@ -13,7 +13,7 @@
                 $image = $image_class ->get_thumb_profile($user_data['profile_image']);
             }
         ?>
-        <a href="index.php" class="timeline">
+        <a href="timeline.php" class="timeline">
             MrBook
         </a>
         <input type="text" class="search_box" placeholder="Search for people">

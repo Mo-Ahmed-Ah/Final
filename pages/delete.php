@@ -13,6 +13,12 @@
         if(!$post){
             
             $error = "No such post was found!";
+
+        }else{
+            if ($post["user_id"] != $_SESSION['mrbook_userid']) {
+                $error = "Access denied! " ;
+                
+            }   
         }
     }else{
         $error = "No such post was found!";
@@ -22,6 +28,7 @@
         $POST->delete_post($_POST["post_id"]);
         header("Location: profile.php");
     }
+    $pps=$post['post_id']
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,41 +42,33 @@
 </head>
 
 <body>
-    <?php
-    ?>
-    <!-- top profile bar -->
-    <?php
-        include ("../supbage/header.php");
-        ?>
-    <!-- cover area -->
-    <div class="cover_div_delete_post">
-        
-        <!-- below cover area -->
-        <div class="profile_content_delete_post">
-            <!-- post area -->
-            <div class="post_delete_post">
-                <div class="post_pox_delete_post">
-                    <br>
-                    <form action="" method="post">
-                        <br>
-                        <br>
-                        <?php
-                                if($post){
-                                echo "<h2>Delete Post</h2>";
-                                    $user=new User();
-                                    $user_data_post = $user->get_user_data_post($post["user_id"]);
-                                    include ("../supbage/delete_post.php");
-                                }else{
-                                    echo $error;
-                                }
+    <?php include ("../supbage/header.php"); ?>
+    <div class="container">
+        <!-- <div class="content"> -->
+            <div class="post-container">
+                <div class="post-box">
+                    <?php if($post): ?>
+                        <h2>Delete Post</h2>
+                        <?php 
+                        if($error != ""){
+                            echo $error;
+                        }else{
+
+                            $user=new User();
+                            $user_data_post = $user->get_user_data_post($post["user_id"]);
+                            include ("../supbage/delete_post.php");
+                            echo "<form action='' method='post'>";;
+                            echo "<input type='hidden' name='post_id' value='<?=$pps?>";
+                            echo "<input type='submit' class='delete-post-button' value='Delete'>";
+                            echo "<?php else: ?>";
+                            echo "<p><?=$error?></p>";
+                        }
                             ?>
-                        <input type="hidden" name="post_id" value="<?=$post['post_id']?>">
-                        <input type="submit" class="delete_post_button" value="Delete">
+                        <?php endif; ?>
                     </form>
-                    <br>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     </div>
 </body>
 

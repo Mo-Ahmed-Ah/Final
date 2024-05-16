@@ -11,7 +11,7 @@
     if(file_exists($user_data['profile_image'])){
         $image = $image_class ->get_thumb_profile($user_data['profile_image']);
     }else{
-        if ($user_data_post['gender'] == "Male"){
+        if ($user_data['gender'] == "Male"){
             $image = "../assets/user_male.jpg";
         }else{
             $image = "../assets/user_female.jpg";
@@ -43,7 +43,7 @@
         <div class="profile_content_timeline">
             <!-- friedns area -->
             <div class="friedns">
-                <div class="friedns_bar friedns_bar_timeline">
+                <div class="friedns_bar_timeline">
                     <img src=<?= $image;?> alt="" class="cover_smal_img_timeline">
                     <br>
 
@@ -52,17 +52,17 @@
                         echo $user_data['first_name'] . " " . $user_data["last_name"]
                         ?>
                     </a> 
-
                 </div>
-            </div>
-            <!-- post area -->
-            <div class="post_timeline">
                 <div class="post_pox_timeline">
                     <textarea name="" class="post_textarea_timeline" placeholder="Whats on your mind"></textarea>
                     <br>
                     <input type="submit" class="post_button_timeline" value="post">
                     <br>
                 </div>
+            </div>
+            <!-- post area -->
+        
+            <div class="post_timeline">
 
                 <!-- posts -->
                 <div class="posts_bar_timeline">

@@ -16,7 +16,7 @@
     <div>
         <img src="<?php echo $image ?>" alt="" class="post_img">
     </div>
-    <div class="post_conten">
+    <div class="post_content">
         <div class="post_num"> 
             <?php 
             echo $html_filter->html_filter($user_data_post['first_name']) . " " . $html_filter->html_filter($user_data_post['last_name']);
@@ -45,25 +45,30 @@
         <?php
         if (file_exists($post['image'])){
             $post_image = $image_class->get_thumb_post($post['image']);
-            echo "<img src='$post_image' class='post_image'";
+            echo "<img src='$post_image' class='post_image'>";
         }
         ?>
         <br><br>
-        <a href="" class="like">Like</a> . <a href="" class="comment">comment</a> . 
-        <span class="post_data">
-            <?php 
-                echo $post['date'] ;
-            ?>
-        </span>
-        <span class="post_edit_and_delete">
-            <a href="../pages/edit.php"> 
-                Edit
-            </a>
-            .
-            <a href="../pages/delete.php?ID=<?=$post['post_id']?>"> 
-                Delete
-            </a>
-        </span>
-            
+        <div class="post_data">
+            <a href="#" class="like">
+                Like
+            </a> 
+            <a href="#" class="comment">
+                Comment
+            </a> 
+            <span class="post_date">
+                <?php 
+                    echo $post['date'] ;
+                ?>
+            </span>
+            <span class="post_edit_and_delete">
+                <a href="../pages/edit.php"> 
+                    Edit
+                </a>
+                <a href="../pages/delete.php?ID=<?=$post['post_id']?>"> 
+                    Delete
+                </a>
+            </span>
+        </div>
     </div>
 </div>

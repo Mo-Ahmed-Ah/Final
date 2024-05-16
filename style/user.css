@@ -1,23 +1,45 @@
-.friend_link{
-    color: #405d9b;
-}
-.friedns {
-    min-height: 400px;
-    flex: 1;
-
-}
-
-.friedns_img {
-    width: 75px;
-    float: left;
-    margin: 8px;
-
+/* CSS for Friend Blocks */
+.friend {
+    display: inline-block;
+    width: 100px;
+    /* Adjust as needed */
+    margin: 10px;
+    text-align: center;
 }
 
-.friedns_bar {
+
+.friend_link {
+    text-decoration: none;
+    color: #000;
+}
+
+.friend_link:hover {
+    text-decoration: underline;
+}
+
+.friends_img {
+    width: 8px;
+    /* Adjust as needed */
+    height: 8px;
+    /* Adjust as needed */
+    border-radius: 50%;
+    border: 2px solid #fff;
+    transition: border-color 0.3s ease;
+}
+
+.friends_img:hover {
+    border-color: #405d9b;
+    /* Change to your desired hover color */
+}
+
+.friends_bar {
     background-color: white;
-    min-height: 400px;
-    margin-top: 20px;
+    min-height: 200px;
     color: #aaa;
     padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows friend blocks to wrap to the next line */
+    justify-content: center;
+    /* Centers the friend blocks horizontally */
 }

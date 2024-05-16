@@ -83,13 +83,15 @@
                 ?>
                 <img src=<?= $image;?> alt="" class="cover_smal_img">
                 <br>
-                <a href="../supbage/change_images.php?change=profile" class="change_image">
-                    change image
-                </a>
-                |
-                <a href="../supbage/change_images.php?change=cover" class="change_image">
-                    change cover
-                </a>
+                <div class="chabge">
+                    <a href="../supbage/change_images.php?change=profile" class="change_image">
+                        change image
+                    </a>
+                    
+                    <a href="../supbage/change_images.php?change=cover" class="change_image">
+                        change cover
+                    </a>
+                </div>
 
             </span>
             <br>
@@ -97,16 +99,34 @@
                 <?php echo $user_data['first_name'] . " " . $user_data['last_name']?>
             </div>
             <br>
-
-            <div class="menu_buttons">
-                <a href="index.php" class="timeline">
-                    Timeline
-                </a>
+            <!-- profile_set -->
+            <div class="profile_set">
+                <div class="menu_buttons">
+                    <a href="timeline.php" class="timeline">
+                        Timeline
+                    </a>
+                </div>
+                <div class="menu_buttons">
+                    <a >
+                        About
+                    </a>
+                </div>
+                <div class="menu_buttons">
+                    <a>
+                        Friedns
+                    </a> 
+                </div>
+                <div class="menu_buttons">
+                    <a>
+                        Phontos
+                    </a>
+                </div>
+                <div class="menu_buttons">
+                    <a>
+                        Settings    
+                    </a>
+                </div>
             </div>
-            <div class="menu_buttons">About</div>
-            <div class="menu_buttons">Friedns </div>
-            <div class="menu_buttons">Phontos </div>
-            <div class="menu_buttons">Settings</div>
         </div>
         <!-- below cover area -->
         <div class="profile_content">
@@ -129,12 +149,12 @@
                 <div class="post_pox">
                     <!-- post form add post  -->
                     <form action="profile.php" method='post' enctype="multipart/form-data">
-                        <textarea name="post_content" class="post_textarea" placeholder="Whats on your mind"></textarea>
-                        <br>
-                        <input type="file" name="file">
-                        <br>
-                        <input type="submit" class="post_button" value="post">
-                        <br>
+                        <div class="post-inputs">
+                            <textarea name="post_content" class="post_textarea" placeholder="What's on your mind"></textarea>
+                            <input type="file" name="file" id="file" class="file">
+                            <label for="file" class="file-label">Choose Image</label>
+                        </div>
+                        <input type="submit" class="post_button" value="Post">  
                     </form>
                 </div>
 
