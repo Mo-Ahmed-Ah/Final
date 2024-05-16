@@ -1,7 +1,6 @@
 <?php 
 session_start();
-    include ("../classes/Connect.php");
-    include ("../classes/Login.php");
+    include_once("../classes/autoloder.php");
 
     // check method post 
     $email = "";
@@ -36,6 +35,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MrBook | Log in</title>
     <link rel="stylesheet" href="../style/signup.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>

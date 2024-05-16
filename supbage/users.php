@@ -12,6 +12,8 @@
 
 ?>
 
+<link rel="stylesheet" href="../style/user.css">
+
 <div class="friedn">
     <a href="../pages/profile.php?ID=<?=$friend['user_id'];?>" class='friend_link' >
 

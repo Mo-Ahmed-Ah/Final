@@ -1,6 +1,5 @@
 <?php 
-    include ("../classes/Connect.php");
-    include ("../classes/Signup.php");
+    include_once("../classes/autoloder.php");
     // check method post 
     $first_name = "";
     $last_name = "";
@@ -35,7 +34,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MrBook | Signup</title>
     <link rel="stylesheet" href="../style/signup.css">
-        <link rel="stylesheet" href="../style/link.css">
+    <link rel="stylesheet" href="../style/link.css">
 
 </head>
 

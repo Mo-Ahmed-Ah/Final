@@ -1,16 +1,4 @@
-* {
-    font-family: tahoma;
-}
 
-* a {
-    text-decoration: none;
-}
-
-body {
-    background-color: #b8cae6;
-    padding: 0;
-    width: 100%;
-}
 
 .cover_div {
     width: 100%;
@@ -37,6 +25,10 @@ body {
 .change_image {
     color: #405d9b;
     font-size: 12px;
+}
+
+.cover_img .cover_cover_img {
+    width: 800px;
 }
 
 .name {

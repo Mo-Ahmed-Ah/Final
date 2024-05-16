@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="../style/header.css">
+<link rel="stylesheet" href="../style/link.css">
 <div class="blue_bar">
     <div class="mrbook_pro">
         <?php

@@ -29,6 +29,7 @@ class Post{
                         
                     if (!file_exists($folder)) {
                         mkdir($folder, 0777, true);
+                        file_put_contents($folder . "index.php", "");
                     }
                     
                     $image_class = new Image(); 
@@ -68,6 +69,28 @@ class Post{
         } else {
             return false;
         }
+    }
+    public function get_one_post($postid) {
+        if(!is_numeric($postid)){
+            return false;
+        }
+        $DB = new Database();
+        $result = $DB->read("SELECT * FROM posts WHERE post_id = '$postid' LIMIT 1"); 
+        if ($result) {
+            return $result[0];
+        } else {
+            return false;
+        }
+    }
+    public function delete_post($postid) {
+        
+        if(!is_numeric($postid)){
+            return false;
+        }
+        
+        $DB = new Database();
+        $DB->save("DELETE FROM posts WHERE post_id = '$postid' LIMIT 1"); 
+
     }
 }
 ?>

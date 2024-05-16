@@ -49,13 +49,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile | MrBook</title>
-    <link rel="stylesheet" href="../style/signup.css">
     <link rel="stylesheet" href="../style/profile.css">
-    <link rel="stylesheet" href="../style/link.css">
-    <link rel="stylesheet" href="../style/post.css">  
-    <link rel="stylesheet" href="../style/user.css">
-    <link rel="stylesheet" href="../style/timeline.css">
-    
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>

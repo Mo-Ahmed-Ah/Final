@@ -1,9 +1,5 @@
 <?php 
-include ("../classes/Connect.php");
-include ("../classes/Login.php");
-include ("../classes/User.php");
-include ("../classes/Post.php");
-include ("../classes/Image.php");
+include_once("../classes/autoloder.php");
 session_start();
 
 $login = new Login();
@@ -70,6 +66,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change profile image | MrBook</title>
     <link rel="stylesheet" href="../style/signup.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>

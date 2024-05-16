@@ -1,0 +1,40 @@
+.cover_div_delete_post {
+    width: 800px;
+    margin: auto;
+    min-height: 400px;
+}
+.profile_content_delete_post {
+    display: flex;
+}
+
+.post_delete_post {
+    min-height: 400px;
+    flex: 2.5;
+    padding: 20px;
+    padding-right: 0px;
+}
+
+.post_pox_delete_post {
+    border: solid 1px #aaa;
+    padding: 8px;
+    background-color: white;
+}
+
+.delete_post_button {
+    float: right;
+    background-color: #405d9b;
+    border: none;
+    color: white;
+    padding: 4px;
+    font-size: 14px;
+    border-radius: 2px;
+    width: 50px;
+    display: block;
+    transition: cursor 10s ease-in;
+}
+
+.delete_post_button:hover {
+    cursor: pointer;
+    color: #405d9b;
+    background-color: gray;
+}
