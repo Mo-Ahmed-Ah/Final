@@ -1,5 +1,6 @@
 <?php
     $html_filter = new Flter();
+    $post_ch = new Post();
     $image = "";
     if(file_exists($user_data['profile_image'])){
         $image = $image_class ->get_thumb_profile($user_data['profile_image']);
@@ -61,14 +62,19 @@
                     echo $post['date'] ;
                 ?>
             </span>
-            <span class="post_edit_and_delete">
-                <a href="../pages/edit.php"> 
-                    Edit
-                </a>
-                <a href="../pages/delete.php?ID=<?=$post['post_id']?>"> 
-                    Delete
-                </a>
-            </span>
+            <?php 
+                if($post_ch->i_own_post($post['post_id'],$_SESSION["mrbook_userid"])){
+
+                    echo "<span class='post_edit_and_delete'>
+                            <a href='../pages/edit.php'> 
+                                Edit
+                            </a>
+                            <a href='../pages/delete.php?ID=$post[post_id]'> 
+                                Delete
+                            </a>
+                        </span>";
+                }
+                ?>
         </div>
     </div>
 </div>

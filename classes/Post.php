@@ -92,5 +92,22 @@ class Post{
         $DB->save("DELETE FROM posts WHERE post_id = '$postid' LIMIT 1"); 
 
     }
+    public function i_own_post($postid , $userid) {
+        
+        if(!is_numeric($postid)){
+            return false;
+        }
+        $query = "SELECT * FROM posts WHERE post_id = '$postid' LIMIT 1";
+        $DB = new Database();
+        $result = $DB->read($query);
+        $result = $result[0];
+        if(is_array($result)){
+
+            if($result['user_id']==$userid){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 ?>
