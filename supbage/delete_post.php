@@ -1,8 +1,9 @@
 <?php
     $html_filter = new Flter();
     $image = "";
+    $image_class = new Image();
     if(file_exists($user_data['profile_image'])){
-        $image = $image_class ->get_thumb_profile($user_data['profile_image']);
+        $image = $image_class->get_thumb_profile($user_data['profile_image']);
     }else{
         if ($user_data_post['gender'] == "Male"){
             $image = "../assets/user_male.jpg";
@@ -34,6 +35,7 @@
                     $pronoun = "her";
                 }
                 echo "<span class='updated_profile_and_cover_post'> updated $pronoun cover image </span>";
+                
             }
             ?>
         </div>

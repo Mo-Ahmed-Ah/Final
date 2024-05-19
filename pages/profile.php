@@ -6,6 +6,7 @@
     $login = new Login();
     $user_data=$login->check_login($_SESSION['mrbook_userid']);
 
+    $USER = $user_data;
     if(isset($_GET['ID']) && is_numeric($_GET['ID'])){
 
         $profile = new Profile();

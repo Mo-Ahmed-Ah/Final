@@ -111,3 +111,15 @@
     width: 100%;
     justify-content: space-around;
 }
+
+.like_numbers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.like_number{
+    color: #999;
+    font-size: small;
+}
+    

@@ -8,9 +8,15 @@
                 
                 $image = '../assets/user_female.jpg';
             }
-            if(file_exists( $user_data['profile_image'])){
-                $image_class = new Image;
-                $image = $image_class ->get_thumb_profile($user_data['profile_image']);
+            if(isset($USER) ){
+                if (file_exists( $USER['profile_image'])){
+                    $image_class = new Image;
+                    $image = $image_class ->get_thumb_profile($USER['profile_image']);
+                }else{
+                    if($USER['gender']=="Female"){
+                        $image = "../assets/user_female.jpg";
+                    }
+                }
             }
         ?>
         <a href="timeline.php" class="timeline">

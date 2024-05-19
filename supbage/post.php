@@ -11,6 +11,7 @@
             $image = "../assets/user_female.jpg";
         }
     }
+
 ?>
 <link rel="stylesheet" href="../style/post.css">
 <div class="posts">
@@ -51,9 +52,12 @@
         ?>
         <br><br>
         <div class="post_data">
-            <a href="#" class="like">
-                Like
-            </a> 
+            <div class="like_numbers">
+                <a href="../supbage/like.php?type=posts&id= <?=$post['post_id']?>" class="like">
+                    Like
+                </a> 
+                <span class="like_number"><?=$post['likes'] ;?></span>
+            </div>
             <a href="#" class="comment">
                 Comment
             </a> 

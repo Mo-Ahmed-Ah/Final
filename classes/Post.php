@@ -109,5 +109,23 @@ class Post{
         }
         return false;
     }
+    public function like_post($postid , $userid){
+        $sql = "SELECT is_seet FROM likes WHERE user_id='$userid' && post_id = '$postid'";
+        $DB = new Database();
+        $result= $DB->read($sql);
+        if(empty($result)){
+            $sql = "INSERT INTO likes (user_id,post_id,is_seet) VALUES ('$userid','$postid','1')";
+            $DB->save($sql);
+            $sql = "UPDATE posts SET likes = likes + 1 WHERE post_id = '$postid' LIMIT 1";
+            $DB->save($sql);
+        }else{
+            $sql = "DELETE FROM likes WHERE user_id = '$userid' && post_id = '$postid' LIMIT 1";
+            $DB->save($sql);
+            $sql = "UPDATE posts SET likes = likes - 1 WHERE post_id = '$postid' LIMIT 1";
+            $DB->save($sql);
+        }
+
+
+    }
 }
-?>
+
