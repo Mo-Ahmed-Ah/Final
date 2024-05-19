@@ -31,22 +31,6 @@ body {
     
 }
 
-.delete-post-button {
-    float: right;
-    background-color: #405d9b;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    vertical-align: middle; /* توزيع الزر بشكل عمودي في المربع */
-}
-
-.delete-post-button:hover {
-    background-color: #233e8b;
-}
 
 /* delete_post.css */
 .cover_div_delete_post {
@@ -72,21 +56,31 @@ body {
     background-color: white;
 }
 
+
+
+
+
+
 .delete-post-button {
-    float: right;
     background-color: #405d9b;
-    border: none;
     color: white;
-    padding: 8px 16px;
-    font-size: 14px;
-    border-radius: 4px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    vertical-align: middle; /* توزيع الزر بشكل عمودي في المربع */
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .delete-post-button:hover {
-    background-color: #233e8b;
+    background-color: #334a75;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
 }
 
-
+.delete-post-button:active {
+    background-color: #2c3e65;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}

@@ -1,35 +1,32 @@
 <?php 
-    include("../classes/autoloder.php");
-    
+include("../classes/autoloder.php");
 
-    // isset($_SESSION['mrbook_userid']);
-    $login = new Login();
-    $user_data=$login->check_login($_SESSION['mrbook_userid']);     
-    $POST = new Post();
-    $error = "";
-    if(isset($_GET['ID'])){
+$login = new Login();
+$user_data = $login->check_login($_SESSION['mrbook_userid']);     
+$POST = new Post();
+$error = "";
+$post = false;
 
-        $post = $post = $POST->get_one_post($_GET['ID']);
-        if(!$post){
-            
-            $error = "No such post was found!";
-
-        }else{
-            if ($post["user_id"] != $_SESSION['mrbook_userid']) {
-                $error = "Access denied! " ;
-                
-            }   
-        }
-    }else{
+if(isset($_GET['ID'])){
+    $post = $POST->get_one_post($_GET['ID']);
+    if(!$post){
         $error = "No such post was found!";
+    } else {
+        if ($post["user_id"] != $_SESSION['mrbook_userid']) {
+            $error = "Access denied!";
+        }   
     }
+} else {
+    $error = "No such post was found!";
+}
 
-    if($_SERVER['REQUEST_METHOD']== "POST"){
-        $POST->delete_post($_POST["post_id"]);
-        header("Location: profile.php");
-    }
-    $pps=$post['post_id']
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $POST->delete_post($_POST["post_id"]);
+    header("Location: profile.php");
+    exit();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,31 +41,24 @@
 <body>
     <?php include ("../supbage/header.php"); ?>
     <div class="container">
-        <!-- <div class="content"> -->
-            <div class="post-container">
-                <div class="post-box">
-                    <?php if($post): ?>
-                        <h2>Delete Post</h2>
-                        <?php 
-                        if($error != ""){
-                            echo $error;
-                        }else{
-
-                            $user=new User();
-                            $user_data_post = $user->get_user_data_post($post["user_id"]);
-                            include ("../supbage/delete_post.php");
-                            echo "<form action='' method='post'>";;
-                            echo "<input type='hidden' name='post_id' value='<?=$pps?>";
-                            echo "<input type='submit' class='delete-post-button' value='Delete'>";
-                            echo "<?php else: ?>";
-                            echo "<p><?=$error?></p>";
-                        }
-                            ?>
-                        <?php endif; ?>
+        <div class="post-container">
+            <div class="post-box">
+                <?php if($post && !$error): ?>
+                    <h2>Delete Post</h2>
+                    <?php
+                    $user = new User();
+                    $user_data_post = $user->get_user_data_post($post["user_id"]);
+                    include ("../supbage/delete_post.php");
+                    ?>
+                    <form action="" method="post">
+                        <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
+                        <input type="submit" class="delete-post-button" value="Delete">
                     </form>
-                </div>
+                <?php else: ?>
+                    <p><?php echo $error; ?></p>
+                <?php endif; ?>
             </div>
-        <!-- </div> -->
+        </div>
     </div>
 </body>
 

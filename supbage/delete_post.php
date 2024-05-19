@@ -50,5 +50,6 @@
             echo "<img src='$post_image' class='post_image'";
         }
         ?>
+        
     </div>
 </div>
