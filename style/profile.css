@@ -122,22 +122,6 @@ body {
     border-radius: 20px;
 }
 
-.post_textarea {
-    width: 85%;
-    padding: 12px;
-    border: 2px solid #ccc;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    resize: none;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-}
-
-.file {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
-}
 
 .file-label {
     background-color: #405d9b;
@@ -149,6 +133,12 @@ body {
 
 .file-label:hover {
     background-color: #233e8b;
+}
+
+.file {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
 }
 
 .post_button {
@@ -202,26 +192,16 @@ body {
 }
 
 .post_textarea {
+    width: 85%;
     flex: 1;
     padding: 12px;
     border: 2px solid #ccc;
     border-radius: 12px;
     margin-right: 10px;
+    margin-bottom: 20px;
     resize: none;
     font-family: Arial, sans-serif;
     font-size: 14px;
-}
-
-.file-label {
-    background-color: #405d9b;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-}
-
-.file-label:hover {
-    background-color: #233e8b;
 }
 
 .post_button {

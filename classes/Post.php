@@ -64,6 +64,7 @@ class Post{
     public function get_post($userid) {
         $DB = new Database();
         $result = $DB->read("SELECT * FROM posts WHERE user_id = '$userid' ORDER BY post_id DESC LIMIT 10"); 
+
         if ($result) {
             return $result;
         } else {
@@ -90,7 +91,6 @@ class Post{
         
         $DB = new Database();
         $DB->save("DELETE FROM posts WHERE post_id = '$postid' LIMIT 1"); 
-
     }
     public function i_own_post($postid , $userid) {
         
@@ -124,8 +124,60 @@ class Post{
             $sql = "UPDATE posts SET likes = likes - 1 WHERE post_id = '$postid' LIMIT 1";
             $DB->save($sql);
         }
-
-
     }
+
+    public function edit_post($userid, $data, $files) {    
+    if (!empty($data["post_content"]) || !empty($files['file']['name']) || isset($data["is_profile_image"]) || isset($data["is_cover_image"])) {
+        $post_image = "";
+        $has_image = 0;
+        $is_profile_image = 0; 
+        $is_cover_image = 0; 
+        
+        if (isset($data["is_profile_image"]) || isset($data["is_cover_image"])) {
+            $post_image = $files;
+            $has_image = 1; 
+            
+            if (isset($data["is_profile_image"])) {
+                $is_profile_image = 1; 
+            }
+            
+            if (isset($data["is_cover_image"])) {
+                $is_cover_image = 1; 
+            }
+        } else {
+            if (!empty($files['file']['name'])) {
+                $folder = "../upload/" . $userid . '/';
+                    
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . "index.php", "");
+                }
+                
+                $image_class = new Image(); 
+                $post_image = $folder . $image_class->generate_filename(15) . '.jpg';
+                move_uploaded_file($files['file']['tmp_name'], $post_image);
+                $image_class->resize_image($post_image , $post_image , 1500 , 1500);
+                $has_image = 1;
+            }
+        }
+        
+        if (isset($data['post_content'])) {
+            $post = addslashes($data['post_content']);
+            $html_filter = new Flter();
+            $post = $html_filter->html_filter($post);
+        }
+        
+        $DB = new Database();
+        $post_id = $data['post_id'];
+        $query = "UPDATE posts SET post = '$post', image = '$post_image', has_image = '$has_image', is_profile_image = '$is_profile_image', is_cover_image = '$is_cover_image' WHERE post_id = '$post_id' AND user_id = '$userid'";
+        $DB->save($query);
+
+    } else {
+        $this->error .= "Please type something to post! <br>";
+    }
+    
+    return $this->error;
+}
+
 }
 

@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete | MrBook</title>
+    <title>Delete Post | MrBook</title>
     <link rel="stylesheet" href="../style/delete_post.css">
     <link rel="stylesheet" href="../style/style.css">
 </head>
@@ -52,7 +52,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     ?>
                     <form action="" method="post">
                         <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
-                        <input type="submit" class="delete-post-button" value="Delete">
+                        <div class="button-container">
+                            <input type="submit" class="delete-post-button" value="Delete">
+                        </div>
                     </form>
                 <?php else: ?>
                     <p><?php echo $error; ?></p>
