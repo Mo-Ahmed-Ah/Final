@@ -103,7 +103,7 @@
             <!-- profile_set -->
             <div class="profile_set">
                 <div class="menu_buttons">
-                    <a href="timeline.php" class="timeline">
+                    <a href="timeline.php">
                         Timeline
                     </a>
                 </div>
@@ -134,7 +134,7 @@
             <!-- friedns area -->
             <div class="friedns">
                 <div class="friedns_bar">
-                    friends<br>
+                    <div class="Frindes_par">Friends</div><br>
                     <?php 
                     if($friends){
                         foreach ($friends as $friend) {

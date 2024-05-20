@@ -27,8 +27,6 @@
     <title>profile | MrBook</title>
     <link rel="stylesheet" href="../style/timeline.css">
     <link rel="stylesheet" href="../style/style.css">
-
-
 </head>
 
 <body>

@@ -96,18 +96,3 @@ body {
     /* Color of the scrollbar thumb when hovered */
 }
 
-/* For Firefox */
-.post_textarea {
-    scrollbar-width: thin;
-    /* Width of the scrollbar */
-    scrollbar-color: #888 #f1f1f1;
-    /* Thumb and track color */
-}
-
-.post_image {
-    width: 50%;
-    max-height: 300px;
-    max-width: 300px;
-    object-fit: cover;
-    border-radius: 12px;
-}

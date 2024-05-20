@@ -14,4 +14,6 @@ class Flter{
     public function password_hash($password){
         return hash("sha1", $password);
     }
+
+    
 }

@@ -1,55 +1,128 @@
-
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
 
 .bar {
     height: 100px;
     background-color: #3c5a99;
     color: white;
-    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 
 .mrbook {
     font-size: 40px;
-    padding: 4px;
 }
 
 .signup_button {
     background-color: #42b72a;
-    width: 70px;
-    text-align: center;
-    padding: 4px;
+    padding: 10px 20px;
     border-radius: 4px;
-    float: right;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.signup_button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup_button:hover {
+    background-color: #36a420;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.signup_button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .login_bar {
     background-color: white;
-    width: 800px;
-    margin: auto;
-    margin-top: 50px;
-    padding: 10px;
-    padding-top: 50px;
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     text-align: center;
-    font-weight: bold;
+}
+
+.login_bar h1 {
+    font-size: 36px;
+    color: #3c5a99;
+    margin-bottom: 20px;
 }
 
 .text {
-    height: 40px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    border: solid 1px #ccc;
-    padding: 4px;
-
     font-size: 14px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text:focus {
+    border-color: #3c5a99;
+    box-shadow: 0 0 8px rgba(60, 90, 153, 0.2);
+    outline: none;
+}
+
+.select {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.select:focus {
+    border-color: #3c5a99;
+    box-shadow: 0 0 8px rgba(60, 90, 153, 0.2);
+    outline: none;
 }
 
 .login_button {
-    width: 300px;
-    height: 40px;
-    border-radius: 4px;
-    font-weight: bold;
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
     border: none;
+    border-radius: 4px;
     background-color: #3c5a99;
     color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.login_button:hover {
+    background-color: #233e8b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.login_button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .result {
@@ -57,25 +130,63 @@
     font-size: 12px;
     color: white;
     background-color: gray;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 4px;
 }
 
-
-
-
-
-.cover_img .cover_cover_img {
-    width: 800px;
+/* تحسين مظهر حقول النصوص والنصوص المنبثقة */
+input[type="text"], input[type="email"], input[type="password"], select {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.friedn {
-    clear: both;
-    font-size: 12px;
-    font-weight: bold;
-    color: #3c5a99;
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+    border-color: #3c5a99;
+    box-shadow: 0 0 8px rgba(60, 90, 153, 0.2);
+    outline: none;
 }
 
+/* تحسين مظهر الزر عند التحويم */
+input[type="submit"]:hover {
+    background-color: #233e8b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+/* تحسين مظهر الزر عند الضغط */
+input[type="submit"]:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+/* تحسين مظهر العناصر */
+.label {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 8px;
+}
 
+.text {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-
+.text:focus {
+    border-color: #3c5a99;
+    box-shadow: 0 0 8px rgba(60, 90, 153, 0.2);
+    outline: none;
+}

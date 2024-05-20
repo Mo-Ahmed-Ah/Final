@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="login_bar">
-        login MrBook
+        <h1>login MrBook</h1>
         <br>
         <br>
         <form method="post">

@@ -48,6 +48,6 @@ CREATE TABLE IF NOT EXISTS `likes` (
   PRIMARY KEY (`id`),
   INDEX `user_id` (`user_id` ASC),
   INDEX `post_id` (`post_id` ASC),
-  CONSTRAINT `fk_likes_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_likes_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_likes_posts1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );

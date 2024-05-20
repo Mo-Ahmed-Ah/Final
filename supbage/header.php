@@ -1,15 +1,19 @@
 <link rel="stylesheet" href="../style/header.css">
-<link rel="stylesheet" href="../style/link.css">
 <div class="blue_bar">
     <div class="mrbook_pro">
         <?php
+            $login = new Login();
+            $user_data=$login->check_login($_SESSION['mrbook_userid']);
+            $USER = $user_data;
             $image = '../assets/user_male.jpg';
+        
             if($user_data['gender'] == "Female"){
+
                 
                 $image = '../assets/user_female.jpg';
             }
-            if(isset($USER) ){
-                if (file_exists( $USER['profile_image'])){
+            if(isset($USER)){
+                if (file_exists($USER['profile_image'])){
                     $image_class = new Image;
                     $image = $image_class ->get_thumb_profile($USER['profile_image']);
                 }else{

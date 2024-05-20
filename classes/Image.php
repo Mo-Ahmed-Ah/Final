@@ -10,87 +10,44 @@ class Image{
         }
         return $randomString;
     }
-    public function crop_image($original_image_name , $cropped_image_name , $max_width , $max_height){
-        if(file_exists(($original_image_name))){
+    public function crop_image($original_image_name, $cropped_image_name, $desired_width, $desired_height) {
+        if (file_exists($original_image_name)) {
             $original_image = imagecreatefromjpeg($original_image_name);
             $original_image_width = imagesx($original_image);
             $original_image_height = imagesy($original_image);
-
-            if ($original_image_height > $original_image_width) {
-                // make width equal to the max width 
-                $retio = $max_width / $original_image_width;
-                $new_width = $max_width;
-                $new_height = $original_image_height * $retio;
-            }else{
-                // make width equal to the max width 
-                $retio = $max_height / $original_image_height;
-                $new_height = $max_height;
-                $new_width = $max_width * $retio;
+    
+            // Calculate aspect ratio of the original image
+            $aspect_ratio = $original_image_width / $original_image_height;
+    
+            // Calculate the width and height based on the desired dimensions while maintaining aspect ratio
+            if ($desired_width / $desired_height > $aspect_ratio) {
+                $new_width = $desired_height * $aspect_ratio;
+                $new_height = $desired_height;
+            } else {
+                $new_width = $desired_width;
+                $new_height = $desired_width / $aspect_ratio;
             }
+    
+            // Create a new image with the calculated dimensions
+            $new_image = imagecreatetruecolor($new_width, $new_height);
+            imagecopyresampled($new_image, $original_image, 0, 0, 0, 0, $new_width, $new_height, $original_image_width, $original_image_height);
+            imagedestroy($original_image);
+    
+            // Calculate the x and y coordinates for cropping
+            $x = ($new_width - $desired_width) / 2;
+            $y = ($new_height - $desired_height) / 2;
+    
+            // Create the cropped image with the desired dimensions
+            $cropped_image = imagecreatetruecolor($desired_width, $desired_height);
+            imagecopy($cropped_image, $new_image, 0, 0, $x, $y, $desired_width, $desired_height);
+    
+            // Save the cropped image
+            imagejpeg($cropped_image, $cropped_image_name, 90);
+            imagedestroy($cropped_image);
+            imagedestroy($new_image);
         }
-        // adjust incase max width and height ard different 
-        if($max_width != $max_height){
-            if($max_height > $max_width){
-                if($max_height > $new_height){
-                    $adjusment = ($max_height / $new_height);
-                }else{
-                    $adjusment = ($new_height / $max_height);
-                }
-                $new_width *=  $adjusment;
-                $new_height *=  $adjusment;
-            }else{
-                if($max_width > $new_width){
-                    $adjusment = ($max_width / $new_width);
-                }else{
-                    $adjusment = ($new_width / $max_width);
-                }
-                $new_width *=  $adjusment;
-                $new_height *=  $adjusment;
-            }
-        }
-
-        $new_image = imagecreatetruecolor($new_width, $new_height);
-        imagecopyresampled($new_image , $original_image , 0 , 0 , 0 , 0 , $new_width , $new_height , $original_image_width , $original_image_height );
-        imagedestroy($original_image);
-
-        if($max_width != $max_height){
-            if($max_height > $max_width){
-                $diff = ($new_height - $max_height);
-                if($diff<0){
-                    $diff *= -1;
-                }
-                $y =round($diff /2);
-                $x = 0;
-            }
-            else{
-                $diff = ($new_width - $max_height);
-                if($diff<0){
-                    $diff *= -1;
-                }
-                $x =round($diff /2);
-                $y = 0;
-            }
-        } else {
-            if($new_height > $new_width){
-                $diff = ($new_height - $new_width);
-                $y =round($diff /2);
-                $x = 0;
-            }
-            else{
-                $diff = ($new_width - $new_height);
-                $x =round($diff /2);
-                $y = 0;
-            }
-        }
-
-        $new_cropped_image = imagecreatetruecolor($max_width, $max_height);
-        imagecopyresampled($new_cropped_image , $new_image , 0 , 0 , $x , $y , $max_width , $max_height , $max_width , $max_height );
-        
-        imagedestroy($new_image);
-
-        imagejpeg($new_cropped_image ,$cropped_image_name, 90);
-        imagedestroy($new_cropped_image);
     }
+    
     // resize image
     public function resize_image($original_image_name , $resized_image_name , $max_width , $max_height){
         if(file_exists(($original_image_name))){

@@ -1,14 +1,27 @@
+.posts a{
+    text-decoration: none;
+    transition: font-size 0.3s ease, color 0.3s ease; /* تعديل الترانزيشن ليشمل النصوص المتحركة والألوان */
+    color: #405d9b;
+}
+
+.posts a:hover {
+    font-size: 18px; /* زيادة حجم الخط عند المرور بالماوس */
+    color: #233e8b;
+}
+
 .posts {
-    padding: 10px;
+    padding: 20px; /* زيادة التباعد الداخلي */
     font-size: 16px;
     display: flex;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 12px;
     background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    border-radius: 12px; 
 }
 
-.post_conten {
+.post_content {
     flex: 1;
     width: 100%;
 }
@@ -41,8 +54,8 @@
 
 .post_edit_and_delete {
     color: #999;
-    float: right;
-    justify-content: space-around;
+    float: right; /* إصلاح تنسيق الأزرار ليظهران على اليمين */
+    justify-content: space-around; /* إزالة هذا الخاصية لعدم تطبيقها على flexbox */
     margin-left: 5px;
 }
 
@@ -112,17 +125,17 @@
     justify-content: space-around;
 }
 
-.like_numbers{
+.like_numbers {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.like_number{
+.like_number {
     color: #999;
     font-size: small;
 }
 
-.who_liked{
-    text-align: left
+.who_liked {
+    text-align: left;
 }

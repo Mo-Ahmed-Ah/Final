@@ -1,27 +1,25 @@
 /* CSS for Friend Blocks */
 .friend {
     display: inline-block;
-    width: 100px;
-    /* Adjust as needed */
-    margin: 10px;
+    width: 100px; /* تعديل حسب الحاجة */
+    margin: 10px; /* تباعد بين الأصدقاء */
     text-align: center;
 }
 
-
 .friend_link {
     text-decoration: none;
-    color: #000;
+    color: #405d9b;
 }
 
 .friend_link:hover {
-    text-decoration: underline;
+    font-size: large; /* تحسين حجم الخط عند التحويل */
+    color: #142d63;
+    font-weight: bold;
 }
 
 .friends_img {
-    width: 8px;
-    /* Adjust as needed */
-    height: 8px;
-    /* Adjust as needed */
+    width: 50px; /* تعديل مقاس الصور */
+    height: 50px; /* تعديل مقاس الصور */
     border-radius: 50%;
     border: 2px solid #fff;
     transition: border-color 0.3s ease;
@@ -29,7 +27,6 @@
 
 .friends_img:hover {
     border-color: #405d9b;
-    /* Change to your desired hover color */
 }
 
 .friends_bar {
@@ -39,7 +36,12 @@
     padding: 8px;
     display: flex;
     flex-wrap: wrap;
-    /* Allows friend blocks to wrap to the next line */
-    justify-content: center;
-    /* Centers the friend blocks horizontally */
+    justify-content: center; /* توسيط الصف الأفقي */
+}
+
+.Frindes_par    {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #405d9b;
 }
