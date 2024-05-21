@@ -1,48 +1,7 @@
-<?php
-
-    include_once("../classes/autoloder.php");
-
-    // isset($_SESSION['mrbook_userid']);
-    $login = new Login();
-    $user_data=$login->check_login($_SESSION['mrbook_userid']);
-
-    $USER = $user_data;
-    if(isset($_GET['ID']) && is_numeric($_GET['ID'])){
-
-        $profile = new Profile();
-        $profile_data=$profile->get_profile($_GET["ID"]);
-        if(is_array($profile_data) ){
-            $user_data = $profile_data[0];
-        }
-    }
-
-
-    //posting starts here
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $id = $_SESSION['mrbook_userid'];
-        $post = new Post();
-        $result = $post->create_post($id,$_POST,$_FILES);
-        if ($result == "") {
-            header("Location: profile.php");
-            die;
-        }else{
-            echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
-            echo $result;
-            echo "</div>";
-        }
-    }
-
-    // collect posts
-    $id = $user_data['user_id'];
-    $post = new Post();
-    $posts = $post->get_post($id);
-
-    // collect friends
-    $user = new User();
-    $friends = $user->get_friends_data($id);
-
-    $image_class = new Image();
+<?php 
+include_once("../classes/autoloder.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,20 +16,73 @@
 <body>
     <!-- top profile bar -->
         <?php
-        include ("../supbage/header.php");
+        include_once ("../supbage/header.php");
         ?>
+
+    <?php
+
+
+        // isset($_SESSION['mrbook_userid']);
+        $login = new Login();
+        $user_data=$login->check_login($_SESSION['mrbook_userid']);
+
+        $USER = $user_data;
+        if(isset($_GET['ID']) && is_numeric($_GET['ID'])){
+            $profile = new Profile();
+            $profile_data=$profile->get_profile($_GET["ID"]);
+            $profile_data = $profile_data[0];
+
+            if(is_array($profile_data) ){
+                $user_data = $profile_data;
+            }
+        }
+
+
+        //posting starts here
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $id = $_SESSION['mrbook_userid'];
+            $post = new Post();
+            $result = $post->create_post($id,$_POST,$_FILES);
+            if ($result == "") {
+                header("Location: profile.php");
+                die;
+            }else{
+                echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
+                echo $result;
+                echo "</div>";
+            }
+        }
+
+        // collect posts
+        $id = $user_data['user_id'];
+        $post = new Post();
+        $posts = $post->get_post($id);
+
+
+        // collect friends
+        $user = new User();
+        $friends = $user->get_friends_data($id);
+
+        $image_class = new Image();
+    ?>
 
     <!-- cover area -->
     <div class="cover_div">
         <div class="cover_img">
             <?php
                 $image_cover = "../assets/mountain.jpg";
+
                 if(file_exists($user_data['cover_image'])){
-                    
                     $image_cover = $image_class ->get_thumb_cover($user_data['cover_image']) ;
+
                 }
             ?>
             <img src=<?= $image_cover;?> alt="" class="cover_cover_img">
+            <a href="../supbage/like.php?type=follwers&id=<?=$user_data["user_id"];?>">
+                <input type="submit" class="like_button" value="follw">
+                
+                <!-- <?=$user_data['follwers']?> -->
+            </a>
             <span class="profile_image" >
                 <?php
                 $image = '../assets/user_male.jpg';

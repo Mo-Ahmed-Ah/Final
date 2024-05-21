@@ -53,7 +53,7 @@
         <br><br>
         <div class="post_data">
             <div class="like_numbers">
-                <a href="../supbage/like.php?type=posts&id= <?=$post['post_id']?>" class="like">
+                <a href="../supbage/like.php?type=posts&id=<?=$post['post_id']?>" class="like">
                     Like
                 </a> 
                 <span class="like_number"><?=$post['likes'] ;?></span>

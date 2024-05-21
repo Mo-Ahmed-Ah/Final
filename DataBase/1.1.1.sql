@@ -10,17 +10,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone` CHAR(13) NULL,
   `profile_image` VARCHAR(1000) NULL,
   `cover_image` VARCHAR(1000) NULL,
+  `follwers` INT NULL DEFAULT 0,
   `url_address` VARCHAR(100) NULL,
   `created_at` TIMESTAMP NULL DEFAULT now(),
   `updated_at` TIMESTAMP NULL DEFAULT now(),
   PRIMARY KEY (`user_id`),
-  INDEX `email` (`email` ASC),
-  INDEX `first_Name` (`first_name` ASC),
-  INDEX `last_name` (`last_name` ASC),
-  INDEX `gender` (`gender` ASC),
-  INDEX `url_address` (`url_address` ASC),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC)
-);
+  INDEX `email` (`email` ASC) ,
+  INDEX `first_Name` (`first_name` ASC) ,
+  INDEX `last_name` (`last_name` ASC) ,
+  INDEX `gender` (`gender` ASC) ,
+  INDEX `url_address` (`url_address` ASC) ,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) 
+  );
 CREATE TABLE IF NOT EXISTS `posts` (
   `post_id` INT NOT NULL AUTO_INCREMENT,
   `post` TEXT NULL,
@@ -51,3 +52,23 @@ CREATE TABLE IF NOT EXISTS `likes` (
   CONSTRAINT `fk_likes_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_likes_posts1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+drop table follwers;
+CREATE TABLE IF NOT EXISTS `follwers` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `follwer_id` INT NOT NULL,
+  `is_seet` BIT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `fk_follwers_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_follwers_users2_idx` (`follwer_id` ASC) ,
+  CONSTRAINT `fk_follwers_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`user_id`)
+	ON DELETE CASCADE 
+	ON UPDATE CASCADE,
+  CONSTRAINT `fk_follwers_users2`
+    FOREIGN KEY (`follwer_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE
+    );

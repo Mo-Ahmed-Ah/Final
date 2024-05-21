@@ -145,6 +145,19 @@ body {
     position: absolute;
     z-index: -1;
 }
+.like_button{
+    background-color: #9b409a;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    float: right;
+    transition: background-color 0.3s ease;
+}
+.like_button:hover{
+    background-color: #233e8b;
+}
 
 .post_button {
     background-color: #405d9b;
