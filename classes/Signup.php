@@ -15,7 +15,7 @@ class Signup{
 
             // check data is empty or not 
             if(empty($value)){
-                $this->error .= "The $key field is empty!<br>";
+                $this->error .= "The $key field is empty! ";
             }
         }
 
@@ -23,27 +23,27 @@ class Signup{
         if(isset($data['email'])){
             // validated email
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
-                $this->error .= "Invalid email address!<br>";
+                $this->error .= "Invalid email address! ";
             }
         }
 
         // check if password equal retype password or not
         if (isset($data['password']) && isset($data['retype_password']) && $data['password'] != $data['retype_password']){
-            $this->error .= "Password confirmation must be equal to password<br>";
+            $this->error .= "Password confirmation must be equal to password";
         }
         
         // check if last name includes a number and includes spaces
         if (isset($data['last_name']) && preg_match('/\d/', $data['last_name']) ) {
-            $this->error .= "Last name cannot contain numbers<br>";
+            $this->error .= "Last name cannot contain numbers";
         } elseif (isset($data['last_name']) && strstr($data['last_name'], " ")) {
-            $this->error .= "Last name cannot contain spaces<br>";
+            $this->error .= "Last name cannot contain spaces";
         }
 
         // check if first name includes a number and includes spaces
         if (isset($data['first_name']) && preg_match('/\d/', $data['first_name'])){
-            $this->error .= "First name cannot contain numbers<br>";
+            $this->error .= "First name cannot contain numbers";
         } elseif (isset($data['first_name']) && strstr($data['first_name'], " ")) {
-            $this->error .= "First name cannot contain spaces<br>";
+            $this->error .= "First name cannot contain spaces";
         }
 
         // if no error start user creation

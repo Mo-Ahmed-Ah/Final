@@ -5,7 +5,7 @@ body {
     background-color: #f5f5f5;
 }
 
-.cover_div{
+.cover_div {
     margin-top: 10px;
 }
 
@@ -53,37 +53,40 @@ body {
     margin-bottom: 30px;
 }
 
-.menu_buttons {
-    flex: 1;
-    text-align: center;
-    margin: 0 10px;
-    margin-bottom: 20px;
-}
-
 .menu_buttons a {
+    background: linear-gradient(45deg, #233e8b, #893e8b);
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 4px;
+    display: inline-block;
     text-decoration: none;
-    color: #405d9b;
+    color: #ffffff;
+    font-size: medium;
     font-weight: bold;
-    font-size: 18px;
-    transition: color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
 }
 
 .menu_buttons a:hover {
-    transform: scale(1.1);
-    color: #233e8b;
-    font-size: 20px;
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #893e8b, #233e8b);
+    color: #ffeb3b;
 }
 
 .friedns_bar,
 .posts_bar {
     display: block;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 30px;
     max-width: 800px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
+
 
 .friedns_bar {
     max-width: 300px;
@@ -97,11 +100,11 @@ body {
     color: #405d9b;
 }
 
-.friend_item {
+/* .friend_item {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-}
+} */
 
 .friedns_img {
     width: 70px;
@@ -112,32 +115,33 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.friend_name {
+/* .friend_name {
     font-size: 18px;
     font-weight: bold;
     color: #405d9b;
-}
+} */
 
 .post_pox {
     background-color: #ffffff;
     margin-bottom: 30px;
     padding: 10px;
     border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-
 .file-label {
-    background-color: #405d9b;
+    background: linear-gradient(45deg, #233e8b, #893e8b);
     color: #fff;
     padding: 10px 20px;
     border-radius: 12px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .file-label:hover {
-    background-color: #233e8b;
-    transform: scale(1.05); /* تكبير الزر بنسبة 5% عند تحويل المؤشر عليه */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* إضافة ظل عند التحويل */
+    background: linear-gradient(45deg, #893e8b, #233e8b);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .file {
@@ -145,32 +149,25 @@ body {
     position: absolute;
     z-index: -1;
 }
-.like_button{
-    background-color: #9b409a;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    cursor: pointer;
-    float: right;
-    transition: background-color 0.3s ease;
-}
-.like_button:hover{
-    background-color: #233e8b;
-}
 
+.folow_button,
+.Frindes_button,
 .post_button {
-    background-color: #405d9b;
+    background: linear-gradient(45deg, #8e24aa, #6a1b9a);
     color: #fff;
     border: none;
     padding: 12px 24px;
     border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.folow_button:hover,
+.Frindes_button:hover,
 .post_button:hover {
-    background-color: #233e8b;
+    background: linear-gradient(45deg, #7b1fa2, #4527a0);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .profile_content {
@@ -190,23 +187,31 @@ body {
     flex-wrap: wrap;
 }
 
-.chabge{
-    padding-top: 5px ;
+.chabge {
+    padding-top: 5px;
 }
 
 .change_image {
+    background: linear-gradient(45deg, #233e8b, #893e8b);
     position: relative;
-    bottom: 25px;
-    color: #233e8b;
-    display: inline;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
     margin: 4px;
+    display: inline-block;
     text-decoration: none;
-    transition: background-color 0.5s ease;
+    color: #ffffff;
+    font-size: medium;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
 }
 
-.change_image:hover{
-    font-size: large;
-    font-weight: bold;
+.change_image:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #893e8b, #233e8b);
+    color: #ffeb3b;
 }
 
 .post-form {
@@ -234,17 +239,17 @@ body {
 }
 
 .post_button {
-    background-color: #405d9b;
+    background: linear-gradient(45deg, #233e8b, #893e8b);
     color: #fff;
     border: none;
     padding: 12px 24px;
     border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .post_button:hover {
-    background-color: #233e8b;
+    background: linear-gradient(45deg, #893e8b, #233e8b);
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }

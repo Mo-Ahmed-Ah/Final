@@ -78,11 +78,7 @@ include_once("../classes/autoloder.php");
                 }
             ?>
             <img src=<?= $image_cover;?> alt="" class="cover_cover_img">
-            <a href="../supbage/like.php?type=follwers&id=<?=$user_data["user_id"];?>">
-                <input type="submit" class="like_button" value="follw">
-                
-                <!-- <?=$user_data['follwers']?> -->
-            </a>
+            
             <span class="profile_image" >
                 <?php
                 $image = '../assets/user_male.jpg';
@@ -96,15 +92,36 @@ include_once("../classes/autoloder.php");
                 ?>
                 <img src=<?= $image;?> alt="" class="cover_smal_img">
                 <br>
-                <div class="chabge">
-                    <a href="../supbage/change_images.php?change=profile" class="change_image">
-                        change image
-                    </a>
+                <?php 
+                if($user_data["user_id"] == $_SESSION['mrbook_userid']){
+                    echo "
+                    <div class='chabge'>
+                        <a href='../supbage/change_images.php?change=profile' class='change_image'>
+                            change image
+                        </a>
+                        
+                        <a href='../supbage/change_images.php?change=cover' class='change_image'>
+                            change cover
+                        </a>
+                    </div>";
+                }else{
+                    $user_id = $user_data['user_id'];
+                    $user = new User();
+                    $follwer_user = $user->is_follwer_user($user_id,$_SESSION['mrbook_userid']);
+                    if($follwer_user==false){
+
+                        echo "  <a href='../supbage/like.php?type=follwers&id=$user_id'>
+                                    <input type='submit' class='folow_button' value='follw'>
+                                </a>";
+                    }else{
+                        echo "  <a href='../supbage/like.php?type=follwers&id=$user_id'>
+                                    <input type='submit' class='Frindes_button' value='Frindes'>
+                                </a>";
+                    }
                     
-                    <a href="../supbage/change_images.php?change=cover" class="change_image">
-                        change cover
-                    </a>
-                </div>
+                    
+                }
+                ?>
 
             </span>
             <br>

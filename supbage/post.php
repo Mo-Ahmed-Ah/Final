@@ -69,19 +69,15 @@
             <?php 
                 if($post_ch->i_own_post($post['post_id'],$_SESSION["mrbook_userid"])){
 
-                echo "<span class='post_edit_and_delete'>
-                            <a href='../pages/edit.php?ID=$post[post_id]'> 
+                echo "<span>
+                            <a href='../pages/edit.php?ID=$post[post_id]' class='post_edit_and_delete'> 
                                 Edit
                             </a>
-                            <a href='../pages/delete.php?ID=$post[post_id]'> 
+                            <a href='../pages/delete.php?ID=$post[post_id]' class='post_edit_and_delete'> 
                                 Delete
                             </a>";
                         
                 }
-
-                
-            ?>
-            <?php 
                 if($post['likes']>0){
                     echo '<br>';
                     if($post['likes']==1)

@@ -68,16 +68,33 @@ class User {
         $sql = "SELECT is_seet FROM follwers WHERE user_id='$my_id' && follwer_id = '$follwer_id'";
         $DB = new Database();
         $result= $DB->read($sql);
+
         if(empty($result)){
+            
             $sql = "INSERT INTO follwers (user_id,follwer_id,is_seet) VALUES ('$my_id','$follwer_id','1')";
             $DB->save($sql);
             $sql = "UPDATE users SET follwers = follwers + 1 WHERE user_id = '$follwer_id' LIMIT 1";
             $DB->save($sql);
         }else{
-            $sql = "DELETE FROM follwers WHERE user_id = '$follwer_id' && follwer_id = '$follwer_id' LIMIT 1";
+            
+            $sql = "DELETE FROM follwers WHERE user_id = '$my_id' && follwer_id = '$follwer_id' LIMIT 1";
             $DB->save($sql);
+
             $sql = "UPDATE users SET follwers = follwers - 1 WHERE user_id = '$follwer_id' LIMIT 1";
             $DB->save($sql);
+
+            
+        }
+    }
+    public function is_follwer_user($follwer_id, $my_id)
+    {
+        $sql = "SELECT is_seet FROM follwers WHERE user_id='$my_id' AND follwer_id='$follwer_id'" ;
+        $DB = new Database();
+        $result= $DB->read($sql);
+        if (empty($result)) {
+            return false;
+        }else{
+            return true;
         }
     }
 }

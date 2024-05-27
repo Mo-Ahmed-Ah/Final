@@ -13,9 +13,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $signup = new Signup();
     $result = $signup->evaluate($filtered_data);
     if ($result != "") {
-        echo '<div class="result">';
-        echo $result;
-        echo "</div>";
+        echo "<script>alert('$result')</script>";
+
     } else {
         header("Location: login.php");
         die;

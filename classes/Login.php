@@ -28,10 +28,10 @@ class Login {
                 // Create session data
                 $_SESSION['mrbook_userid'] = $row['user_id'];
             } else {
-                $this->error .= "Wrong Email or password  <br>";
+                $this->error .= "Wrong Email or password  ";
             }
         } else {
-            $this->error .= "Wrong Email or password <br>";
+            $this->error .= "Wrong Email or password  ";
         }
         
         return $this->error;

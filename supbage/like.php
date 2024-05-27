@@ -17,6 +17,7 @@ if (isset($_GET['type']) && isset($_GET["id"])) {
         $post = new Post();
         $post->like_post($_GET["id"],$_SESSION['mrbook_userid']);
     }else if($_GET['type'] == "follwers"){
+
         $follwer = new User();
         $follwer->follwer_user($_GET["id"],$_SESSION['mrbook_userid']);
     }

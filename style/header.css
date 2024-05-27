@@ -8,7 +8,7 @@ body {
 
 .blue_bar {
     height: 50px;
-    background-color: #405d9b;
+    background: linear-gradient(45deg, #233e8b, #893e8b);
     color: #d9dfeb;
     width: 100%;
     display: flex;

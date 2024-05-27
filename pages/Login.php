@@ -14,9 +14,7 @@
         $login = new Login();
         $result = $login->evaluate($filtered_data);
         if ($result != "") {
-            echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
-            echo $result;
-            echo "</div>";
+            echo "<script>alert('$result')</script>";
         } else {
             header("Location: profile.php");
             die;
