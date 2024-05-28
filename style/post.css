@@ -4,6 +4,7 @@
     transition: all 0.5s ease;
     /* تعديل الترانزيشن ليشمل النصوص المتحركة والألوان */
     color: #405d9b;
+    max-width: 100%;
 }
 
 .posts a:hover {
@@ -15,17 +16,15 @@
 /* تصميم المنشورات */
 .posts {
     padding: 20px;
-    /* زيادة التباعد الداخلي */
     font-size: 16px;
     display: flex;
+    
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 12px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    /* تحديث الظلال لتكون متناسقة */
     border-radius: 12px;
-    /* توحيد الزوايا المستديرة */
 }
 
 .post_content {
@@ -146,4 +145,8 @@
 .who_liked {
     
     text-align: left;
+}
+.comment_her{
+    display: flex   ;
+    max-width: 50%;
 }

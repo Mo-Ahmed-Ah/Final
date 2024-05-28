@@ -1,5 +1,6 @@
 <?php 
 include_once("../classes/autoloder.php");
+$_SESSION["page"] = "profile";
 ?>
 
 <!DOCTYPE html>
@@ -196,6 +197,7 @@ include_once("../classes/autoloder.php");
                         foreach ($posts as $post) {
                             $user = new User();
                             $user_data_post= $user->get_user_data_post($post["user_id"]);
+                            
                             include ("../supbage/post.php");
                         }
                     }

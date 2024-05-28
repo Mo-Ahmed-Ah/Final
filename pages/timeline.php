@@ -1,6 +1,7 @@
 <?php 
-    include("../classes/autoloder.php");
     
+    include("../classes/autoloder.php");
+    $_SESSION["page"] = "timeline";
 
     // isset($_SESSION['mrbook_userid']);
     $login = new Login();
@@ -17,6 +18,25 @@
             $image = "../assets/user_female.jpg";
         }
     }
+    //posting starts here
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $id = $_SESSION['mrbook_userid'];
+            $post = new Post();
+            $result = $post->create_post($id,$_POST,$_FILES);
+            if ($result == "") {
+                header("Location: timeline.php");
+                die;
+            }else{
+                echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
+                echo $result;
+                echo "</div>";
+            }
+        }
+
+
+    // collect posts
+    $post = new Post();
+    $posts = $post->get_all_post();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,68 +54,54 @@
     <?php
         include ("../supbage/header.php");
         ?>
-    <!-- cover area -->
     <div class="cover_div_timeline">
-        
-        <!-- below cover area -->
-        <div class="profile_content_timeline">
-            <!-- friedns area -->
-            <div class="friedns">
-                <div class="friedns_bar_timeline">
-                    <img src=<?= $image;?> alt="" class="cover_smal_img_timeline">
-                    <br>
-
-                    <a href="profile.php" class="timeline_pro">
-                        <?php
-                        echo $user_data['first_name'] . " " . $user_data["last_name"]
-                        ?>
-                    </a> 
-                </div>
-                <div class="post_pox_timeline">
-                    <textarea name="" class="post_textarea_timeline" placeholder="Whats on your mind"></textarea>
-                    <br>
-                    <input type="submit" class="post_button_timeline" value="post">
-                    <br>
-                </div>
+        <!-- cover area -->
+        <div class="friedns">
+            <div class="friedns_bar_timeline">
+                <img src=<?= $image;?> alt="" class="cover_smal_img_timeline">
+                <br>
+    
+                <a href="profile.php" class="timeline_pro">
+                    <?php
+                    echo $user_data['first_name'] . " " . $user_data["last_name"]
+                    ?>
+                </a> 
             </div>
-            <!-- post area -->
+            <div class="post_pox">
+                <!-- post form add post  -->
+                <form action="timeline.php" method='post' enctype="multipart/form-data">
+                    <div class="post-inputs">
+                        <textarea name="post_content" class="post_textarea" placeholder="What's on your mind"></textarea>
+                        <input type="file" name="file" id="file" class="file">
+                        <label for="file" class="file-label">Choose Image</label>
+                    </div>
+                    <input type="submit" class="post_button" value="Post">  
+                </form>
+            </div>
+        </div>
+
+    </div> 
         
-            <div class="post_timeline">
+    <div class="profile_content_timeline">
+        <!-- friedns area -->
+        <!-- post area -->
+    
+        <div class="post_timeline">
 
-                <!-- posts -->
-                <div class="posts_bar_timeline">
-                    <!-- post 1 -->
-                    <div class="posts_timeline">
-                        <div>
-                            <img src="../assets/user1.jpg" alt="" class="post_img_timeline">
-                        </div>
-                        <div>
-                            <div class="post_num_timeline"> First guy</div>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Nostrum molestias unde blanditiis aliquam in magni hic nulla tempore
-                            obcaecati voluptates non laboriosam omnis
-                            excepturi ipsum dolores dolore ducimus, iste voluptas?
-                            <br><br>
-                            <a href="">Like</a> . <a href="">comment</a> . <span class="post_data_timeline">April 23 2020</span>
-
-                        </div>
-                    </div>
-                    <div class="posts_timeline">
-                        <div>
-                            <img src="../assets/user2.jpg" alt="" class="post_img_timeline">
-                        </div>
-                        <div>
-                            <div class="post_num_timeline"> First guy</div>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Nostrum molestias unde blanditiis aliquam in magni hic nulla tempore
-                            obcaecati voluptates non laboriosam omnis
-                            excepturi ipsum dolores dolore ducimus, iste voluptas?
-                            <br><br>
-                            <a href="">Like</a> . <a href="">comment</a> . <span class="post_data_timeline">April 23 2020</span>
-
-                        </div>
-                    </div>
-                </div>
+            <!-- posts -->
+            <div class="posts_bar_timeline">
+                <?php
+                $i = 0;
+                if($posts){
+                    foreach ($posts as $post) {
+                        $user = new User();
+                        $user_data_post= $user->get_user_data_post($post["user_id"]);
+                        
+                        include ("../supbage/post.php");
+                    }
+                }
+                ?>
+                
             </div>
         </div>
     </div>

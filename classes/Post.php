@@ -126,7 +126,7 @@ class Post{
         }
     }
 
-    public function edit_post($userid, $data, $files) {    
+    public function edit_post($userid, $data, $files) {
     if (!empty($data["post_content"]) || !empty($files['file']['name']) || isset($data["is_profile_image"]) || isset($data["is_cover_image"])) {
         $post_image = "";
         $has_image = 0;
@@ -169,7 +169,11 @@ class Post{
         
         $DB = new Database();
         $post_id = $data['post_id'];
-        $query = "UPDATE posts SET post = '$post', image = '$post_image', has_image = '$has_image', is_profile_image = '$is_profile_image', is_cover_image = '$is_cover_image' WHERE post_id = '$post_id' AND user_id = '$userid'";
+        if (!empty($files['file']['name'])){
+            $query = "UPDATE posts SET post = '$post', image = '$post_image', has_image = '$has_image', is_profile_image = '$is_profile_image', is_cover_image = '$is_cover_image' WHERE post_id = '$post_id' AND user_id = '$userid'";
+        }else{
+            $query = "UPDATE posts SET post = '$post', is_profile_image = '$is_profile_image', is_cover_image = '$is_cover_image' WHERE post_id = '$post_id' AND user_id = '$userid'";
+        }
         $DB->save($query);
 
     } else {
@@ -178,6 +182,17 @@ class Post{
     
     return $this->error;
 }
+
+public function get_all_post() {
+        $DB = new Database();
+        $result = $DB->read("SELECT * FROM posts ORDER BY post_id DESC"); 
+
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 
 }
 

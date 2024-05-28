@@ -2,13 +2,25 @@
     $html_filter = new Flter();
     $post_ch = new Post();
     $image = "";
-    if(file_exists($user_data['profile_image'])){
-        $image = $image_class ->get_thumb_profile($user_data['profile_image']);
-    }else{
-        if ($user_data_post['gender'] == "Male"){
-            $image = "../assets/user_male.jpg";
+    if($_SESSION["page"]=="profile"){
+        if(file_exists($user_data['profile_image'])){
+            $image = $image_class ->get_thumb_profile($user_data['profile_image']);
         }else{
-            $image = "../assets/user_female.jpg";
+            if ($user_data_post['gender'] == "Male"){
+                $image = "../assets/user_male.jpg";
+            }else{
+                $image = "../assets/user_female.jpg";
+            }
+        }
+    } elseif ($_SESSION["page"] == "timeline") {
+        if(file_exists($user_data_post['profile_image'])){
+            $image = $image_class ->get_thumb_profile($user_data_post['profile_image']);
+        }else{
+            if ($user_data_post['gender'] == "Male"){
+                $image = "../assets/user_male.jpg";
+            }else{
+                $image = "../assets/user_female.jpg";
+            }
         }
     }
 
@@ -86,6 +98,7 @@
                     echo "<div class='who_liked'>" . $post['likes'] . " prpole liked this post" . "</div>";
             }
                 echo "</span>";
+            
             ?>
 
         </div>

@@ -20,11 +20,20 @@ if(isset($_GET['ID'])){
     $error = "No such post was found!";
 }
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+if($_SESSION["page"] == "profile"){
+    
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        $POST->edit_post($user_data['user_id'], $_POST, $_FILES);
+        header("Location: profile.php");
+        exit();
+    }
+}else if($_SESSION["page"] == "timeline"){
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        $POST->edit_post($user_data['user_id'], $_POST, $_FILES);
+        header("Location: timeline.php");
+        exit();
+    }
 
-    $POST->edit_post($user_data['user_id'], $_POST, $_FILES);
-    header("Location: profile.php");
-    exit();
 }
 ?>
 

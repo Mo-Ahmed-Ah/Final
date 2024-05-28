@@ -19,12 +19,22 @@ if(isset($_GET['ID'])){
 } else {
     $error = "No such post was found!";
 }
+if($_SESSION["page"] == "profile"){
+    
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        $POST->delete_post($_POST["post_id"]);
+        header("Location: profile.php");
+        exit();
+    }
+}else if($_SESSION["page"] == "timeline"){
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        $POST->delete_post($_POST["post_id"]);
+        header("Location: timeline.php");
+        exit();
+    }
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $POST->delete_post($_POST["post_id"]);
-    header("Location: profile.php");
-    exit();
 }
+
 ?>
 
 <!DOCTYPE html>
