@@ -2,7 +2,6 @@
 .posts a {
     text-decoration: none;
     transition: all 0.5s ease;
-    /* تعديل الترانزيشن ليشمل النصوص المتحركة والألوان */
     color: #405d9b;
     max-width: 100%;
 }

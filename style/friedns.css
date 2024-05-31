@@ -1,0 +1,43 @@
+* {
+    font-family: tahoma;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #b8cae6;
+}
+
+.friedns {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    margin-right: 10px;
+}
+.friedns_bar{
+    display: block;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    max-width: 800px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.friedns_bar h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #405d9b;
+}
+.friedns_img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

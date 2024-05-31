@@ -24,6 +24,7 @@ body {
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
+
 }
 
 .timeline{
@@ -48,7 +49,7 @@ body {
     background-image: url(../assets/search.png);
     background-repeat: no-repeat;
     background-position: right;
-    
+    margin-top: 5px;
 }
 
 .mine_pro_img {

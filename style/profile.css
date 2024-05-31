@@ -100,11 +100,6 @@ body {
     color: #405d9b;
 }
 
-/* .friend_item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-} */
 
 .friedns_img {
     width: 70px;
@@ -115,11 +110,6 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* .friend_name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #405d9b;
-} */
 
 .post_pox {
     background-color: #ffffff;

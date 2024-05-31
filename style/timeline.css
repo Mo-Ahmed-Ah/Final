@@ -15,12 +15,13 @@
 .timeline_pro {
     text-decoration: none;
     color: #233e8b;
-    transition: font-weight 0.3s ease, transform 0.3s ease;
+    transition: all 0.5s ease;
+        
 }
 
 .timeline_pro:hover {
-    font-weight: bold;
-    transform: scale(1.1);
+    transform: translateY(-5px) scale(1.010);
+    color: #233e8b;
 }
 
 /* Styling for the profile content */

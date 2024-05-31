@@ -16,7 +16,7 @@
         if ($result != "") {
             echo "<script>alert('$result')</script>";
         } else {
-            header("Location: profile.php");
+            header("Location: timeline.php");
             die;
         }
         

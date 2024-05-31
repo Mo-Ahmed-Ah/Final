@@ -138,14 +138,24 @@ $_SESSION["page"] = "profile";
                     </a>
                 </div>
                 <div class="menu_buttons">
-                    <a >
+                    <a href="about.php">
                         About
                     </a>
                 </div>
                 <div class="menu_buttons">
-                    <a>
-                        Friedns
-                    </a> 
+                    <?php 
+                        if(isset($_GET["ID"])){
+                            $ID = $_GET['ID'];
+                            echo "<a href='friedns.php?ID=$ID'>
+                                    Friedns
+                                </a>";
+                        }else{
+                            echo "<a href='friedns.php'>
+                                    Friedns
+                                </a>";
+                        }
+                    ?>
+                    
                 </div>
                 <div class="menu_buttons">
                     <a>

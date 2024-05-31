@@ -46,9 +46,25 @@ class User {
             return false;
         }
     }
+    public function get_my_friends_data($id) {
+        $query = "
+            SELECT users.* 
+            FROM users 
+            INNER JOIN follwers ON users.user_id = follwers.follwer_id
+            WHERE follwers.user_id = $id
+        ";
+        $DB = new Database();
+        $result = $DB->read($query);
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+}
+
 
     public function like_user($postid , $userid){
-        $sql = "SELECT is_seet FROM likes WHERE user_id='$userid' && post_id = '$postid'";
+        $sql = "SELECT is_seet FROM likes WHERE user_id='$userid' AND post_id = '$postid'";
         $DB = new Database();
         $result= $DB->read($sql);
         if(empty($result)){
