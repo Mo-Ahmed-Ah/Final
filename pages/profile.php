@@ -147,11 +147,11 @@ $_SESSION["page"] = "profile";
                         if(isset($_GET["ID"])){
                             $ID = $_GET['ID'];
                             echo "<a href='friedns.php?ID=$ID'>
-                                    Friedns
+                                    Friends
                                 </a>";
                         }else{
                             echo "<a href='friedns.php'>
-                                    Friedns
+                                    Friends
                                 </a>";
                         }
                     ?>
@@ -159,12 +159,12 @@ $_SESSION["page"] = "profile";
                 </div>
                 <div class="menu_buttons">
                     <a>
-                        Phontos
+                        Photos
                     </a>
                 </div>
                 <div class="menu_buttons">
                     <a>
-                        Settings    
+                        Setting    
                     </a>
                 </div>
             </div>

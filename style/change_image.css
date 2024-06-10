@@ -31,18 +31,21 @@ input[type="file"] {
     margin-bottom: 20px;
 }
 
-.post_button.change_image_button {
-    background-color: #405d9b;
+.change_image_button {
+    background: linear-gradient(45deg, #233e8b, #893e8b);
     color: #fff;
     border: none;
     padding: 12px 24px;
     border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.10s ease-in-out;
 }
 
-.post_button.change_image_button:hover {
-    background-color: #233e8b;
+.change_image_button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #893e8b, #233e8b);
+    color: #ffeb3b;
 }
 /* في ملف change_image.css */
 
@@ -52,11 +55,24 @@ input[type="file"] {
     display: inline-block;
     overflow: hidden;
     margin-bottom: 20px;
-    /* تباعد أسفل الزر */
+    background: linear-gradient(45deg, #233e8b, #893e8b);
+    color: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.10s ease-in-out;
+}
+.file-input-wrapper:hover{
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #893e8b, #233e8b);
+    .file-input-label{
+            color: #ffeb3b;
+    }
 }
 
 /* Style for the file input */
 .file-input {
+    /* background: linear-gradient(45deg, #233e8b, #893e8b);    */
     position: absolute;
     left: 0;
     top: 0;
@@ -64,28 +80,22 @@ input[type="file"] {
     width: 100%;
     height: 100%;
     cursor: pointer;
+    
 }
 
 /* Style for the file input label */
 .file-input-label {
     display: block;
-    background-color: #405d9b;
-    /* لون خلفية الزر */
+    background-color: transparent;
     color: #fff;
-    /* لون النص */
     padding: 10px 20px;
-    /* تباعد داخلي للزر */
     border-radius: 12px;
-    /* زاوية مستديرة */
+
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.10s ease-in-out;
 }
 
-/* Hover state for the file input label */
-.file-input-label:hover {
-    background-color: #233e8b;
-    /* تغيير لون الخلفية عند التحويم */
-}
+
 
 /* Style for the file name display */
 .file-name {

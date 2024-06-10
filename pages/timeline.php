@@ -58,10 +58,9 @@
         <!-- cover area -->
         <div class="friedns">
             <div class="friedns_bar_timeline">
-                <img src=<?= $image;?> alt="" class="cover_smal_img_timeline">
-                <br>
-    
                 <a href="profile.php" class="timeline_pro">
+                    <img src=<?= $image;?> alt="" class="cover_smal_img_timeline">
+                    <br>
                     <?php
                     echo $user_data['first_name'] . " " . $user_data["last_name"]
                     ?>
@@ -83,7 +82,6 @@
     </div> 
         
     <div class="profile_content_timeline">
-        <!-- friedns area -->
         <!-- post area -->
     
         <div class="post_timeline">

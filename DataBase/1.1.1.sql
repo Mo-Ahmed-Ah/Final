@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   INDEX `gender` (`gender` ASC) ,
   INDEX `url_address` (`url_address` ASC) ,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) 
-  );
+  )ENGINE = InnoDB;
+  
 CREATE TABLE IF NOT EXISTS `posts` (
   `post_id` INT NOT NULL AUTO_INCREMENT,
   `post` TEXT NULL,
@@ -34,25 +35,38 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `date` TIMESTAMP NULL DEFAULT now(),
   `user_id` INT NOT NULL,
   PRIMARY KEY (`post_id`),
-  INDEX `likes` (`likes` ASC),
-  INDEX `data` (`date` ASC),
-  INDEX `comments` (`comments` ASC),
-  INDEX `has_image` (`has_image` ASC),
-  INDEX `user_id` (`user_id` ASC),
-  CONSTRAINT `fk_posts_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+  INDEX `likes` (`likes` ASC) ,
+  INDEX `data` (`date` ASC) ,
+  INDEX `comments` (`comments` ASC) ,
+  INDEX `has_image` (`has_image` ASC) ,
+  INDEX `user_id` (`user_id` ASC) ,
+  CONSTRAINT `fk_posts_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE  CASCADE
+    ON UPDATE  CASCADE
+    )ENGINE = InnoDB;
+    
 CREATE TABLE IF NOT EXISTS `likes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `post_id` INT NOT NULL,
   `is_seet` BIT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `user_id` (`user_id` ASC),
-  INDEX `post_id` (`post_id` ASC),
-  CONSTRAINT `fk_likes_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_likes_posts1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE
-);
-drop table follwers;
+  INDEX `user_id` (`user_id` ASC) ,
+  INDEX `post_id` (`post_id` ASC) ,
+  CONSTRAINT `fk_likes_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_likes_posts1`
+    FOREIGN KEY (`post_id`)
+    REFERENCES `posts` (`post_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+    )ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `follwers` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
@@ -64,11 +78,11 @@ CREATE TABLE IF NOT EXISTS `follwers` (
   CONSTRAINT `fk_follwers_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `users` (`user_id`)
-	ON DELETE CASCADE 
-	ON UPDATE CASCADE,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_follwers_users2`
     FOREIGN KEY (`follwer_id`)
     REFERENCES `users` (`user_id`)
-    ON DELETE CASCADE 
+    ON DELETE CASCADE
     ON UPDATE CASCADE
-    );
+    )ENGINE = InnoDB;

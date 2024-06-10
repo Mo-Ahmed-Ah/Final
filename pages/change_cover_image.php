@@ -43,17 +43,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         die;    
                     }
                 } else {
-                    echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
+                    echo '<div style="text-align: center; font-size: 12px; color: white; background-color: gray;">';
                     echo "Only images of size 3Mb or lower are allowed!";
                     echo "</div>";
                 }
             } else {
-                echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
+                echo '<div style="text-align: center; font-size: 12px; color: white; background-color: gray;">';
                 echo "Only images of type jpeg are allowed!";
                 echo "</div>";
             }
         } else {
-            echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
+            echo '<div style="text-align: center; font-size: 12px; color: white; background-color: gray;">';
             echo "Please input the image ";
             echo "</div>";
         }
@@ -85,17 +85,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <!-- post form add post  -->
                 <form action="change_cover_image.php" method='post' enctype="multipart/form-data">
                     <div class="file-input-wrapper">
-                        <input type="file" name="image_pro" id="image_pro" class="file-input">
+                        <input type="file" name="image_pro" id="image_pro" class="file-input"  onchange="previewImage(event)">
                         <label for="image_pro" class="file-input-label">Choose Image</label>
                     </div>
                     <input type="hidden" name="change" value="cover"> <!-- تحديد نوع الصورة -->
                     <br>
-                    <input type="submit" class="post_button change_image_button" value="Change">
+                    <input type="submit" class="change_image_button" value="Change">
                     <br>
+                    <div id="image-preview" style="text-align: center; margin-top: 10px;"></div>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('image-preview');
+                output.innerHTML = '<img src="' + reader.result + '" class="post_image" style="max-width: 100%; height: auto;">';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 
 </html>

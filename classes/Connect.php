@@ -1,10 +1,11 @@
 <?php 
-define("host" , "localhost");
-define("user_name" , "root");
-define("pass" , "");
-define("db" , "mrbook");
-class Database{    
-    private function connec(){
+define("host", "localhost");
+define("user_name", "root");
+define("pass", "");
+define("db", "mrbook");
+
+class Database {    
+    private function connec() {
         try {
             $connection = mysqli_connect(host, user_name, pass, db);
             if (!$connection) {
@@ -12,12 +13,15 @@ class Database{
             }
             return $connection;
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            return null; // Ensure that null is returned in case of a connection failure
         }
     }
     
-    function read($query){
+    function read($query) {
         $conn = $this->connec();
+        if ($conn === null) {
+            return false;
+            }            
         try {
             $result = mysqli_query($conn, $query);
             if (!$result) {
@@ -30,12 +34,16 @@ class Database{
             mysqli_close($conn);    
             return $data;
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+                return false;
         }
     }
     
-    function save($query){
+    function save($query) {
         $conn = $this->connec();
+        if ($conn === null) {
+            return false;
+        }
+        
         try {
             $result = mysqli_query($conn, $query);
             if (!$result) {
@@ -44,7 +52,7 @@ class Database{
             mysqli_close($conn);
             return true;
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            return false;
         }
     }
 }
