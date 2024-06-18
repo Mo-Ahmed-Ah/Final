@@ -1,5 +1,6 @@
 
 <link rel="stylesheet" href="../style/header.css">
+
 <div class="blue_bar">
     <div class="mrbook_pro">
         <?php
@@ -24,14 +25,14 @@
                 }
             }
         ?>
-        <a href="timeline.php" class="timeline">
+        <a href="../pages/timeline.php" class="timeline">
             MrBook
         </a>
         <input type="text" class="search_box" placeholder="Search for people">
         <a href="../pages/profile.php">
             <img src=<?=$image;?> alt="" class="mine_pro_img">
         </a>
-        <a href="logout.php" class="logout">
+        <a href="../pages/logout.php" class="logout">
             <span>
                 Logout
             </span>

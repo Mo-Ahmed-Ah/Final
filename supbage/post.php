@@ -1,32 +1,13 @@
 <?php
     $html_filter = new Flter();
     $post_ch = new Post();
-    $image = "";
-    if($_SESSION["page"]=="profile"){
-        if(file_exists($user_data['profile_image'])){
-            $image = $image_class ->get_thumb_profile($user_data['profile_image']);
-        }else{
-            if ($user_data_post['gender'] == "Male"){
-                $image = "../assets/user_male.jpg";
-            }else{
-                $image = "../assets/user_female.jpg";
-            }
-        }
-    } elseif ($_SESSION["page"] == "timeline") {
-        if(file_exists($user_data_post['profile_image'])){
-            $image = $image_class ->get_thumb_profile($user_data_post['profile_image']);
-        }else{
-            if ($user_data_post['gender'] == "Male"){
-                $image = "../assets/user_male.jpg";
-            }else{
-                $image = "../assets/user_female.jpg";
-            }
-        }
-    }
+    $ch_image= new Check_Images();
+    $image = $ch_image->is_user_have_image($user_data_post['profile_image'],$user_data_post['gender']);
 
 ?>
 <link rel="stylesheet" href="../style/post.css">
 <div class="posts">
+    
     <div>
         <img src="<?php echo $image ?>" alt="" class="post_img">
     </div>
@@ -70,9 +51,12 @@
                 </a> 
                 <span class="like_number"><?=$post['likes'] ;?></span>
             </div>
-            <a href="#" class="comment">
-                Comment
-            </a> 
+            <div class="comment_numbers">
+                <a href="../supbage/comment.php?post_id=<?=$post['post_id']?>" class="comment">
+                    Comment
+                </a> 
+                <span class="comment_number"><?=$post['comments'] ;?></span>
+            </div>
             <span class="post_date">
                 <?php 
                     echo $post['date'] ;
@@ -81,22 +65,15 @@
             <?php 
                 if($post_ch->i_own_post($post['post_id'],$_SESSION["mrbook_userid"])){
 
-                echo "<span>
-                            <a href='../pages/edit.php?ID=$post[post_id]' class='post_edit_and_delete'> 
-                                Edit
-                            </a>
-                            <a href='../pages/delete.php?ID=$post[post_id]' class='post_edit_and_delete'> 
-                                Delete
-                            </a>";
+                    echo "<span>
+                        <a href='../pages/edit.php?ID=$post[post_id]' class='post_edit_and_delete'> 
+                            Edit
+                        </a>
+                        <a href='../pages/delete.php?ID=$post[post_id]' class='post_edit_and_delete'> 
+                            Delete
+                        </a>";
                         
                 }
-                if($post['likes']>0){
-                    echo '<br>';
-                    if($post['likes']==1)
-                    echo "<div class='who_liked'>" . $post['likes'] . " person liked this post" . "</div>";
-                    else 
-                    echo "<div class='who_liked'>" . $post['likes'] . " prpole liked this post" . "</div>";
-            }
                 echo "</span>";
             
             ?>

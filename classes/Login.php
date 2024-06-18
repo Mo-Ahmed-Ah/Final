@@ -50,12 +50,12 @@ class Login {
                 $user_data = $result[0];
                 return $user_data;
             }else{
-                header("Location: login.php");
+                header("Location: ../pages/login.php");
                 die;
             }
         }
         else{
-            header("Location: login.php");
+            header("Location: ../pages/login.php");
             die;
         }
     }

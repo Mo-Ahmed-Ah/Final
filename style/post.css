@@ -140,12 +140,13 @@
     color: #999;
     font-size: small;
 }
-
-.who_liked {
-    
-    text-align: left;
+.comment_numbers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.comment_her{
-    display: flex   ;
-    max-width: 50%;
+
+.comment_number {
+    color: #999;
+    font-size: small;
 }

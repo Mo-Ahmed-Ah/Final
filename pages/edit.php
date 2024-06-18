@@ -54,7 +54,7 @@ if($_SESSION["page"] == "profile"){
         <div class="post-container">
             <div class="post-box">
                 <?php if($post && !$error): ?>
-                    <h2>Edit Post</h2>
+                    <h2>Edit comment</h2>
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <textarea name="post_content" class="post_textarea" placeholder="What's on your mind"><?php echo htmlspecialchars($post['post']); ?></textarea>

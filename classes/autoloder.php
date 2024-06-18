@@ -8,4 +8,5 @@
     include_once ("Profile.php");
     include_once ("Function.php");
     include_once ("Signup.php");
+    include_once ("Comment.php");
 

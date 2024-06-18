@@ -20,6 +20,9 @@ if (isset($_GET['type']) && isset($_GET["id"])) {
 
         $follwer = new User();
         $follwer->follwer_user($_GET["id"],$_SESSION['mrbook_userid']);
+    }else if($_GET['type'] == "comments"){
+        $coment = new Comment();
+        $coment->like_comment($_GET["id"],$_SESSION['mrbook_userid']);
     }
 }
 

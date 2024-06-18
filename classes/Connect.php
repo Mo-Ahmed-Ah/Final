@@ -1,10 +1,10 @@
-<?php 
+<?php
 define("host", "localhost");
 define("user_name", "root");
 define("pass", "");
 define("db", "mrbook");
 
-class Database {    
+class Database {
     private function connec() {
         try {
             $connection = mysqli_connect(host, user_name, pass, db);
@@ -13,37 +13,40 @@ class Database {
             }
             return $connection;
         } catch (Exception $e) {
-            return null; // Ensure that null is returned in case of a connection failure
+            return null;
         }
     }
-    
+
     function read($query) {
         $conn = $this->connec();
         if ($conn === null) {
             return false;
-            }            
+        }
         try {
             $result = mysqli_query($conn, $query);
+            
             if (!$result) {
                 throw new Exception("Query failed: " . mysqli_error($conn));
             }
-            $data = array(); // Initialize the array
+            $data = array();
+            
             while ($row = mysqli_fetch_assoc($result)) {
                 $data[] = $row;
+                
             }
-            mysqli_close($conn);    
+            
+            mysqli_close($conn);
             return $data;
         } catch (Exception $e) {
-                return false;
+            return false;
         }
     }
-    
+
     function save($query) {
         $conn = $this->connec();
         if ($conn === null) {
             return false;
         }
-        
         try {
             $result = mysqli_query($conn, $query);
             if (!$result) {
@@ -54,5 +57,13 @@ class Database {
         } catch (Exception $e) {
             return false;
         }
+    }
+
+    function escape_string($string) {
+        $conn = $this->connec();
+        if ($conn !== null) {
+            return mysqli_real_escape_string($conn, $string);
+        }
+        return $string;
     }
 }

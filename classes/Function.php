@@ -17,3 +17,35 @@ class Flter{
 
     
 }
+
+class Check_Images{
+    public function is_user_have_image($user_data_profile,$user_data_post_type){
+
+        $image_class = new Image();
+        if($_SESSION["page"]=="profile"){
+        if(file_exists($user_data_profile)){
+            return $image_class ->get_thumb_profile($user_data_profile);
+        }else{
+            if ($user_data_post_type == "Male"){
+                return "../assets/user_male.jpg";
+            }else{
+                return "../assets/user_female.jpg";
+            }
+        }
+        } elseif ($_SESSION["page"] == "timeline") {
+            if(file_exists($user_data_profile)){
+                return $image_class ->get_thumb_profile($user_data_profile);
+            }else{
+                if ($user_data_post_type == "Male"){
+                    return "../assets/user_male.jpg";
+                }else{
+                    return "../assets/user_female.jpg";
+                }
+            }
+        }
+    }
+
+    
+    
+
+}

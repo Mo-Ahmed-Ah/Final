@@ -70,6 +70,7 @@ class Post{
         } else {
             return false;
         }
+
     }
     public function get_one_post($postid) {
         if(!is_numeric($postid)){

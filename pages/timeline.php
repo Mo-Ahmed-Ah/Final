@@ -2,36 +2,26 @@
     
     include("../classes/autoloder.php");
     $_SESSION["page"] = "timeline";
+    $ch_image= new Check_Images();
 
     // isset($_SESSION['mrbook_userid']);
     $login = new Login();
     $user_data=$login->check_login($_SESSION['mrbook_userid']);
-
+    
     $image_class = new Image();
-    $image = "";
-    if(file_exists($user_data['profile_image'])){
-        $image = $image_class ->get_thumb_profile($user_data['profile_image']);
-    }else{
-        if ($user_data['gender'] == "Male"){
-            $image = "../assets/user_male.jpg";
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $id = $_SESSION['mrbook_userid'];
+        $post = new Post();
+        $result = $post->create_post($id,$_POST,$_FILES);
+        if ($result == "") {
+            header("Location: timeline.php");
+            die;
         }else{
-            $image = "../assets/user_female.jpg";
+            echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
+            echo $result;
+            echo "</div>";
         }
     }
-    //posting starts here
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $id = $_SESSION['mrbook_userid'];
-            $post = new Post();
-            $result = $post->create_post($id,$_POST,$_FILES);
-            if ($result == "") {
-                header("Location: timeline.php");
-                die;
-            }else{
-                echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
-                echo $result;
-                echo "</div>";
-            }
-        }
 
 
     // collect posts
@@ -89,15 +79,14 @@
             <!-- posts -->
             <div class="posts_bar_timeline">
                 <?php
-                $i = 0;
-                if($posts){
-                    foreach ($posts as $post) {
-                        $user = new User();
-                        $user_data_post= $user->get_user_data_post($post["user_id"]);
-                        
-                        include ("../supbage/post.php");
+                    if($posts){
+                        foreach ($posts as $post) {
+                            $user = new User();
+                            $user_data_post= $user->get_user_data_post($post["user_id"]);
+                            $image = $ch_image->is_user_have_image($user_data_post['profile_image'],$user_data['gender']);
+                            include ("../supbage/post.php");
+                        }
                     }
-                }
                 ?>
                 
             </div>
