@@ -57,7 +57,7 @@
         <div class="form">
             <form action="" method="post">
                 <label for=""><?=$_GET['type']?></label>
-                <textarea name="<?=$form_type?>" id="<?=$form_type?>">
+                <textarea name="<?=$form_type?>" id="<?=$form_type?>" class="post_textarea">
                     <?=$user_data["$form_type"]?>
                 </textarea>
                 <input type="submit" value="Save">
