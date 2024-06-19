@@ -46,7 +46,7 @@ class Comment {
             return false;
         }
     }
-    public function delete_comment($commentid) {
+    public function delete_comment($commentid,$post_id) {
         
         if(!is_numeric($commentid)){
             return false;
@@ -54,6 +54,8 @@ class Comment {
         
         $DB = new Database();
         $DB->save("DELETE FROM comments WHERE id = '$commentid' LIMIT 1"); 
+        $sql = "UPDATE posts SET comments = comments - 1 WHERE post_id = '$post_id' LIMIT 1";
+        $DB->save($sql);
     }
 
     public function edit_comment($data) {

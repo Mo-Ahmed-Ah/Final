@@ -21,7 +21,7 @@ if(isset($_GET['ID'])){
     $error = "No such comment was found!";
 }
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $COMENT->delete_comment($_POST["comment_id"]);
+    $COMENT->delete_comment($_POST["comment_id"],$post_id);
     header("Location: ../supbage/comment.php?post_id=$post_id");
     exit();
 }

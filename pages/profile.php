@@ -23,7 +23,6 @@
     <?php
 
 
-        // isset($_SESSION['mrbook_userid']);
         $login = new Login();
         $user_data=$login->check_login($_SESSION['mrbook_userid']);
 
@@ -72,7 +71,6 @@
         <div class="cover_img">
             <?php
                 $image_cover = "../assets/mountain.jpg";
-
                 if(file_exists($user_data['cover_image'])){
                     $image_cover = $image_class ->get_thumb_cover($user_data['cover_image']) ;
 
@@ -138,7 +136,7 @@
                     </a>
                 </div>
                 <div class="menu_buttons">
-                    <a href="about.php">
+                    <a href="about.php?user_id=<?=$id?>">
                         About
                     </a>
                 </div>
@@ -158,15 +156,20 @@
                     
                 </div>
                 <div class="menu_buttons">
-                    <a>
+                    <a href="photos.php?ID=<?=$id?>">
                         Photos
                     </a>
                 </div>
-                <div class="menu_buttons">
-                    <a>
-                        Setting    
-                    </a>
-                </div>
+                <?php
+                if ($user_data["user_id"] == $_SESSION['mrbook_userid']) {
+                    echo "<div class='menu_buttons'>
+                            <a href='setting.php'>
+                                    setting
+                                </a>
+                        </div>";
+                }
+                ?>
+                
             </div>
         </div>
         <!-- below cover area -->

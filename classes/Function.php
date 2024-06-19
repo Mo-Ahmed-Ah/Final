@@ -15,6 +15,19 @@ class Flter{
         return hash("sha1", $password);
     }
 
+    public function is_phone($phone){
+        if(!is_numeric($phone)){
+            return $error = "not numeric";
+        }else{
+            if(strlen($phone)!=11){
+                return $error = "the length is not valed";
+            }else{
+                return true;
+            }
+
+        }
+    }
+
     
 }
 
@@ -45,7 +58,5 @@ class Check_Images{
         }
     }
 
-    
-    
 
 }
