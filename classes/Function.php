@@ -29,25 +29,94 @@ class Flter{
     }
 
     private function flter_email($email){
+        $email=str_replace(" ", "", $email);
         $email = trim($email);
         $email = filter_var($email , FILTER_SANITIZE_EMAIL);
         return $email;
     }
     public function is_email($email){
-        $email = $this->flter_email($email);
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            echo "<script>
-                alert('Invalid email address!');
-                window.location.href = '../supbage/change_setting.php?type=change Email';
-            </script>";
-            exit();
-        }
+            $referrer = $_SERVER['HTTP_REFERER'];
+            $email = $this->flter_email($email);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                echo "<script>
+                    alert('Invalid email address!');
+                    window.location.href = '$referrer';
+                </script>";
+                exit();
+            }
         return $email;
     }
     
 
     // passeord flter
 
+    public function check_password_it_ok($password , $email){
+        $referrer = $_SERVER['HTTP_REFERER'];
+        $password = $this->html_filter($password);
+        $password = $this->sql_filter($password);
+        $password = $this->password_hash($password);
+        $user = new User();
+        $user_data = $user->get_data_login($email);
+        if($password == $user_data){
+            return $password;
+        }
+
+        echo "<script>
+                alert('the passowrd is not true!');
+                window.location.href = '$referrer';
+            </script>";
+        exit();
+
+
+    }
+
+    // check password strength
+    public function check_password_strength($password){
+        $password = $this->html_filter($password);
+        $password = $this->sql_filter($password);
+        $referrer = $_SERVER['HTTP_REFERER'];
+        if(empty($password)){
+            echo "<script>
+                    alert('Enter password. The password is empty!');
+                    window.location.href = '$referrer';
+                </script>";
+            exit();
+        }else{
+            if(strlen($password)<8){
+                echo "<script>
+                        alert('Password must be at least 8 characters long');
+                        window.location.href = '$referrer';
+                    </script>";
+                exit();
+            }else{
+                if (!preg_match('/[A-Z]/', $password)) {
+                    echo "<script>
+                            alert('Password must contain at least one uppercase letter.');
+                            window.location.href = '$referrer';
+                        </script>";
+                    exit();
+                }else{
+                    if (!preg_match('/[a-z]/', $password)) {
+                        echo "<script>
+                                alert('Password must contain at least one lowercase letter.');
+                                window.location.href = '$referrer';
+                            </script>";
+                        exit();
+                    }else{
+                        if (!preg_match('/[0-9]/', $password)) {
+                            echo "<script>
+                                    alert('Password must contain at least one number.');
+                                    window.location.href = '$referrer';
+                                </script>";
+                            exit();
+                        }else{
+                            return $password;
+                        }
+                    }
+                }
+            }
+        }
+    }
     // hash passeord with sha1
     public function password_hash($password){
         return hash("sha1", $password);

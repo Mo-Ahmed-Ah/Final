@@ -1,5 +1,16 @@
 <?php 
 class User {
+    public function get_data_login($email){
+        $query ="select password from users where email = '$email' limit 1";
+        $DB = new Database();
+        $result = $DB->read($query);
+
+        if($result){
+            return $result[0]["password"];
+        } else {
+            return false;
+        }
+    }
     public function get_data($id){
         $query ="select * from users where user_id = '$id' limit 1";
         $DB = new Database();

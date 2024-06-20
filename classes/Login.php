@@ -2,39 +2,15 @@
 include_once ("Function.php");
 
 class Login {
-    private $error = '';
 
-    public function evaluate($data) {
-        // create opject from function class i want that on hash passwrod 
-        $fun = new Flter();
-
-        $email = addcslashes($data["email"], "'");
-        $password = addcslashes($data["password"], "'");
-        
-        
+    public function evaluate($email , $password) {
         // Prepare query to search user account
         $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
-
-        
-
         // Execute the query
         $DB = new Database();
         $result = $DB->read($query);
-        
-        if ($result) {
-            $row = $result[0];
-            // Check password
-            if ($fun->password_hash($password) == $row['password']) {
-                // Create session data
-                $_SESSION['mrbook_userid'] = $row['user_id'];
-            } else {
-                $this->error .= "Wrong Email or password  ";
-            }
-        } else {
-            $this->error .= "Wrong Email or password  ";
-        }
-        
-        return $this->error;
+        $row = $result[0];
+        $_SESSION['mrbook_userid'] = $row['user_id'];
     }
 
     public function check_login($id) {

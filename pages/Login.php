@@ -1,6 +1,7 @@
 <?php 
 
     include_once("../classes/autoloder.php");
+    $flters = new Flter();
 
     // check method post 
     $email = "";
@@ -8,20 +9,16 @@
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
 
-        // Filter the data before passing it to the evaluate method
-        $filtered_data = array_map('strip_tags', $_POST);
-        // Create new object with the Signup class from signup.php file 
-        $login = new Login();
-        $result = $login->evaluate($filtered_data);
-        if ($result != "") {
-            echo "<script>alert('$result')</script>";
-        } else {
+        // Filter the data and check
+        $email = $flters->is_email($_POST['email']);
+        $password = $flters->check_password_it_ok($_POST["password"],$email);
+        if($password){
+            $login = new Login();
+            // pass data to evaluate becous login
+            $result = $login->evaluate($email , $password);
             header("Location: timeline.php");
             die;
         }
-        
-        $email = $filtered_data['email'];
-        $password = $filtered_data['password'];
     }
 ?>
 
@@ -50,7 +47,7 @@
         <br>
         <br>
         <form method="post">
-            <input value="<?php echo $email;?>" type="email" class="text" placeholder="Email" name = "email">
+            <input value="<?php echo $email;?>" type="text" class="text" placeholder="Email" name = "email">
             <br>
             <br>
             <input value="<?php echo $password;?>" type="password" class="text" placeholder="Password" name="password">
