@@ -54,6 +54,11 @@
 }
 a{
     text-decoration: none;
+    transition: all 0.4s ease;
+}
+a:hover{
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
 }
 
 .update_area{
@@ -89,3 +94,83 @@ form{
     position: relative;
     width: 90%;
 }
+form label{
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .5);
+    margin-right: 5px;
+}
+form select {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
+    margin-right: 5px;
+    text-align: center;
+    /* لتوسيط العناصر داخل الحقل */
+    appearance: none;
+    /* إخفاء الأسلوب الافتراضي للمتصفح */
+    -webkit-appearance: none;
+    /* للتأكد من التوافق مع متصفحات WebKit */
+    cursor: pointer;
+    /* تغيير المؤشر عند التحويل إلى عنصر القائمة */
+}
+
+form select:hover,
+form select:focus {
+    border-color: #233e8b;
+    /* تغيير لون الحدود عند التحويل */
+    outline: none;
+    /* إزالة التأثير الافتراضي للتحديد */
+}
+
+form select option {
+    padding: 10px;
+    /* تعديل الحشو داخل الخيارات */
+}
+
+/* تعليق: يمكنك تعديل الألوان والأشكال حسب الاحتياجات الخاصة بك */
+.post_textarea {
+    width: 85%;
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    resize: none;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+} 
+
+.edit-post-button {
+    background-color: #405d9b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    float: right;
+    display: inline;
+}
+
+.edit-post-button:hover {
+    background-color: #334a75;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+}
+
+.passeord_erea{
+    display: block;
+}
+
+

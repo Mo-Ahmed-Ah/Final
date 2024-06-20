@@ -55,11 +55,13 @@
                 </div>
                 <?php
                     if ($user_data['phone']!= null){
-                        $phone = $user_data['phone'];
+                        $phone = strval($user_data['phone']);
+                        // echo $phone;
+                        // die;
                         echo "<div class='data_contener'>
                         <h3>Phone : </h3>
                         <h4>
-                        <?=$phone?>
+                            $phone
                         </h4>
                         </div>";
                     }else{

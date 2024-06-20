@@ -19,7 +19,7 @@
         <div class="setting_bar">
             <h2>Setting</h2><br>
             <div class="data_contener">
-                <a href="../supbage/setting.php?type=change First Name">
+                <a href="../supbage/change_setting.php?type=change First Name">
                     <h3>Frist Name : </h3>
                 </a>
                 <h4>
@@ -27,7 +27,7 @@
                 </h4>
             </div>
             <div class="data_contener">
-                <a href="../supbage/setting.php?type=change Last Name">
+                <a href="../supbage/change_setting.php?type=change Last Name">
                     <h3>Last Name : </h3>
                 </a>
                 <h4>
@@ -35,7 +35,7 @@
                 </h4>
             </div>
             <div class="data_contener">
-                <a href="../supbage/setting.php?type=change Gender">
+                <a href="../supbage/change_setting.php?type=change Gender">
                     <h3>Gender : </h3>
                 </a>
                 <h4>
@@ -43,7 +43,7 @@
                 </h4>
             </div>
             <div class="data_contener">
-                <a href="../supbage/setting.php?type=change Email">
+                <a href="../supbage/change_setting.php?type=change Email">
                     <h3>Email : </h3>
                 </a>
                 <h4>
@@ -54,24 +54,32 @@
                 if ($user_data['phone']!= null){
                     $phone = $user_data['phone'];
                     echo "<div class='data_contener'>
-                    <a href='../supbage/setting.php?type=change Phone'>
-                        <h3>Phone : </h3>
+                    <a href='../supbage/change_setting.php?type=change Phone'>
+                    <h3>Phone : </h3>
                     </a>
                     <h4>
-                    <?=$phone?>
+                    $phone
                     </h4>
                     </div>";
                 }else{
                     echo "<div class='data_contener'>
-                    <a href='../supbage/setting.php?type=Add Phone'>
-                        <h3>Phone : </h3>
+                    <a href='../supbage/change_setting.php?type=Add Phone'>
+                    <h3>Phone : </h3>
                     </a>
                     <h4>
                     hasn't phone
                     </h4>
                     </div>";
                 }
-            ?>
+                ?>
+                <div class="data_contener">
+                    <a href="../supbage/change_setting.php?type=change Password">
+                        <h3>password : </h3>
+                    </a>
+                    <h4>
+                        Can't show password
+                    </h4>
+                </div>
         </div>
 
     </div>
