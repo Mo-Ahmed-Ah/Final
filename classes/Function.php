@@ -12,8 +12,26 @@ class Flter{
         return $html_code;
     }
 
+    public function flter_data($data){
+        $data = $this->html_filter($data);
+        $data = $this->sql_filter($data);
+        return $data;
+    }
     
 
+    public function check_is_set($data , $feld_name){
+        $referrer = $_SERVER['HTTP_REFERER'];
+        if(empty($data)){
+
+            echo "<script>
+                    alert('The $feld_name is empty!');
+                    window.location.href = '$referrer';
+                </script>";
+            exit();
+        }
+
+        return $this->flter_data($data);
+    }
 
 
     public function is_phone($phone){
@@ -35,7 +53,14 @@ class Flter{
         return $email;
     }
     public function is_email($email){
-            $referrer = $_SERVER['HTTP_REFERER'];
+        $referrer = $_SERVER['HTTP_REFERER'];
+        if(empty($email)){
+            echo "<script>
+                    alert('The email is empty!');
+                    window.location.href = '$referrer';
+                </script>";
+                exit();
+        }
             $email = $this->flter_email($email);
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 echo "<script>
@@ -72,8 +97,8 @@ class Flter{
 
     // check password strength
     public function check_password_strength($password){
-        $password = $this->html_filter($password);
-        $password = $this->sql_filter($password);
+        $password = $this->flter_data($password);
+        
         $referrer = $_SERVER['HTTP_REFERER'];
         if(empty($password)){
             echo "<script>
@@ -148,18 +173,26 @@ class Flter{
         }
     }
 
+    public function confirmation_password_signup($new_password , $confirm_password){
+        $new_password = $this->check_password_strength($new_password);
+        if($this->confirmation_password($new_password, $confirm_password)){
+            return $this->password_hash($new_password);
+        }
+
+    }
 
     public function confirmation_password($new_password , $confirm_password){
+        $referrer = $_SERVER['HTTP_REFERER'];
         if(empty($new_password )){
             echo "<script>
                 alert('The new password is empty!');
-                window.location.href = '../supbage/change_setting.php?type=change Password';
+                window.location.href = '$referrer';
             </script>";
             exit();
         }else if(empty($confirm_password)){
             echo "<script>
                 alert('The confirm password is empty!');
-                window.location.href = '../supbage/change_setting.php?type=change Password';
+                window.location.href = '$referrer';
             </script>";
             exit();
         }
@@ -168,7 +201,7 @@ class Flter{
         }else{
             echo "<script>
                 alert('The new password is not equle comfirm password! ');
-                window.location.href = '../supbage/change_setting.php?type=change Password';
+                window.location.href = '$referrer';
             </script>";
             exit();
         }

@@ -1,29 +1,27 @@
 <?php 
-include_once("../classes/autoloder.php");
+    include_once("../classes/autoloder.php");
 
-// check method post 
-$first_name = "";
-$last_name = "";
-$gender ="";
-$email ="";
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    // Filter the data before passing it to the evaluate method
-    $filtered_data = array_map('strip_tags', $_POST);
-    // Create new object with the Signup class from signup.php file 
-    $signup = new Signup();
-    $result = $signup->evaluate($filtered_data);
-    if ($result != "") {
-        echo "<script>alert('$result')</script>";
+    $flters = new Flter();
 
-    } else {
-        header("Location: login.php");
-        die;
+    // check method post 
+    $first_name = "";
+    $last_name = "";
+    $gender ="";
+    $email ="";
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        // add data in databaes
+        $signup = new Signup();
+
+        $data = $signup->check_data($_POST);
+        $result = $signup->create_user($data);
+        if ($result != "") {
+            echo "<script>alert('$result')</script>";
+
+        } else {
+            header("Location: login.php");
+            die;
+        }
     }
-    $first_name = $filtered_data['first_name'];
-    $last_name = $filtered_data['last_name'];
-    $gender = $filtered_data['gender'];
-    $email = $filtered_data['email'];
-}
 ?>
 
 <!DOCTYPE html>
