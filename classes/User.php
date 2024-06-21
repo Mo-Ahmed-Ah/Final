@@ -1,7 +1,7 @@
 <?php 
 class User {
     public function get_data_login($email){
-        $query ="select password from users where email = '$email' limit 1";
+        $query ="SELECT password from users where email = '$email' limit 1";
         $DB = new Database();
         $result = $DB->read($query);
 
@@ -12,7 +12,7 @@ class User {
         }
     }
     public function get_data($id){
-        $query ="select * from users where user_id = '$id' limit 1";
+        $query ="SELECT * from users where user_id = '$id' limit 1";
         $DB = new Database();
         $result = $DB->read($query);
 
@@ -37,7 +37,7 @@ class User {
     }
     public function get_user_data_post($id)
     {
-        $query ="select * from users where user_id = '$id' limit 1";
+        $query ="SELECT * FROM users WHERE user_id = '$id' LIMIT 1";
         $DB = new Database();
         $result = $DB->read($query);
         if ($result) {

@@ -66,14 +66,14 @@ class Database {
         }
     }
 
-    function escape_string($string) {
-        try {
-            $this->connect();
-            $escapedString = mysqli_real_escape_string($this->conn, $string);
-            $this->close();
-            return $escapedString;
-        } catch (Exception $e) {
-            return $string;
-        }
-    }
+    // function escape_string($string) {
+    //     try {
+    //         $this->connect();
+    //         $escapedString = mysqli_real_escape_string($this->conn, $string);
+    //         $this->close();
+    //         return $escapedString;
+    //     } catch (Exception $e) {
+    //         return $string;
+    //     }
+    // }
 }

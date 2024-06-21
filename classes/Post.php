@@ -1,10 +1,9 @@
 <?php 
 
 class Post{
-    private $error="";
     
     public function create_post($userid, $data, $files) {
-        
+        $referrer = $_SERVER['HTTP_REFERER'];
         if (!empty($data["post_content"]) || !empty($files['file']['name']) || isset($data["is_profile_image"]) || isset($data["is_cover_image"])) {
             $post_image = "";
             $has_image = 0;
@@ -41,9 +40,8 @@ class Post{
             }
             
             if (isset($data['post_content'])) {
-                $post = addslashes($data['post_content']);
                 $html_filter = new Flter();
-                $post = $html_filter->html_filter($post);
+                $post = $html_filter->flter_data($data['post_content']);
             }
                 
             
@@ -53,10 +51,13 @@ class Post{
             $result = $DB->save($query);
 
         } else {
-            $this->error .= "Please type something to post! <br>";
+            echo "<script>
+                                alert('Please type something to post!');
+                                window.location.href = '$referrer';
+                            </script>";
+                        exit();
         }
-        
-        return $this->error;
+
     }
 
 
@@ -128,72 +129,70 @@ class Post{
     }
 
     public function edit_post($userid, $data, $files) {
-    if (!empty($data["post_content"]) || !empty($files['file']['name']) || isset($data["is_profile_image"]) || isset($data["is_cover_image"])) {
+        $referrer = $_SERVER['HTTP_REFERER'];
+
+        // Check if any content or image changes are requested
+        if (empty($data['post_content']) && empty($files['file']['name']) && !isset($data['is_profile_image']) && !isset($data['is_cover_image'])) {
+            echo "<script>
+                    alert('Please type something to post!');
+                    window.location.href = '$referrer';
+                </script>";
+            exit();
+        }
+
+        // Initialize variables
+        $post = "";
         $post_image = "";
         $has_image = 0;
-        $is_profile_image = 0; 
-        $is_cover_image = 0; 
-        
-        if (isset($data["is_profile_image"]) || isset($data["is_cover_image"])) {
-            $post_image = $files;
-            $has_image = 1; 
-            
-            if (isset($data["is_profile_image"])) {
-                $is_profile_image = 1; 
+        $is_profile_image = isset($data['is_profile_image']) ? 1 : 0;
+        $is_cover_image = isset($data['is_cover_image']) ? 1 : 0;
+
+        // Handle file upload if present
+        if (!empty($files['file']['name'])) {
+            $folder = "../upload/" . $userid . '/';
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+                file_put_contents($folder . "index.php", "");
             }
-            
-            if (isset($data["is_cover_image"])) {
-                $is_cover_image = 1; 
-            }
-        } else {
-            if (!empty($files['file']['name'])) {
-                $folder = "../upload/" . $userid . '/';
-                    
-                if (!file_exists($folder)) {
-                    mkdir($folder, 0777, true);
-                    file_put_contents($folder . "index.php", "");
-                }
-                
-                $image_class = new Image(); 
-                $post_image = $folder . $image_class->generate_filename(15) . '.jpg';
-                move_uploaded_file($files['file']['tmp_name'], $post_image);
-                $image_class->resize_image($post_image , $post_image , 1500 , 1500);
-                $has_image = 1;
-            }
+            $image_class = new Image();
+            $post_image = $folder . $image_class->generate_filename(15) . '.jpg';
+            move_uploaded_file($files['file']['tmp_name'], $post_image);
+            $image_class->resize_image($post_image, $post_image, 1500, 1500);
+            $has_image = 1;
         }
-        
-        if (isset($data['post_content'])) {
-            $post = addslashes($data['post_content']);
-            $html_filter = new Flter();
-            $post = $html_filter->html_filter($post);
+
+        // Sanitize and prepare post content
+        if (!empty($data['post_content'])) {
+            $html_filter = new Flter(); // Assuming this is a typo and should be Filter
+            $post = $html_filter->flter_data($data['post_content']);
         }
-        
+
+        // Prepare SQL query based on changes
         $DB = new Database();
         $post_id = $data['post_id'];
-        if (!empty($files['file']['name'])){
-            $query = "UPDATE posts SET post = '$post', image = '$post_image', has_image = '$has_image', is_profile_image = '$is_profile_image', is_cover_image = '$is_cover_image' WHERE post_id = '$post_id' AND user_id = '$userid'";
-        }else{
-            $query = "UPDATE posts SET post = '$post', is_profile_image = '$is_profile_image', is_cover_image = '$is_cover_image' WHERE post_id = '$post_id' AND user_id = '$userid'";
+        $query = "UPDATE posts SET post = '$post',";
+        if (!empty($files['file']['name'])) {
+            $query .= " image = '$post_image', has_image = '$has_image',";
         }
+        $query .= " is_profile_image = '$is_profile_image', is_cover_image = '$is_cover_image' WHERE post_id = '$post_id' AND user_id = '$userid'";
+        
+        // Execute query
         $DB->save($query);
-
-    } else {
-        $this->error .= "Please type something to post! <br>";
     }
-    
-    return $this->error;
-}
 
-public function get_all_post() {
-        $DB = new Database();
-        $result = $DB->read("SELECT * FROM posts ORDER BY post_id DESC"); 
 
-        if ($result) {
-            return $result;
-        } else {
-            return false;
+    public function get_all_post() {
+            $DB = new Database();
+            $query="SELECT * FROM posts ORDER BY post_id DESC";
+            $result = $DB->read($query); 
+
+            if ($result) {
+                return $result;
+            } else {
+                return false;
+            }
         }
-    }
 
+    
 }
 

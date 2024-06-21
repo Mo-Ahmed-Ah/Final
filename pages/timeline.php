@@ -1,26 +1,19 @@
 <?php 
     
     include("../classes/autoloder.php");
+    $id = $_SESSION['mrbook_userid'];
     $_SESSION["page"] = "timeline";
     $ch_image= new Check_Images();
 
-    // isset($_SESSION['mrbook_userid']);
     $login = new Login();
     $user_data=$login->check_login($_SESSION['mrbook_userid']);
     
     $image_class = new Image();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $id = $_SESSION['mrbook_userid'];
         $post = new Post();
-        $result = $post->create_post($id,$_POST,$_FILES);
-        if ($result == "") {
-            header("Location: timeline.php");
-            die;
-        }else{
-            echo '<div style = "text-align: center;font-size: 12px;color: white;background-color: gray;">';
-            echo $result;
-            echo "</div>";
-        }
+        $post->create_post($id,$_POST,$_FILES);
+        header("Location: timeline.php");
+        die;
     }
 
 
@@ -83,7 +76,6 @@
                         foreach ($posts as $post) {
                             $user = new User();
                             $user_data_post= $user->get_user_data_post($post["user_id"]);
-                            $image = $ch_image->is_user_have_image($user_data_post['profile_image'],$user_data['gender']);
                             include ("../supbage/post.php");
                         }
                     }

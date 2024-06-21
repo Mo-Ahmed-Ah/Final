@@ -1,7 +1,7 @@
 
 <?php
-$comment_id = $comment['id'];
-$post_id = $comment['posts_post_id'];
+    $comment_id = $comment['id'];
+    $post_id = $comment['posts_post_id'];
 ?>
 <div class="post_comment_array">
     <div class="image_text">

@@ -1,30 +1,15 @@
 
+<?php
+    $ch_image= new Check_Images();
+    $login = new Login();
+    $user_data=$login->check_login($_SESSION['mrbook_userid']);
+    $USER = $user_data;
+    $image = $ch_image->is_user_have_image($user_data['profile_image'],$user_data['gender']);
+?>
 <link rel="stylesheet" href="../style/header.css">
 
 <div class="blue_bar">
     <div class="mrbook_pro">
-        <?php
-            $login = new Login();
-            $user_data=$login->check_login($_SESSION['mrbook_userid']);
-            $USER = $user_data;
-            $image = '../assets/user_male.jpg';
-        
-            if($user_data['gender'] == "Female"){
-
-                
-                $image = '../assets/user_female.jpg';
-            }
-            if(isset($USER)){
-                if (file_exists($USER['profile_image'])){
-                    $image_class = new Image;
-                    $image = $image_class ->get_thumb_profile($USER['profile_image']);
-                }else{
-                    if($USER['gender']=="Female"){
-                        $image = "../assets/user_female.jpg";
-                    }
-                }
-            }
-        ?>
         <a href="../pages/timeline.php" class="timeline">
             MrBook
         </a>

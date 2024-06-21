@@ -1,40 +1,66 @@
 <?php 
-include("../classes/autoloder.php");
+    include("../classes/autoloder.php");
 
-$login = new Login();
-$user_data = $login->check_login($_SESSION['mrbook_userid']);     
-$POST = new Post();
-$error = "";
-$post = false;
+    $login = new Login();
+    $user_data = $login->check_login($_SESSION['mrbook_userid']);     
+    $POST = new Post();
+    $error = "";
+    $post = false;
 
-if(isset($_GET['ID'])){
-    $post = $POST->get_one_post($_GET['ID']);
-    if(!$post){
-        $error = "No such post was found!";
+    if(isset($_SERVER['HTTP_REFERER'])){
+        $referrer = $_SERVER['HTTP_REFERER'];
     } else {
-        if ($post["user_id"] != $_SESSION['mrbook_userid']) {
-            $error = "Access denied!";
-        }   
-    }
-} else {
-    $error = "No such post was found!";
-}
-
-if($_SESSION["page"] == "profile"){
-    
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $POST->edit_post($user_data['user_id'], $_POST, $_FILES);
-        header("Location: profile.php");
-        exit();
-    }
-}else if($_SESSION["page"] == "timeline"){
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $POST->edit_post($user_data['user_id'], $_POST, $_FILES);
-        header("Location: timeline.php");
-        exit();
+        echo "<script>
+                alert('Dont play with me!');
+                setTimeout(function() {
+                    window.location.href = 'logout.php';
+                }, 1); 
+            </script>";
+        exit(); 
     }
 
-}
+    if(isset($_GET['ID'])){
+
+        $post = $POST->get_one_post($_GET['ID']);
+        if(!$post){
+            echo "<script>
+                    alert('No such post was found!');
+                    window.location.href = '$referrer';
+                </script>";
+            exit();
+        } else {
+            if ($post["user_id"] != $_SESSION['mrbook_userid']) {
+                echo "<script>
+                        alert('Access denied!');
+                        window.location.href = '$referrer';
+                    </script>";
+                exit();
+            }   
+        }
+    } else {
+        echo "<script>
+                    alert('No such post was found!');
+                    window.location.href = '$referrer';
+                </script>";
+            exit();
+    }
+
+    if($_SESSION["page"] == "profile"){
+        print_r($_FILES);
+        die;
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $POST->edit_post($user_data['user_id'], $_POST, $_FILES);
+            header("Location: profile.php");
+            exit();
+        }
+    }else if($_SESSION["page"] == "timeline"){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $POST->edit_post($user_data['user_id'], $_POST, $_FILES);
+            header("Location: timeline.php");
+            exit();
+        }
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +72,13 @@ if($_SESSION["page"] == "profile"){
     <title>Edit Post | MrBook</title>
     <link rel="stylesheet" href="../style/edit_post.css">
     <link rel="stylesheet" href="../style/style.css">
+    <script>
+        function confirmDeletion(event) {
+            if (!confirm('Are you sure you want to save this update?')) {
+                event.preventDefault();
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -53,9 +86,8 @@ if($_SESSION["page"] == "profile"){
     <div class="container">
         <div class="post-container">
             <div class="post-box">
-                <?php if($post && !$error): ?>
                     <h2>Edit comment</h2>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="" method="post" enctype="multipart/form-data" onsubmit="confirmDeletion(event)" >
                         <div class="form-group">
                             <textarea name="post_content" class="post_textarea" placeholder="What's on your mind"><?php echo htmlspecialchars($post['post']); ?></textarea>
                             <input type="file" name="file" id="file" class="file" onchange="previewImage(event)">
@@ -70,14 +102,11 @@ if($_SESSION["page"] == "profile"){
                             }
                             ?>
                         </div>
-                        <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($post['post_id']); ?>">
+                        <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
                         <div class="button-container">
                             <input type="submit" class="edit-post-button" value="Save">
                         </div>
                     </form>
-                <?php else: ?>
-                    <p><?php echo htmlspecialchars($error); ?></p>
-                <?php endif; ?>
             </div>
         </div>
     </div>

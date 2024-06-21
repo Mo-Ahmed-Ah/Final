@@ -1,6 +1,6 @@
 <?php 
     include_once("../classes/autoloder.php");
-    $_SESSION["page"] = "profile";
+    $_SESSION["page"] = "profile";  
 ?>
 
 <!DOCTYPE html>

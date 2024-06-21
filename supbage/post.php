@@ -1,7 +1,7 @@
 <?php
     $html_filter = new Flter();
     $post_ch = new Post();
-    $ch_image= new Check_Images();
+    
     $image = $ch_image->is_user_have_image($user_data_post['profile_image'],$user_data_post['gender']);
 
 ?>
@@ -14,7 +14,7 @@
     <div class="post_content">
         <div class="post_num"> 
             <?php 
-            echo $html_filter->html_filter($user_data_post['first_name']) . " " . $html_filter->html_filter($user_data_post['last_name']);
+            echo $user_data_post['first_name'] . " " . $user_data_post['last_name'];
 
             if($post['is_profile_image']){
                 $pronoun = "his";
@@ -22,8 +22,7 @@
                     $pronoun = "her";
                 }
                 echo "<span class='updated_profile_and_cover_post'> updated $pronoun profile image </span>";
-            }
-            if($post['is_cover_image']){
+            }elseif($post['is_cover_image']){
                 $pronoun = "his";
                 if($user_data_post["gender"]=="Female"){
                     $pronoun = "her";
