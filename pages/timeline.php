@@ -1,10 +1,9 @@
-<?php 
-    
+<?php
     include("../classes/autoloder.php");
     $id = $_SESSION['mrbook_userid'];
     $_SESSION["page"] = "timeline";
     $ch_image= new Check_Images();
-
+    
     $login = new Login();
     $user_data=$login->check_login($_SESSION['mrbook_userid']);
     
@@ -15,11 +14,12 @@
         header("Location: timeline.php");
         die;
     }
-
-
+    
+    
     // collect posts
     $post = new Post();
     $posts = $post->get_all_post();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,11 +72,13 @@
             <!-- posts -->
             <div class="posts_bar_timeline">
                 <?php
-                    if($posts){
-                        foreach ($posts as $post) {
-                            $user = new User();
-                            $user_data_post= $user->get_user_data_post($post["user_id"]);
-                            include ("../supbage/post.php");
+                    if($post){
+                        if($posts){
+                            foreach ($posts as $post) {
+                                $user = new User();
+                                $user_data_post= $user->get_user_data_post($post["user_id"]);
+                                include ("../supbage/post.php");
+                            }
                         }
                     }
                 ?>

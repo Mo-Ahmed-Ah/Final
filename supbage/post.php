@@ -59,7 +59,13 @@
             </div>
             <span class="post_date">
                 <?php 
-                    echo $post['date'] ;
+                if($post['created_at'] == $post['updated_at']){
+                    $date = $post['created_at'];
+                }else{
+                    $date = $post['updated_at'];
+
+                }
+                    echo $date ;
                 ?>
             </span>
             <?php 

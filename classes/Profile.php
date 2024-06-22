@@ -76,33 +76,34 @@ class Profile{
         }
     }
 
-    public function change_profile_image($user_data,$imagePro){
-        $referrer = $_SERVER['HTTP_REFERER'];
-        if (!empty($image_pro['name'])){
-            if (!empty($imagePro['name']) && $imagePro['type'] == 'image/jpeg' && $imagePro['size'] < 3 * 1024 * 1024) {
+    public function change_profile_image($user_data, $imagePro){
+    $referrer = $_SERVER['HTTP_REFERER'];
+
+        if (!empty($imagePro['name'])) {
+            if ($imagePro['type'] == 'image/jpeg' && $imagePro['size'] < 3 * 1024 * 1024) {
                 $folder = "../upload/" . $user_data["user_id"] . '/';
                 if (!file_exists($folder)) {
                     mkdir($folder, 0777, true);
                 }
-    
+
                 $image = new Image();
                 $file_name = $folder . $image->generate_filename(15) . '.jpg';
                 move_uploaded_file($imagePro['tmp_name'], $file_name);
-    
+
                 if (file_exists($file_name)) {
                     $image->resize_image($file_name, $file_name, 1500, 1500);
-    
+
                     $userid = $user_data['user_id'];
                     $query = "UPDATE users SET profile_image = '$file_name' WHERE user_id = '$userid' LIMIT 1";
                     $_POST["is_profile_image"] = 1;
-    
+
                     $DB = new Database();
                     $DB->save($query);
-    
+
                     // create the post 
                     $post = new Post();
                     $post->create_post($userid, $_POST, $file_name);
-    
+
                     header("Location: profile.php");
                     exit;
                 } else {
@@ -119,7 +120,7 @@ class Profile{
                     </script>";
                 exit();
             }
-        }else{
+        } else {
             echo "<script>
                     alert('Please input the image');
                     window.location.href = '$referrer';
@@ -127,6 +128,7 @@ class Profile{
             exit();
         }
     }
+
     public function change_cover_image($user_data,$image_pro){
         $referrer = $_SERVER['HTTP_REFERER'];
         if (!empty($image_pro['name'])) {

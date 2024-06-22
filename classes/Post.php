@@ -48,7 +48,7 @@ class Post{
             // Using PDO for better security
             $DB = new Database();
             $query = "INSERT INTO posts (user_id, post, image , has_image , is_profile_image , is_cover_image) VALUES ( '$userid', '$post', '$post_image', '$has_image', '$is_profile_image', '$is_cover_image')";
-            $result = $DB->save($query);
+            $DB->save($query);
 
         } else {
             echo "<script>
@@ -185,17 +185,9 @@ class Post{
             $referrer = $_SERVER['HTTP_REFERER'];
             $DB = new Database();
             $query="SELECT * FROM posts ORDER BY post_id DESC";
-            $result = $DB->read($query); 
-
-            if ($result) {
-                return $result;
-            } else {
-                echo "<script>
-                alert('don't have eny post!');
-                window.location.href = '$referrer';
-            </script>";
-            exit();
-            }
+            $result = $DB->read($query);            
+            return $result;
+            
         }
 
     

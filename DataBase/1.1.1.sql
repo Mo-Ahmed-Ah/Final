@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `is_cover_image` TINYINT(1) NULL,
   `user_id` INT NOT NULL,
   `comments` INT NULL DEFAULT 0,
-  `date` TIMESTAMP NULL DEFAULT NOW(),
+  `created_at` TIMESTAMP NULL DEFAULT NOW(),
+  `updated_at` TIMESTAMP NULL DEFAULT NOW() ON UPDATE NOW(),
   PRIMARY KEY (`post_id`),
   INDEX `likes` (`likes` ASC),
-  INDEX `date` (`date` ASC),
   INDEX `comments` (`comments` ASC),
   INDEX `has_image` (`has_image` ASC),
   INDEX `user_id` (`user_id` ASC),
@@ -127,3 +127,127 @@ CREATE TABLE IF NOT EXISTS `follwers` (
     ON DELETE CASCADE
     ON UPDATE CASCADE
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `group_name` VARCHAR(100) NOT NULL,
+  `description` VARCHAR(255) NULL,
+  `group_url` VARCHAR(45) NULL,
+  `owner_id` INT NOT NULL,
+  `number_of_members` INT NULL,
+  `create_at` TIMESTAMP NULL DEFAULT now(),
+  `update_at` TIMESTAMP NULL DEFAULT now() ON UPDATE NOW(),
+  PRIMARY KEY (`id`),
+  INDEX `fk_groups_users1_idx` (`owner_id` ASC) ,
+  CONSTRAINT `fk_groups_users1`
+    FOREIGN KEY (`owner_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `users_group` (
+  `users_user_id` INT NOT NULL,
+  `groups_id` INT NOT NULL,
+  `roul` VARCHAR(5) NULL DEFAULT 'user',
+  `is_banded` BIT(1) NULL DEFAULT 0,
+  `join_at` TIMESTAMP NULL DEFAULT now(),
+  INDEX `fk_users_group_users1_idx` (`users_user_id` ASC) ,
+  INDEX `fk_users_group_groups1_idx` (`groups_id` ASC) ,
+  CONSTRAINT `fk_users_group_users1`
+    FOREIGN KEY (`users_user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_users_group_groups1`
+    FOREIGN KEY (`groups_id`)
+    REFERENCES `groups` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `group_posts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `post` TEXT NULL,
+  `image` VARCHAR(100) NULL,
+  `has_image` BIT(1) NULL DEFAULT 0,
+  `comments` INT NULL DEFAULT 0,
+  `likes` INT NULL DEFAULT 0,
+  `user_id` INT NOT NULL,
+  `group_id` INT NOT NULL,
+  `create_at` TIMESTAMP NULL DEFAULT now(),
+  `update_at` TIMESTAMP NULL DEFAULT now(),
+  PRIMARY KEY (`id`),
+  INDEX `fk_group_posts_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_group_posts_groups1_idx` (`group_id` ASC) ,
+  CONSTRAINT `fk_group_posts_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_group_posts_groups1`
+    FOREIGN KEY (`group_id`)
+    REFERENCES `groups` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `group_post_liks` (
+  `user_id` INT NOT NULL,
+  `posts_id` INT NOT NULL,
+  `is_seet` BIT(1) NULL DEFAULT 1,
+  INDEX `fk_group_post_liks_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_group_post_liks_group_posts1_idx` (`posts_id` ASC) ,
+  CONSTRAINT `fk_group_post_liks_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_group_post_liks_group_posts1`
+    FOREIGN KEY (`posts_id`)
+    REFERENCES `group_posts` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `group_post_comments` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `commentr_content` VARCHAR(100) NULL,
+  `user_id` INT NOT NULL,
+  `posts_id` INT NOT NULL,
+  `likes` VARCHAR(45) NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `fk_group_post_comments_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_group_post_comments_group_posts1_idx` (`posts_id` ASC) ,
+  CONSTRAINT `fk_group_post_comments_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_group_post_comments_group_posts1`
+    FOREIGN KEY (`posts_id`)
+    REFERENCES `group_posts` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `g_comment_like` (
+  `group_post_comment_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `is_seet` BIT(1) NULL DEFAULT 1,
+  INDEX `fk_g_comment_like_group_post_comments1_idx` (`group_post_comment_id` ASC) ,
+  INDEX `fk_g_comment_like_users1_idx` (`user_id` ASC) ,
+  CONSTRAINT `fk_g_comment_like_group_post_comments1`
+    FOREIGN KEY (`group_post_comment_id`)
+    REFERENCES `group_post_comments` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_g_comment_like_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+

@@ -46,8 +46,7 @@
     }
 
     if($_SESSION["page"] == "profile"){
-        print_r($_FILES);
-        die;
+
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $POST->edit_post($user_data['user_id'], $_POST, $_FILES);
             header("Location: profile.php");
