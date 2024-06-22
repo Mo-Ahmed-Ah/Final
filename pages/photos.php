@@ -1,8 +1,8 @@
 <?php
-include_once ("../classes/autoloder.php");
-$id = $_GET["ID"];
-$post = new Post();
-$posts = $post->get_post($id);
+    include_once ("../classes/autoloder.php");
+    $id = $_GET["ID"];
+    $post = new Post();
+    $posts = $post->get_post($id);
 ?>
 <!DOCTYPE html>
 <html lang="en">

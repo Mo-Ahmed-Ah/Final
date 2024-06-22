@@ -1,64 +1,14 @@
 <?php
 include_once("../classes/autoloder.php");
 
-$login = new Login();
-$user_data = $login->check_login($_SESSION['mrbook_userid']);
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    if(isset($_FILES['image_pro'])){
-        if(isset($_FILES['image_pro']['name']) && $_FILES['image_pro']['name'] != ""){
-            if($_FILES['image_pro']['type'] == 'image/jpeg'){
-                $allowed_size = 1024 * 1024 * 3;
-                if($_FILES['image_pro']['size'] < $allowed_size ){
-                    $folder = "../upload/" . $user_data["user_id"] . '/';
-                    
-                    if(!file_exists($folder)){
-                        mkdir($folder, 0777, true);
-                    }
+    $login = new Login();
+    $user_data = $login->check_login($_SESSION['mrbook_userid']);
+    $profile = new Profile();
 
-                    $image = new Image();
-                    
-                    // Move uploaded file to destination directory
-                    $file_name = $folder . $image->generate_filename(15) . '.jpg'; // Ensure extension is added
-                    move_uploaded_file($_FILES['image_pro']['tmp_name'], $file_name);
-
-                    // Crop the image
-                    $image->resize_image($file_name , $file_name , 1500 , 1500);
-
-                    if(file_exists($file_name)){
-                        $userid = $user_data['user_id'];
-                        $query = "";
-                        if(isset($_POST['change']) && $_POST['change'] == 'cover'){
-                            $query = "UPDATE users SET cover_image = '$file_name' WHERE user_id = '$userid' LIMIT 1";
-                            $_POST["is_cover_image"] = 1;
-
-                        }
-                        $DB = new Database();
-                        $DB->save($query);
-
-                        // create the post 
-                        $post = new Post();
-                        $post->create_post($userid,$_POST,$file_name);
-
-                        header("Location: profile.php");
-                        die;    
-                    }
-                } else {
-                    echo '<div style="text-align: center; font-size: 12px; color: white; background-color: gray;">';
-                    echo "Only images of size 3Mb or lower are allowed!";
-                    echo "</div>";
-                }
-            } else {
-                echo '<div style="text-align: center; font-size: 12px; color: white; background-color: gray;">';
-                echo "Only images of type jpeg are allowed!";
-                echo "</div>";
-            }
-        } else {
-            echo '<div style="text-align: center; font-size: 12px; color: white; background-color: gray;">';
-            echo "Please input the image ";
-            echo "</div>";
-        }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_pro'])) {
+        $image_pro = $_FILES['image_pro'];
+        $profile->change_cover_image($user_data, $image_pro);
     }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,9 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <body>
     <!-- top profile bar -->
-    <?php
-    include ("../supbage/header.php");
-    ?>
+    <?php include ("../supbage/header.php"); ?>
 
     <!-- cover area -->
     <div class="cover_div">
@@ -85,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <!-- post form add post  -->
                 <form action="change_cover_image.php" method='post' enctype="multipart/form-data">
                     <div class="file-input-wrapper">
-                        <input type="file" name="image_pro" id="image_pro" class="file-input"  onchange="previewImage(event)">
+                        <input type="file" name="image_pro" id="image_pro" class="file-input" onchange="previewImage(event)">
                         <label for="image_pro" class="file-input-label">Choose Image</label>
                     </div>
                     <input type="hidden" name="change" value="cover"> <!-- تحديد نوع الصورة -->

@@ -8,7 +8,7 @@
         <img src="<?php echo $image?>" class="comment_image">
         <div class="comment_user">
             <div class="user_name"><?php echo $user_data_post['first_name']." " . $user_data_post['last_name']?></div>
-            <div class="comment_text_area"> <?php echo htmlspecialchars($comment["comment_content"]); ?></div>
+            <div class="comment_text_area"> <?php echo $comment["comment_content"]; ?></div>
         </div>
     </div>
     <div class="comment_setting">

@@ -140,6 +140,12 @@ body {
     z-index: -1;
 }
 
+.image-preview {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
 .folow_button,
 .Frindes_button,
 .post_button {

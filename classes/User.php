@@ -37,18 +37,23 @@ class User {
     }
     public function get_user_data_post($id)
     {
+        $referrer = $_SERVER['HTTP_REFERER'];
         $query ="SELECT * FROM users WHERE user_id = '$id' LIMIT 1";
         $DB = new Database();
         $result = $DB->read($query);
         if ($result) {
             return $result[0];
         } else {
-            return false;
+            echo "<script>
+                alert('Don't found user!');
+                window.location.href = '$referrer';
+            </script>";
+            exit();
         }
     }
 
     public function get_friends_data($id){
-        $query ="select * from users where user_id != '$id'";
+        $query ="SELECT * FROM users WHERE user_id != '$id'";
         $DB = new Database();
         $result = $DB->read($query);
         if ($result) {
@@ -58,6 +63,18 @@ class User {
         }
     }
     public function get_my_friends_data($id) {
+        if(!isset($_SERVER['HTTP_REFERER'])){
+            echo "<script>
+                    alert('Dont play with me!');
+                    setTimeout(function() {
+                        window.location.href = '../pages/profile.php';
+                    }, 1); 
+                </script>";
+            exit(); 
+        }else{
+            $referrer = $_SERVER['HTTP_REFERER'];
+        }
+
         $query = "
             SELECT users.* 
             FROM users 
@@ -69,7 +86,11 @@ class User {
         if ($result) {
             return $result;
         } else {
-            return false;
+            echo "<script>
+                alert('No such User was found!');
+                window.location.href = '$referrer';
+                </script>";     
+            exit();
         }
 }
 

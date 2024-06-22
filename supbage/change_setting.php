@@ -8,22 +8,36 @@ $form_type = ''; // Initialize the variable
 $phon_type = ''; // Initialize the variable
 
 if (isset($_GET['type'])) {
-    if ($_GET['type'] == "change First Name") {
-        $form_type = "first_name";
-    } else if ($_GET['type'] == "change Last Name") {
-        $form_type = "last_name";
-    } else if ($_GET['type'] == "change Password") {
-        $form_type = "password";
-    } else if ($_GET['type'] == "change Gender") {
-        $form_type = "gender";
-    } else if ($_GET['type'] == "change Email") {
-        $form_type = "email";
-    } else if ($_GET['type'] == "change Phone") {
-        $form_type = "phone";
-        $phon_type = "change";
-    } else if ($_GET['type'] == "Add Phone") {
-        $form_type = "phone";
-        $phon_type = "add";
+    $form_type = '';
+    $phon_type = '';
+
+    switch ($_GET['type']) {
+        case "change First Name":
+            $form_type = "first_name";
+            break;
+        case "change Last Name":
+            $form_type = "last_name";
+            break;
+        case "change Password":
+            $form_type = "password";
+            break;
+        case "change Gender":
+            $form_type = "gender";
+            break;
+        case "change Email":
+            $form_type = "email";
+            break;
+        case "change Phone":
+            $form_type = "phone";
+            $phon_type = "change";
+            break;
+        case "Add Phone":
+            $form_type = "phone";
+            $phon_type = "add";
+            break;
+        default:
+            header("Location: ../pages/profile.php");
+            exit();
     }
 
     // معالجة النموذج
@@ -31,50 +45,34 @@ if (isset($_GET['type'])) {
         $new_value = $_POST[$form_type] ?? '';
 
         if ($form_type === "phone" && $phon_type === "add" && empty($user_data['phone'])) {
-            $result = $user->add_phone($new_value);
-            if ($result !== true) {
-                echo "<script>alert('$result');</script>";
+            $user->add_phone($new_value);
+            if ($result) {
+                echo "<script>alert('Updated successfully');</script>";
+                header("Location: ../pages/profile.php");
+                exit();
             }
         } else {
-            if($form_type != "email"){
-                if($form_type != "password"){
-
-                    $result = $user->update_profile($form_type, $new_value);
-                    if ($result !== true) {
-                        echo "<script>alert('$result');</script>";
-                    } else {
-                        echo "<script>alert('Updated successfully');</script>";
-                        header("Location: ../pages/about.php?user_id=" . $_SESSION['mrbook_userid']);
-                        exit();
-                    }
-                }else{
-                    $old_password = $_POST["old_password"];
-                    $new_password = $_POST["new_password"];
-                    $confirm_password = $_POST["confirm_password"];
-
-                    $confirmation_password = $flters->confirmation_password($new_password, $confirm_password);
-                    $old_pass=$flters->check_old_password($old_password);
-                    if($old_pass == true){
-                        $result = $user->update_profile($form_type, $new_password);
-                        if ($result !== true) {
-                            echo "<script>alert('$result');</script>";
-                        } else {
-                            echo "<script>alert('Updated successfully');</script>";
-                            header("Location: ../pages/about.php?user_id=" . $_SESSION['mrbook_userid']);
-                            exit();
-                        }
-                    }
-                }
-            }else{
+            if ($form_type === "email") {
                 $new_value = $flters->is_email($new_value);
-                $result = $user->update_profile($form_type, $new_value);
-                if ($result !== true) {
-                    echo "<script>alert('$result');</script>";
-                } else {
-                    echo "<script>alert('Updated successfully');</script>";
-                    header("Location: ../pages/about.php?user_id=" . $_SESSION['mrbook_userid']);
-                    exit();
-                }
+            }
+
+            if ($form_type === "password") {
+                $old_password = $_POST["old_password"];
+            
+                $new_password = $_POST["new_password"];
+                $confirm_password = $_POST["confirm_password"];
+
+                $old_pass = $flters->check_old_password($old_password);
+                $confirmation_password = $flters->confirmation_password($new_password, $confirm_password);
+
+                $new_value = $new_password;
+            }
+
+            $result = $user->update_profile($form_type, $new_value);
+            if ($result) {
+                echo "<script>alert('Updated successfully');</script>";
+                header("Location: ../pages/profile.php");
+                exit();
             }
         }
     }
@@ -82,6 +80,7 @@ if (isset($_GET['type'])) {
     header("Location: ../pages/profile.php");
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +105,7 @@ if (isset($_GET['type'])) {
                 <?php
                 if ($form_type != "gender") {
                     if ($_GET['type'] != "change Password") {
-                        echo "<textarea name='$form_type' id='$form_type' class='post_textarea'>" . htmlspecialchars($user_data[$form_type]) . "</textarea>";
+                        echo "<textarea name='$form_type' id='$form_type' class='post_textarea' placeholder='$user_data[$form_type]'></textarea>";
                     } else {
                         // إذا كان نوع النموذج "change Password"
                         echo "<div class='passeord_erea'>";

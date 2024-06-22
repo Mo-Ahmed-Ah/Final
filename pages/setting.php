@@ -54,22 +54,22 @@
                 if ($user_data['phone']!= null){
                     $phone = $user_data['phone'];
                     echo "<div class='data_contener'>
-                    <a href='../supbage/change_setting.php?type=change Phone'>
-                    <h3>Phone : </h3>
-                    </a>
-                    <h4>
-                    $phone
-                    </h4>
-                    </div>";
+                            <a href='../supbage/change_setting.php?type=change Phone'>
+                                <h3>Phone : </h3>
+                            </a>
+                            <h4>
+                                $phone
+                            </h4>
+                        </div>";
                 }else{
                     echo "<div class='data_contener'>
-                    <a href='../supbage/change_setting.php?type=Add Phone'>
-                    <h3>Phone : </h3>
-                    </a>
-                    <h4>
-                    hasn't phone
-                    </h4>
-                    </div>";
+                            <a href='../supbage/change_setting.php?type=Add Phone'>
+                                <h3>Phone : </h3>
+                            </a>
+                            <h4>
+                                hasn't phone
+                            </h4>
+                        </div>";
                 }
                 ?>
                 <div class="data_contener">

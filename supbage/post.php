@@ -1,7 +1,8 @@
 <?php
     $html_filter = new Flter();
     $post_ch = new Post();
-    
+
+    $image_class = new Image();
     $image = $ch_image->is_user_have_image($user_data_post['profile_image'],$user_data_post['gender']);
 
 ?>

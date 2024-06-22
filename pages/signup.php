@@ -13,7 +13,7 @@
         $signup = new Signup();
 
         $data = $signup->check_data($_POST);
-        $result = $signup->create_user($data);
+        $signup->create_user($data);
         if ($result != "") {
             echo "<script>alert('$result')</script>";
 

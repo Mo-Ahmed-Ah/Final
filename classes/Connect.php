@@ -42,19 +42,13 @@ class Database {
         }
     }
 
-    public function save($query, $params = []) {
+    public function save($query) {
         try {
             $this->connect();
             $stmt = $this->conn->prepare($query);
 
             if ($stmt === false) {
                 throw new Exception("Statement preparation failed: " . mysqli_error($this->conn));
-            }
-
-            // Binding parameters dynamically
-            if ($params) {
-                $types = str_repeat('s', count($params)); // Assuming all parameters are strings
-                $stmt->bind_param($types, ...$params);
             }
 
             $result = $stmt->execute();
@@ -66,14 +60,4 @@ class Database {
         }
     }
 
-    // function escape_string($string) {
-    //     try {
-    //         $this->connect();
-    //         $escapedString = mysqli_real_escape_string($this->conn, $string);
-    //         $this->close();
-    //         return $escapedString;
-    //     } catch (Exception $e) {
-    //         return $string;
-    //     }
-    // }
 }

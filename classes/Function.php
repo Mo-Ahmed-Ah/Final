@@ -37,11 +37,20 @@ class Flter{
 
 
     public function is_phone($phone){
+        $referrer = $_SERVER['HTTP_REFERER'];
         if(!is_numeric($phone)){
-            return $error = "not numeric";
+            echo "<script>
+                    alert('not numeric');
+                    window.location.href = '$referrer';
+                </script>";
+            exit();
         }else{
             if(strlen($phone)!=11){
-                return $error = "the length is not valed";
+                echo "<script>
+                        alert('the length is not valed');
+                        window.location.href = '$referrer';
+                    </script>";
+                exit();
             }else{
                 return true;
             }
@@ -152,16 +161,18 @@ class Flter{
     // check old function 
     public function check_old_password($password){
         $user = new User();
+        $referrer = $_SERVER['HTTP_REFERER'];
+
         if(empty($password)){
+
             echo "<script>
                 alert('The old password is empty!');
-                window.location.href = '../supbage/change_setting.php?type=change Password';
+                window.location.href = '$referrer';
             </script>";
             exit();
         }
         $user_data = $user->get_data($_SESSION['mrbook_userid']);
-        $password = $this->html_filter($password);
-        $password = $this->sql_filter($password);
+        $password = $this->flter_data($password);
 
         
         if($this->password_hash($password)==$user_data["password"]){
@@ -169,7 +180,7 @@ class Flter{
         }else{
             echo "<script>
                 alert('The old password is not true! ');
-                window.location.href = '../supbage/change_setting.php?type=change Password';
+                window.location.href = '$referrer';
             </script>";
             exit();
         }

@@ -52,10 +52,10 @@ class Post{
 
         } else {
             echo "<script>
-                                alert('Please type something to post!');
-                                window.location.href = '$referrer';
-                            </script>";
-                        exit();
+                    alert('Please type something to post!');
+                    window.location.href = '$referrer';
+                </script>";
+            exit();
         }
 
     }
@@ -64,7 +64,7 @@ class Post{
     
     public function get_post($userid) {
         $DB = new Database();
-        $result = $DB->read("SELECT * FROM posts WHERE user_id = '$userid' ORDER BY post_id DESC LIMIT 10"); 
+        $result = $DB->read("SELECT * FROM posts WHERE user_id = '$userid' ORDER BY post_id DESC "); 
 
         if ($result) {
             return $result;
@@ -182,6 +182,7 @@ class Post{
 
 
     public function get_all_post() {
+            $referrer = $_SERVER['HTTP_REFERER'];
             $DB = new Database();
             $query="SELECT * FROM posts ORDER BY post_id DESC";
             $result = $DB->read($query); 
@@ -189,7 +190,11 @@ class Post{
             if ($result) {
                 return $result;
             } else {
-                return false;
+                echo "<script>
+                alert('don't have eny post!');
+                window.location.href = '$referrer';
+            </script>";
+            exit();
             }
         }
 
