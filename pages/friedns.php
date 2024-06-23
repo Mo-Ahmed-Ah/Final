@@ -18,13 +18,13 @@
         <title>
             Friedns | MrBook
         </title>
-        <link rel="stylesheet" href="../style/friedns.css">
+
     </head>
     <body>
         <?php include_once ("../supbage/header.php");?>   
         <div class="friedns">
             <div class="friedns_bar">
-                <h2 class="Frindes_par">Friends</h2><br>
+                <h2 class="friedns_bar">Friends</h2><br>
                 <?php 
                 if($friends){
                     foreach ($friends as $friend) {

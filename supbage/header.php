@@ -1,6 +1,5 @@
 
 <?php
-
     $ch_image= new Check_Images();
     $login = new Login();
     $user_data=$login->check_login($_SESSION['mrbook_userid']);

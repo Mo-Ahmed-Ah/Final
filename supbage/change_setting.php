@@ -46,16 +46,10 @@ if (isset($_GET['type'])) {
 
         if ($form_type === "phone" && $phon_type === "add" && empty($user_data['phone'])) {
             $user->add_phone($new_value);
-            if ($result) {
-                echo "<script>alert('Updated successfully');</script>";
-                header("Location: ../pages/profile.php");
-                exit();
-            }
         } else {
             if ($form_type === "email") {
                 $new_value = $flters->is_email($new_value);
             }
-
             if ($form_type === "password") {
                 $old_password = $_POST["old_password"];
             
@@ -68,12 +62,7 @@ if (isset($_GET['type'])) {
                 $new_value = $new_password;
             }
 
-            $result = $user->update_profile($form_type, $new_value);
-            if ($result) {
-                echo "<script>alert('Updated successfully');</script>";
-                header("Location: ../pages/profile.php");
-                exit();
-            }
+            $user->update_profile($form_type, $new_value);
         }
     }
 } else {

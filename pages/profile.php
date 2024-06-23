@@ -1,6 +1,8 @@
 <?php 
     include_once("../classes/autoloder.php");
-    $_SESSION["page"] = "profile";  
+    $_SESSION["page"] = "profile";
+    $group = new Group();
+    $groups = $group->show_all_group();
 ?>
 
 <!DOCTYPE html>
@@ -129,6 +131,9 @@
                 <?php
                 if ($user_data["user_id"] == $_SESSION['mrbook_userid']) {
                     echo "<div class='menu_buttons'>
+                            <a href='../supbage/create_group.php'>Create group</a>
+                        </div>";
+                    echo "<div class='menu_buttons'>
                             <a href='setting.php'>Setting</a>
                         </div>";
                 }
@@ -140,11 +145,21 @@
             <!-- friends area -->
             <div class="friedns">
                 <div class="friedns_bar">
-                    <div class="Frindes_par">Friends</div><br>
+                    <div class="Frindes_par">Users</div><br>
                     <?php 
                     if ($friends) {
                         foreach ($friends as $friend) {
                             include ("../supbage/users.php");
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="friedns_bar">
+                    <div class="Frindes_par">Groups</div><br>
+                    <?php 
+                    if ($groups) {
+                        foreach ($groups as $go) {
+                            include ("../supbage/groups.php");
                         }
                     }
                     ?>

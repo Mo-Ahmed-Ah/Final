@@ -31,7 +31,10 @@ class Profile{
         $new_value = $filters->flter_data($new_value);
 
         $query = "UPDATE users SET phone = '$new_value' WHERE user_id = '$user_id'";
-        $DB->save($query);
+        if($DB->save($query)){
+            echo "<script>alert('Updated successfully');</script>";
+            header("Location: ../pages/profile.php");
+        }
 
     }
     public function update_profile($form_type, $new_value) {
@@ -62,7 +65,8 @@ class Profile{
             $DB = new Database();
             $query = "UPDATE users SET $form_type = '$new_value' WHERE user_id = $user_id";
             if ($DB->save($query)) {
-                return true;
+                echo "<script>alert('Updated successfully');</script>";
+                header("Location: ../pages/profile.php");
             } else {
                 throw new Exception("Failed to update profile.");
             }

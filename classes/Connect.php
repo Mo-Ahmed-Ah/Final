@@ -55,8 +55,13 @@ class Database {
             $this->close();
             return $result;
         } catch (Exception $e) {
-            $this->close();
-            return false;
+            echo "<script>
+                            alert('$e');
+                            window.location.href = '';
+                        </script>";
+                $this->close();
+                exit();
+            // return false;
         }
     }
 

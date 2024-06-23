@@ -235,5 +235,14 @@ class Check_Images{
         }
     }
 
+    public function is_group_have_image($group_profile){
+        $image_class = new Image();
+        if(file_exists($group_profile)){
+            return $image_class ->get_thumb_profile($group_profile);
+        }else{
+            return "../assets/group.png";
+        }
+    }
+
 
 }

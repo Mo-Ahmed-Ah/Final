@@ -102,7 +102,17 @@
                         <a href="../supbage/like.php?type=posts&id=<?php echo $post['post_id']; ?>" class="like">Like</a> 
                         <span class="like_number"><?php echo $post['likes']; ?>   </span>
                     </div>
-                    <span class="post_date"><?php echo $post['date']; ?></span>
+                    <span class="post_date">
+                        <?php 
+                            if($post['created_at'] == $post['updated_at']){
+                                $date = $post['created_at'];
+                            }else{
+                                $date = $post['updated_at'];
+
+                            }
+                                echo $date ;
+                        ?>
+                    </span>
                     <?php 
                         if ($post_s->i_own_post($post['post_id'], $user_id)) {
                             echo"<span>

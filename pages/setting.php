@@ -79,7 +79,7 @@
                     <h4>
                         Can't show password
                     </h4>
-                </div>
+                </div>  
         </div>
 
     </div>

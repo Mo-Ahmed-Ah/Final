@@ -8,7 +8,7 @@ class Comment {
         $DB = new Database();
         $flters = new Flter();
         $comment_content = $flters->flter_data($comment_content);
-        $sql = "INSERT INTO comments (comment_content, users_user_id, posts_post_id) VALUES ('$comment_content', $user_id, $post_id)";
+        $sql = "INSERT INTO comments (comment_content, user_id, post_id) VALUES ('$comment_content', $user_id, $post_id)";
         $DB->save($sql);
         $sql = "UPDATE posts SET comments = comments + 1 WHERE post_id = '$post_id' LIMIT 1";
         $DB->save($sql);
