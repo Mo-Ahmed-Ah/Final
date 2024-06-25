@@ -1,5 +1,7 @@
 <?php
     include ("../classes/autoloder.php");
+    $login = new Login();
+    $user_data = $login->check_login($_SESSION['mrbook_userid']);
 
     $ch_image = new Check_Images();
     $html_filter = new Flter();
@@ -129,7 +131,7 @@
             <?php
             if ($comments_n) {
                 foreach ($comments_n as $comment) {
-                    $user_data_post = $user->get_user_data_post($comment["users_user_id"]);
+                    $user_data_post = $user->get_user_data_post($comment["user_id"]);
                     $image = $ch_image->is_user_have_image($user_data_post['profile_image'], $user_data_post['gender']);
                     include ("../supbage/comment_area.php");
                 }

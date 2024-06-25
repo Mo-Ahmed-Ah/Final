@@ -28,7 +28,7 @@ if(isset($_GET['ID'])){
                     </script>";
                 exit();
     } else {
-        if ($coment["users_user_id"] != $_SESSION['mrbook_userid']) {
+        if ($coment["user_id"] != $_SESSION['mrbook_userid']) {
             echo "<script>
                         alert('Access denied!');
                         window.location.href = '$referrer';
@@ -73,7 +73,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     <h2>Delete comment</h2>
                     <?php
                     $user = new User();
-                    $user_data_post = $user->get_user_data_post($coment["users_user_id"]);
+                    $user_data_post = $user->get_user_data_post($coment["user_id"]);
                     include ("../supbage/delete_comment.php");
                     ?>
                     <form action="" method="post" onsubmit="confirmDeletion(event)">

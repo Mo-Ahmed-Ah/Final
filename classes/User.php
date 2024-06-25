@@ -78,11 +78,12 @@ class User {
         $query = "
             SELECT users.* 
             FROM users 
-            INNER JOIN follwers ON users.user_id = follwers.follwer_id
-            WHERE follwers.user_id = $id
+            INNER JOIN followers ON users.user_id = followers.follower_id
+            WHERE followers.user_id = $id
         ";
         $DB = new Database();
         $result = $DB->read($query);
+
         if ($result) {
             return $result;
         } else {
@@ -113,22 +114,22 @@ class User {
     }
 
     public function follwer_user($follwer_id , $my_id){
-        $sql = "SELECT is_seet FROM follwers WHERE user_id='$my_id' && follwer_id = '$follwer_id'";
+        $sql = "SELECT is_seen FROM followers WHERE user_id='$my_id' && follower_id = '$follwer_id'";
         $DB = new Database();
         $result= $DB->read($sql);
-
+        
         if(empty($result)){
             
-            $sql = "INSERT INTO follwers (user_id,follwer_id,is_seet) VALUES ('$my_id','$follwer_id','1')";
+            $sql = "INSERT INTO followers (user_id,follower_id,is_seen) VALUES ('$my_id','$follwer_id','1')";
             $DB->save($sql);
-            $sql = "UPDATE users SET follwers = follwers + 1 WHERE user_id = '$follwer_id' LIMIT 1";
+            $sql = "UPDATE users SET followers = followers + 1 WHERE user_id = '$follwer_id' LIMIT 1";
             $DB->save($sql);
         }else{
             
-            $sql = "DELETE FROM follwers WHERE user_id = '$my_id' && follwer_id = '$follwer_id' LIMIT 1";
+            $sql = "DELETE FROM followers WHERE user_id = '$my_id' && follower_id = '$follwer_id' LIMIT 1";
             $DB->save($sql);
 
-            $sql = "UPDATE users SET follwers = follwers - 1 WHERE user_id = '$follwer_id' LIMIT 1";
+            $sql = "UPDATE users SET followers = followers - 1 WHERE user_id = '$follwer_id' LIMIT 1";
             $DB->save($sql);
 
             
@@ -136,7 +137,7 @@ class User {
     }
     public function is_follwer_user($follwer_id, $my_id)
     {
-        $sql = "SELECT is_seet FROM follwers WHERE user_id='$my_id' AND follwer_id='$follwer_id'" ;
+        $sql = "SELECT is_seen FROM followers WHERE user_id='$my_id' AND follower_id='$follwer_id'" ;
         $DB = new Database();
         $result= $DB->read($sql);
         if (empty($result)) {

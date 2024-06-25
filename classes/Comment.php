@@ -16,24 +16,26 @@ class Comment {
 
     public function get_comments($post_id) {
         $DB = new Database();
-        $sql = "SELECT * FROM comments WHERE posts_post_id = $post_id ORDER BY id DESC ";
+        $sql = "SELECT * FROM comments WHERE post_id = $post_id ORDER BY id DESC ";
         return $DB->read($sql);
     }
     public function like_comment($comment , $userid){
-        $sql = "SELECT is_sit FROM comment_likes WHERE users_user_id='$userid' && comments_id = '$comment'";
+        $sql = "SELECT is_seen FROM comment_likes WHERE user_id='$userid' && comment_id = '$comment'";
         $DB = new Database();
         if(empty($DB->read($sql))){
-            $sql = "INSERT INTO comment_likes (users_user_id,comments_id,is_sit) VALUES ('$userid','$comment','1')";
+            $sql = "INSERT INTO comment_likes (user_id,comment_id,is_seen) VALUES ('$userid','$comment','1')";
             $DB->save($sql);
             $sql = "UPDATE comments SET likes = likes + 1 WHERE id = '$comment' LIMIT 1";
             $DB->save($sql);
         }else{
-            $sql = "DELETE FROM comment_likes WHERE users_user_id = '$userid' && comments_id = '$comment' LIMIT 1";
+            $sql = "DELETE FROM comment_likes WHERE user_id = '$userid' && comment_id = '$comment' LIMIT 1";
             $DB->save($sql);
             $sql = "UPDATE comments SET likes = likes - 1 WHERE id = '$comment' LIMIT 1";
             $DB->save($sql);
         }
     }
+
+    
     public function get_one_comment($commentid) {
         if(!is_numeric($commentid)){
             return false;
@@ -63,24 +65,24 @@ class Comment {
             $referrer = $_SERVER['HTTP_REFERER'];
         } else {
             echo "<script>
-                    alert('Dont play with me!');
-                    setTimeout(function() {
-                        window.location.href = 'logout.php';
-                    }, 1); 
+            alert('Dont play with me!');
+            setTimeout(function() {
+                window.location.href = 'logout.php';
+                }, 1); 
                 </script>";
-            exit(); 
-        }
-        $userid = $_SESSION['mrbook_userid'];
-        if (!empty($data["comment_content"])) { 
-            $comment_id = $data['comment_id'];
-
-            $html_filter = new Flter();
-            $comment_content = $html_filter->flter_data($data['comment_content']);
-            
-            $DB = new Database();
-            $query = "UPDATE comments SET comment_content = '$comment_content' WHERE id = '$comment_id' AND users_user_id = '$userid'";
-            
-            $DB->save($query);
+                exit(); 
+            }
+            $userid = $_SESSION['mrbook_userid'];
+            if (!empty($data["comment_content"])) { 
+                $comment_id = $data['comment_id'];
+                
+                $html_filter = new Flter();
+                $comment_content = $html_filter->flter_data($data['comment_content']);
+                
+                $DB = new Database();
+                $query = "UPDATE comments SET comment_content = '$comment_content' WHERE id = '$comment_id' AND user_id = '$userid'";
+                
+                $DB->save($query);
         } else {
 
             echo "<script>

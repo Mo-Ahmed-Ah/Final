@@ -7,7 +7,7 @@
 
 <div class="friend">
     
-    <a href="../pages/group.php?ID=<?=$go['id'];?>" class='friend_link' >
+    <a href="../pages/group_profile.php?ID=<?=$go['id'];?>" class='friend_link' >
         <img src="<?php echo $image ?>" alt="" class="friedns_img"><br>
         <?php echo $go['group_name'] ; ?>
     </a>

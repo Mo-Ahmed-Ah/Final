@@ -4,7 +4,7 @@
     $user = new User();
     if(isset($_GET["ID"])){
         $id = $_GET['ID'];
-        $friends = $user->get_my_friends_data($id);;
+        $friends = $user->get_my_friends_data($id);
     }else{
         $id = $_SESSION['mrbook_userid'];
         $friends = $user->get_my_friends_data($id);

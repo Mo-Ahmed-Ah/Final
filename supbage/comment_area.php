@@ -1,7 +1,7 @@
 
 <?php
     $comment_id = $comment['id'];
-    $post_id = $comment['posts_post_id'];
+    $post_id = $comment['post_id'];
 ?>
 <div class="post_comment_array">
     <div class="image_text">
@@ -17,7 +17,7 @@
         <span class="like_number_comment"><?=$comment['likes']?></span>
     </div>
     <?php
-    if($_SESSION['mrbook_userid']==$comment['users_user_id']){
+    if($_SESSION['mrbook_userid']==$comment['user_id']){
         echo "<a class='Edit_comment like' href='../pages/edit_comment.php?ID=$comment_id&post_id=$post_id'>Edit</a>
                 <a class='Delete_comment like' href='../pages/delete_comment.php?ID=$comment_id&post_id=$post_id'>Delete</a>"; 
     }

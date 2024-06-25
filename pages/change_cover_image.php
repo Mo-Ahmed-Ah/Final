@@ -1,14 +1,21 @@
 <?php
 include_once("../classes/autoloder.php");
 
-    $login = new Login();
-    $user_data = $login->check_login($_SESSION['mrbook_userid']);
-    $profile = new Profile();
+$login = new Login();
+$user_data = $login->check_login($_SESSION['mrbook_userid']);
+$profile = new Profile();
+$group = new Group();
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_pro'])) {
-        $image_pro = $_FILES['image_pro'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_pro'])) {
+    $image_pro = $_FILES['image_pro'];
+    
+    if (isset($_POST['change']) && $_POST['change'] == 'group' && isset($_POST['group_id'])) {
+        $group_id = $_POST['group_id'];
+        $group->change_group_cover($group_id, $image_pro);
+    } else {
         $profile->change_cover_image($user_data, $image_pro);
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +43,10 @@ include_once("../classes/autoloder.php");
                         <input type="file" name="image_pro" id="image_pro" class="file-input" onchange="previewImage(event)">
                         <label for="image_pro" class="file-input-label">Choose Image</label>
                     </div>
-                    <input type="hidden" name="change" value="cover"> <!-- تحديد نوع الصورة -->
+                    <input type="hidden" name="change" value="<?php echo isset($_GET['type']) && $_GET['type'] == 'group' ? 'group' : 'cover'; ?>">
+                    <?php if (isset($_GET['type']) && $_GET['type'] == 'group'): ?>
+                        <input type="hidden" name="group_id" value="<?php echo $_GET['ID']; ?>">
+                    <?php endif; ?>
                     <br>
                     <input type="submit" class="change_image_button" value="Change">
                     <br>
@@ -59,3 +69,5 @@ include_once("../classes/autoloder.php");
 </body>
 
 </html>
+<?php
+

@@ -68,6 +68,7 @@ class Profile{
                 echo "<script>alert('Updated successfully');</script>";
                 header("Location: ../pages/profile.php");
             } else {
+                die;
                 throw new Exception("Failed to update profile.");
             }
         } catch (Exception $e) {

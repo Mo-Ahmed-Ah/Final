@@ -6,6 +6,7 @@ class Post{
         $referrer = $_SERVER['HTTP_REFERER'];
         if (!empty($data["post_content"]) || !empty($files['file']['name']) || isset($data["is_profile_image"]) || isset($data["is_cover_image"])) {
             $post_image = "";
+            $post="";
             $has_image = 0;
             $is_profile_image = 0; 
             $is_cover_image = 0; 
@@ -111,12 +112,30 @@ class Post{
         }
         return false;
     }
+    public function i_own_post_group($postid, $userid) {
+        if (!is_numeric($postid)) {
+            return false;
+        }
+
+        $query = "SELECT * FROM posts WHERE post_id = '$postid' LIMIT 1";
+        $DB = new Database();
+        $result = $DB->read($query);
+
+        if (is_array($result) && isset($result[0])) {
+            $result = $result[0];
+            if ($result['user_id'] == $userid) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function like_post($postid , $userid){
-        $sql = "SELECT is_seet FROM likes WHERE user_id='$userid' && post_id = '$postid'";
+        $sql = "SELECT is_seen FROM likes WHERE user_id='$userid' && post_id = '$postid'";
         $DB = new Database();
         $result= $DB->read($sql);
         if(empty($result)){
-            $sql = "INSERT INTO likes (user_id,post_id,is_seet) VALUES ('$userid','$postid','1')";
+            $sql = "INSERT INTO likes (user_id,post_id,is_seen) VALUES ('$userid','$postid','1')";
             $DB->save($sql);
             $sql = "UPDATE posts SET likes = likes + 1 WHERE post_id = '$postid' LIMIT 1";
             $DB->save($sql);

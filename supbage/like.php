@@ -17,12 +17,17 @@ if (isset($_GET['type']) && isset($_GET["id"])) {
         $post = new Post();
         $post->like_post($_GET["id"],$_SESSION['mrbook_userid']);
     }else if($_GET['type'] == "follwers"){
-
         $follwer = new User();
         $follwer->follwer_user($_GET["id"],$_SESSION['mrbook_userid']);
+    }else if($_GET['type'] == "Join_Group"){
+        $follwer = new Group();
+        $follwer->join_group($_GET["id"],$_SESSION['mrbook_userid']);
     }else if($_GET['type'] == "comments"){
         $coment = new Comment();
         $coment->like_comment($_GET["id"],$_SESSION['mrbook_userid']);
+    }else if($_GET['type'] == "post_group"){
+        $coment = new Group();
+        $coment->like_post_group($_GET["id"],$_SESSION['mrbook_userid']);
     }
 }
 

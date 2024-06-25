@@ -11,24 +11,24 @@ if(isset($_SERVER['HTTP_REFERER'])){
     $referrer = $_SERVER['HTTP_REFERER'];
 } else {
     echo "<script>
-            alert('Dont play with me!');
-            setTimeout(function() {
-                window.location.href = 'logout.php';
-            }, 1); 
+    alert('Dont play with me!');
+    setTimeout(function() {
+        window.location.href = 'logout.php';
+        }, 1); 
         </script>";
-    exit(); 
-}
-
-if(isset($_GET['ID'])){
-    $coment = $COMENT->get_one_comment($_GET['ID']);
+        exit(); 
+    }
+    
+    if(isset($_GET['ID'])){
+        $coment = $COMENT->get_one_comment($_GET['ID']);
     if(!$coment){
         echo "<script>
-                alert('No such comment was found!');
-                window.location.href = '$referrer';
-            </script>";
+        alert('No such comment was found!');
+        window.location.href = '$referrer';
+        </script>";
         exit();
     } else {
-        if ($coment["users_user_id"] != $_SESSION['mrbook_userid']) {
+        if ($coment["user_id"] != $_SESSION['mrbook_userid']) {
             echo "<script>
                     alert('Access denied!');
                     window.location.href = '$referrer';

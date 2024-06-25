@@ -227,7 +227,8 @@ class Check_Images{
         if(file_exists($user_data_profile)){
             return $image_class ->get_thumb_profile($user_data_profile);
         }else{
-            if ($user_data_post_type == "Male"){
+            
+            if ($user_data_post_type == "male"){
                 return "../assets/user_male.jpg";
             }else{
                 return "../assets/user_female.jpg";

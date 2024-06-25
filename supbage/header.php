@@ -4,7 +4,6 @@
     $login = new Login();
     $user_data=$login->check_login($_SESSION['mrbook_userid']);
     $image = $ch_image->is_user_have_image($user_data['profile_image'],$user_data['gender']);
-
 ?>
 <link rel="stylesheet" href="../style/header.css">
 

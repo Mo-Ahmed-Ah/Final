@@ -74,7 +74,7 @@
                 <div class="data_contener">
                     <h3>Number of follwers : </h3>
                     <h4>
-                        <?=$user_data['follwers']?>
+                        <?=$user_data['followers']?>
                     </h4>
                 </div>
                 <div class="data_contener">

@@ -128,11 +128,19 @@
                 <div class="menu_buttons">
                     <a href="photos.php?ID=<?= $id ?>">Photos</a>
                 </div>
-                <?php
+                <div class='menu_buttons'>
+                    
+                    <?php 
+                        if (isset($_GET["ID"])) {
+                            $ID = $_GET['ID'];
+                            echo "<a href='group.php?ID=$ID'>Groups</a>";
+                        } else {    
+                            echo "<a href='group.php'>Groups</a>";
+                        }
+                    ?>
+                </div>
+                <?php   
                 if ($user_data["user_id"] == $_SESSION['mrbook_userid']) {
-                    echo "<div class='menu_buttons'>
-                            <a href='../supbage/create_group.php'>Create group</a>
-                        </div>";
                     echo "<div class='menu_buttons'>
                             <a href='setting.php'>Setting</a>
                         </div>";

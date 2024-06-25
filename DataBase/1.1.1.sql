@@ -1,5 +1,5 @@
 -- Create the database if it doesn't exist
-
+drop database mrbook;
 CREATE DATABASE IF NOT EXISTS mrbook;
 
 -- Use the database
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 CREATE TABLE IF NOT EXISTS `comment_likes` (
   `comment_id` INT NOT NULL,
   `user_id` INT NOT NULL,
-  `is_seen` BIT(1) NOT NULL DEFAULT '1',
+  `is_seen` BIT(1) NOT NULL DEFAULT b'1',
   INDEX `comment_id` (`comment_id` ASC),
   INDEX `user_id` (`user_id` ASC),
   CONSTRAINT `fk_likes_comments_id`
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
     REFERENCES `users` (`user_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
-ENGINE = InnoDB
+ENGINE = InnoDB;
 
 -- Create users_group table
 CREATE TABLE IF NOT EXISTS `users_group` (
@@ -184,27 +184,28 @@ CREATE TABLE IF NOT EXISTS `group_posts` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `post` TEXT NULL,
   `image` VARCHAR(100) NULL,
-  `has_image` BIT(1) NULL DEFAULT b'0',
+  `is_cover_image` VARCHAR(100) NULL DEFAULT 0,
+  `has_image` BIT(1) NULL DEFAULT 0,
   `comments` INT NULL DEFAULT 0,
   `likes` INT NULL DEFAULT 0,
   `user_id` INT NOT NULL,
   `group_id` INT NOT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT NOW(),
-  `updated_at` TIMESTAMP NULL DEFAULT NOW() ON UPDATE NOW(),
+  `create_at` TIMESTAMP NULL DEFAULT now(),
+  `update_at` TIMESTAMP NULL DEFAULT now(),
   PRIMARY KEY (`id`),
-  INDEX `user_id` (`user_id` ASC),
-  INDEX `group_id` (`group_id` ASC),
-  CONSTRAINT `fk_group_posts_users`
+  INDEX `fk_group_posts_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_group_posts_groups1_idx` (`group_id` ASC) ,
+  CONSTRAINT `fk_group_posts_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `users` (`user_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_group_posts_groups`
+  CONSTRAINT `fk_group_posts_groups1`
     FOREIGN KEY (`group_id`)
     REFERENCES `groups` (`id`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE
-) ENGINE = InnoDB;
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
 
 -- Create group_post_likes table
 CREATE TABLE IF NOT EXISTS `group_post_likes` (

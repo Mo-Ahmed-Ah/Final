@@ -28,7 +28,7 @@
                 if($user_data_post["gender"]=="Female"){
                     $pronoun = "her";
                 }
-                echo "<span class='updated_profile_and_cover_post'> updated $pronoun cover image </span>";
+                echo "<span class='updated_profile_and_cover_post'> updated  cover image </span>";
             }
             ?>
         </div>
@@ -63,14 +63,12 @@
                     $date = $post['created_at'];
                 }else{
                     $date = $post['updated_at'];
-
                 }
                     echo $date ;
                 ?>
             </span>
             <?php 
                 if($post_ch->i_own_post($post['post_id'],$_SESSION["mrbook_userid"])){
-
                     echo "<span>
                         <a href='../pages/edit.php?ID=$post[post_id]' class='post_edit_and_delete'> 
                             Edit
