@@ -72,7 +72,7 @@
                 ?>
             </div>
             <div class="menu_buttons">
-                <a href="../supbage/create_group.php"">Create Group</a>
+                <a href="../supbage/create_group.php">Create Group</a>
             </div>
         </div>
     </div>

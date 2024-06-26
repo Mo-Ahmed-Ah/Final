@@ -410,6 +410,35 @@
                 throw new Exception("Error getting users in group: " . $e->getMessage());
             }
         }
+        public function get_users_ingroup_not_admin_not_owner($group_id) {
+            $DB = new Database();
+            try {
+                $query = "
+                        SELECT users.user_id, users.first_name, users.last_name 
+                        FROM users_group 
+                        JOIN users ON users_group.user_id = users.user_id 
+                        WHERE users_group.group_id = $group_id 
+                        AND users_group.role != 'owner' 
+                        AND users_group.role != 'admin'";
+                return $DB->read($query);
+            } catch (Exception $e) {
+                throw new Exception("Error getting users in group: " . $e->getMessage());
+            }
+        }
+        public function get_users_ingroup_not_owner($group_id) {
+            $DB = new Database();
+            try {
+                $query = "
+                        SELECT users.user_id, users.first_name, users.last_name 
+                        FROM users_group 
+                        JOIN users ON users_group.user_id = users.user_id 
+                        WHERE users_group.group_id = $group_id 
+                        AND users_group.role != 'owner'";
+                return $DB->read($query);
+            } catch (Exception $e) {
+                throw new Exception("Error getting users in group: " . $e->getMessage());
+            }
+        }
         public function get_admin_ingroup($group_id) {
             $DB = new Database();
             try {
@@ -439,10 +468,10 @@
 
         public function add_admin($user_id, $group_id) {
             $DB = new Database();
-            $query = "SELECT * FROM group_users WHERE group_id = $group_id AND user_id = $user_id LIMIT 1";
+            $query = "SELECT * FROM users_group WHERE group_id = $group_id AND user_id = $user_id LIMIT 1";
             $stmt = $DB->read($query);
             if($stmt){
-                $query = "UPDATE user_group SET role = 'Admin' WHERE user_id = '$user_id' AND group_id = '$group_id'";
+                $query = "UPDATE users_group SET role = 'Admin' WHERE user_id = '$user_id' AND group_id = '$group_id'";
                 
                 if ($DB->save($query)) {
                     return true;
@@ -453,10 +482,10 @@
         
         public function remove_admin($user_id, $group_id) {
             $DB = new Database();
-            $query = "SELECT * FROM group_users WHERE group_id = $group_id AND user_id = $user_id LIMIT 1";
+            $query = "SELECT * FROM users_group WHERE group_id = $group_id AND user_id = $user_id LIMIT 1";
             $stmt = $DB->read($query);
             if($stmt){
-                $query = "UPDATE user_group SET role = 'Member' WHERE user_id = '$user_id' AND group_id = '$group_id'";
+                $query = "UPDATE users_group SET role = 'Member' WHERE user_id = '$user_id' AND group_id = '$group_id'";
                 
                 if ($DB->save($query)) {
                     return true;
@@ -470,7 +499,14 @@
             $DB = new Database();
             $query = "UPDATE groups SET owner_id = '$new_owner_id' WHERE id = '$group_id'";
             if ($DB->save($query)) {
-                return true;
+                $query = "UPDATE users_group SET role = 'owner' WHERE user_id = '$new_owner_id' AND group_id = '$group_id'";
+                if ($DB->save($query)) {
+                    $query = "UPDATE users_group SET role = 'Member' WHERE user_id = '$group_id' AND group_id = '$group_id'";
+                    if ($DB->save($query)) {
+                        return true;
+                    }
+                }
+                
             }
             return false;
         }
@@ -544,7 +580,7 @@
 
         }
 
-
+        
     }
 
 

@@ -25,9 +25,9 @@
         <div class="add_remove_admin">
             <?php 
                 if($group["owner_id"]==$_SESSION['mrbook_userid']){
-                    echo "<a href=''>Change owner</a>
-                        <a href=''>Add admin</a>
-                        <a href=''>Delete admin</a>
+                    echo "<a href='../supbage/change_owner.php?ID=$group[id]'>Change owner</a>
+                        <a href='../supbage/add_admin.php?ID=$group[id]'>Add admin</a>
+                        <a href='../supbage/delete_admin.php?ID=$group[id]'>Delete admin</a>
                     ";
                 }
             ?>
