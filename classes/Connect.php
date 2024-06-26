@@ -52,6 +52,7 @@ class Database {
     public function save($query) {
         try {
             $this->connect(); // تأكد من فتح الاتصال
+            
             $stmt = mysqli_query($this->conn, $query);
             
             if ($stmt === false) {

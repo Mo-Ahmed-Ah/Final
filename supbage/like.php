@@ -21,7 +21,7 @@ if (isset($_GET['type']) && isset($_GET["id"])) {
         $follwer->follwer_user($_GET["id"],$_SESSION['mrbook_userid']);
     }else if($_GET['type'] == "Join_Group"){
         $follwer = new Group();
-        $follwer->join_group($_GET["id"],$_SESSION['mrbook_userid']);
+        $follwer->join_group($_SESSION['mrbook_userid'],$_GET["id"]);
     }else if($_GET['type'] == "comments"){
         $coment = new Comment();
         $coment->like_comment($_GET["id"],$_SESSION['mrbook_userid']);

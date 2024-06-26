@@ -1,6 +1,7 @@
 <?php
     $html_filter = new Flter();
     $post_ch = new Post();
+    $groups = new Group;
 
     $image_class = new Image();
     $image = $ch_image->is_user_have_image($user_data_post['profile_image'],$user_data_post['gender']);
@@ -62,7 +63,8 @@
                 ?>
             </span>
             <?php 
-                if($post['user_id']==$_SESSION["mrbook_userid"] || $group['owner_id'] == $_SESSION["mrbook_userid"]){
+                $check_post = $groups->check_user_access_post($_SESSION["mrbook_userid"],$group['owner_id'],$post['user_id']);
+                if($check_post){
                     if($post['user_id']==$_SESSION["mrbook_userid"]){
                         echo "<span>
                             <a href='../supbage/edit_group_post.php?ID=$post[id]' class='post_edit_and_delete'> 

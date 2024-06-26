@@ -439,21 +439,31 @@
 
         public function add_admin($user_id, $group_id) {
             $DB = new Database();
-            $query = "UPDATE user_group SET role = 'Admin' WHERE user_id = '$user_id' AND group_id = '$group_id'";
-            
-            if ($DB->save($query)) {
-                return true;
+            $query = "SELECT * FROM group_users WHERE group_id = $group_id AND user_id = $user_id LIMIT 1";
+            $stmt = $DB->read($query);
+            if($stmt){
+                $query = "UPDATE user_group SET role = 'Admin' WHERE user_id = '$user_id' AND group_id = '$group_id'";
+                
+                if ($DB->save($query)) {
+                    return true;
+                }
             }
             return false;
         }
-
+        
         public function remove_admin($user_id, $group_id) {
             $DB = new Database();
-            $query = "UPDATE user_group SET role = 'Member' WHERE user_id = '$user_id' AND group_id = '$group_id'";
-            if ($DB->save($query)) {
-                return true;
+            $query = "SELECT * FROM group_users WHERE group_id = $group_id AND user_id = $user_id LIMIT 1";
+            $stmt = $DB->read($query);
+            if($stmt){
+                $query = "UPDATE user_group SET role = 'Member' WHERE user_id = '$user_id' AND group_id = '$group_id'";
+                
+                if ($DB->save($query)) {
+                    return true;
+                }
             }
             return false;
+            
         }
 
         public function change_owner($new_owner_id, $group_id) {
@@ -490,7 +500,53 @@
                 $DB->save($sql);
             }
         }
+        public function update_group_data($form_type, $new_value, $group_id) {
+            $DB = new Database();
+            $referrer = $_SERVER['HTTP_REFERER'];
+            
+            try {
+
+                $filters = new Flter();
+    
+                // Filter the new value
+                $new_value = $filters->flter_data($new_value);
+    
+                // Prepare and execute the query
+                $sql = "UPDATE groups SET $form_type = '$new_value' WHERE id = '$group_id'";
+            $DB->save($sql);
+       
+                
+                if ($DB->save($sql)) {
+                    echo "<script>alert('Updated successfully');</script>";
+                    header("Location: ../pages/group_profile.php?ID=$group_id");
+                } else {
+                    throw new Exception("Failed to update group.");
+                }
+            } catch (Exception $e) {
+                $e = $e->getMessage();
+                echo "<script>
+                        alert('$e');
+                        window.location.href = '$referrer';
+                    </script>";
+                exit();
+            }
+        }
+
+        public function check_user_access_post($user_id,$group_id,$post_id){
+
+            if($user_id==$group_id){
+                return 'true';
+            }
+            if($user_id==$post_id){
+                return true;
+            }
+            return false;
+
+        }
+
+
     }
+
 
     /*
         user type 
