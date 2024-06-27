@@ -2,7 +2,7 @@
     $html_filter = new Flter();
     $post_ch = new Post();
     $groups = new Group;
-
+    $group = $groups->show_one_group($_GET['ID']);
     $image_class = new Image();
     $image = $ch_image->is_user_have_image($user_data_post['profile_image'],$user_data_post['gender']);
 

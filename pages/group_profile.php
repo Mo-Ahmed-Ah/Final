@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <?php endif; ?>
             </span>
             <br>
+            <br>
             <div class="name">
                 <?= $group['group_name']; ?>
             </div>

@@ -34,14 +34,6 @@
 </head>
 
 <body>
-    <div class="bar">
-        <div class="mrbook">MyBook </div>
-        <div class="signup_button">
-            <a href="signup.php" style="text-decoration: none; ">  
-                Signup 
-            </a>
-        </div>
-    </div>
     <div class="login_bar">
         <h1>login MrBook</h1>
         <br>
@@ -54,6 +46,10 @@
             <br>
             <br>
             <input type="submit" class="login_button" value="login">
+            <div class="signup_button">
+                <b>You have account ?</b>
+                <a href="signup.php" style="text-decoration: none;">Signup</a>
+            </div>
         </form>
     </div>
 </body>

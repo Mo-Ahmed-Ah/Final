@@ -36,12 +36,6 @@
 </head>
 
 <body>
-    <div class="bar">
-        <div class="mrbook">MyBook</div>
-        <div class="signup_button">
-            <a href="login.php" style="text-decoration: none;">Login</a>
-        </div>
-    </div>
     <div class="login_bar">
         <h1>Signup MrBook</h1>
         <form action="signup.php" method="post">
@@ -51,12 +45,10 @@
             <input value="<?php echo $last_name ?>" name="last_name" type="text" class="text" placeholder="Last name">
             <br>
             <br>
-            <div class="label">Gender:</div>
-            <select name="gender" class="text">
+            <select name="gender" class="text" >
                 <option value="Male" <?php if($gender == "Male") echo "selected"; ?>>Male</option>
                 <option value="Female" <?php if($gender == "Female") echo "selected"; ?>>Female</option>
             </select>
-
             <br>
             <br>
             <input value="<?php echo $email ?>" type="email" class="text" placeholder="Email" name="email">
@@ -69,6 +61,10 @@
             <br>
             <br>
             <input type="submit" class="login_button" value="Signup">
+            <div class="signup_button">
+                <b>You have account ?</b>
+                <a href="login.php" style="text-decoration: none;"> Login</a>
+            </div>
         </form>
     </div>
 </body>

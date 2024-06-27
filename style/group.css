@@ -314,6 +314,8 @@
 }
 
 .cover_img {
+    display: flex;
+    flex-direction: column;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 12px;
@@ -321,6 +323,7 @@
     max-width: 1000px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     color: #233e8b;
+    margin: 20px;
 }
 
 .cover_cover_img {
@@ -387,6 +390,7 @@
 
 .profile_set {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     width: 100%;
     margin-top: 30px;
@@ -507,6 +511,14 @@
     font-weight: bold;
     color: #405d9b;
 }
+
+/* @media (max-width: 768px) {
+    .profile_set {
+        flex-wrap: wrap;
+        flex-basis: 100%;
+
+    }
+} */
 
 /* group members */
 /* Styling the main container */
