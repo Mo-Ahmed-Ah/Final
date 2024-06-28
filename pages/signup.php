@@ -2,25 +2,15 @@
     include_once("../classes/autoloder.php");
 
     $flters = new Flter();
-
-    // check method post 
-    $first_name = "";
-    $last_name = "";
-    $gender ="";
-    $email ="";
     if($_SERVER['REQUEST_METHOD']=='POST'){
         // add data in databaes
         $signup = new Signup();
 
         $data = $signup->check_data($_POST);
         $signup->create_user($data);
-        if ($result != "") {
-            echo "<script>alert('$result')</script>";
-
-        } else {
-            header("Location: login.php");
-            die;
-        }
+        
+        header("Location: login.php");
+        die;
     }
 ?>
 
@@ -39,25 +29,25 @@
     <div class="login_bar">
         <h1>Signup MrBook</h1>
         <form action="signup.php" method="post">
-            <input value="<?php echo $first_name ?>" name="first_name" type="text" class="text" placeholder="First name">
+            <input  name="first_name" type="text" class="text" placeholder="First name" required >
             <br>
             <br>
-            <input value="<?php echo $last_name ?>" name="last_name" type="text" class="text" placeholder="Last name">
+            <input  name="last_name" type="text" class="text" placeholder="Last name" required>
             <br>
             <br>
-            <select name="gender" class="text" >
-                <option value="Male" <?php if($gender == "Male") echo "selected"; ?>>Male</option>
-                <option value="Female" <?php if($gender == "Female") echo "selected"; ?>>Female</option>
+            <select name="gender" class="text" required >
+                <option value="Male" >Male</option>
+                <option value="Female" >Female</option>
             </select>
             <br>
             <br>
-            <input value="<?php echo $email ?>" type="email" class="text" placeholder="Email" name="email">
+            <input  type="email" class="text" placeholder="Email" name="email" required>
             <br>
             <br>
-            <input type="password" class="text" placeholder="Password" name="password">
+            <input type="password" class="text" placeholder="Password" name="password" required>
             <br>
             <br>
-            <input type="password" class="text" placeholder="Retype Password" name="retype_password">
+            <input type="password" class="text" placeholder="Retype Password" name="retype_password" required>
             <br>
             <br>
             <input type="submit" class="login_button" value="Signup">

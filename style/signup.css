@@ -45,6 +45,12 @@ body {
     font-size: 16px;
     color: white;
     padding: 0 20px;
+    transition: all .5s;
+}
+
+.login_bar input.text:focus{
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .login_bar select.text {
@@ -67,7 +73,6 @@ body {
 }
 
 .login_bar select.text option {
-    /* background-color: rgb(0, 132, 255); */
     color: rgb(0, 132, 255);
     font-size: 16px;
     font-weight: bold;
@@ -120,189 +125,3 @@ body {
 .signup_button a:hover {
     text-decoration: underline;
 }
-
-/* .bar {
-    height: 100px;
-    background-color: #3c5a99;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.mrbook {
-    font-size: 40px;
-}
-
-.signup_button {
-    background-color: #42b72a;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-align: center;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-}
-
-.signup_button a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.signup_button:hover {
-    background-color: #36a420;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-.signup_button:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.login_bar {
-    background-color: white;
-    width: 80%;
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 50px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.login_bar h1 {
-    font-size: 36px;
-    color: #3c5a99;
-    margin-bottom: 20px;
-}
-
-.text {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.text:focus {
-    border-color: #3c5a99;
-    box-shadow: 0 0 8px rgba(60, 90, 153, 0.2);
-    outline: none;
-}
-
-.select {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    background-color: white;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.select:focus {
-    border-color: #3c5a99;
-    box-shadow: 0 0 8px rgba(60, 90, 153, 0.2);
-    outline: none;
-}
-
-.login_button {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    background-color: #3c5a99;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-}
-
-.login_button:hover {
-    background-color: #233e8b;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-.login_button:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.result {
-    text-align: center;
-    font-size: 12px;
-    color: white;
-    background-color: gray;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 4px;
-}
-
-
-input[type="text"], input[type="email"], input[type="password"], select {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
-    border-color: #3c5a99;
-    box-shadow: 0 0 8px rgba(60, 90, 153, 0.2);
-    outline: none;
-}
-
-
-input[type="submit"]:hover {
-    background-color: #233e8b;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-input[type="submit"]:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-.label {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 8px;
-}
-
-.text {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.text:focus {
-    border-color: #3c5a99;
-    box-shadow: 0 0 8px rgba(60, 90, 153, 0.2);
-    outline: none;
-} */

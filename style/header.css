@@ -4,11 +4,13 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background: url("../assets/social.jpg") ;
+    background-position: center;
 }
 
 .blue_bar {
     height: 50px;
-    background: linear-gradient(45deg, #233e8b, #893e8b);
+    backdrop-filter: blur(25px);
     color: #d9dfeb;
     width: 100%;
     display: flex;
@@ -31,11 +33,13 @@ body {
     float: left;
     color: white;
     text-decoration: none;
-    transition: transform 0.3s ease; /* إضافة التحول */
+    margin-top: 3px;
+    margin-left: 3px;
+    transition: transform 0.5s ease; /* إضافة التحول */
 }
 
 .timeline:hover {
-    transform: scale(1.1); /* تكبير العنصر عند مرور المؤشر عليه */
+    transform: scale(1.2); /* تكبير العنصر عند مرور المؤشر عليه */
 }
 
 .search_box {
@@ -53,21 +57,23 @@ body {
 }
 
 .mine_pro_img {
-    width: 50px;
+    border-radius: 30px;
+    width: 47px;
     float: right;
 }
 
 .logout {
-    font-size: 13px;
+    font-size: 16px;
     float: right;
     margin: 10px;
     color: white;
     text-decoration: none;
-    transition: transform 0.3s ease; /* إضافة التحول */
+    transition: transform 1s ease; /* إضافة التحول */
 }
 
 .logout:hover {
-    transform: scale(1.1); /* تكبير العنصر عند مرور المؤشر عليه */
+    transform: scale(1.2); /* تكبير العنصر عند مرور المؤشر عليه */
+    font-weight: bolder;
 }
 
 @media screen and (max-width: 768px) {

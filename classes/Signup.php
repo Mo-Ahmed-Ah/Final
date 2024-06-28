@@ -8,10 +8,14 @@ class Signup{
 
         // Filter the data before passing it to the evaluate method
         $first_name = $flters->check_is_set($data['first_name'],"first name");
+        $password = $flters->check_is_set($data['password'],"password");
+        $retype_password = $flters->check_is_set($data['retype_password'],"retype password");
+        $password = $flters->confirmation_password_signup($data['password'],$data['retype_password']);  
         $last_name = $flters->check_is_set($data['last_name'],"last name");
         $gender = $flters->check_is_set($data['gender'],"gender");
         $email = $flters->is_email($data['email']);
         $query = "SELECT * FROM users WHERE email = '$email'";
+
         if($DB->read($query)){
             echo "<script>
                     alert('The email is set');
@@ -19,12 +23,7 @@ class Signup{
                 </script>";
             exit();
         }
-        $password = $flters->check_is_set($data['password'],"password");
-
         
-    
-        $retype_password = $flters->check_is_set($data['retype_password'],"retype password");
-        $password = $flters->confirmation_password_signup($data['password'],$data['retype_password']);  
         return $data = array(
             "first_name"=>$first_name, 
             "last_name"=>$last_name, 
