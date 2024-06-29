@@ -24,7 +24,6 @@ class Flter{
     public function check_is_set($data , $feld_name){
         $referrer = $_SERVER['HTTP_REFERER'];
         if(empty($data)){
-
             echo "<script>
                     alert('The $feld_name is empty!');
                     window.location.href = '$referrer';
