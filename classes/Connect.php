@@ -23,16 +23,15 @@ class Database {
 
     function read($query) {
         try {
-            $this->connect(); // تأكد من فتح الاتصال
+            $this->connect();
             $result = mysqli_query($this->conn, $query);
 
             if ($result === false) {
                 throw new Exception("Query failed: " . mysqli_error($this->conn));
             }
 
-            // Handle DELETE or other non-select queries
             if (is_bool($result)) {
-                return $result; // Return true/false for non-select queries
+                return $result;
             }
 
             $data = array();
@@ -40,15 +39,15 @@ class Database {
                 $data[] = $row;
             }
 
-            mysqli_free_result($result); // حرر النتائج بعد استخدامها
-            $this->close(); // أغلق الاتصال
+            mysqli_free_result($result); 
+            $this->close(); 
             return $data;
         } catch (Exception $e) {
-            $this->close(); // أغلق الاتصال في حالة الخطأ أيضًا
+            $this->close(); 
             throw new Exception("Database error: " . $e->getMessage());
         }
     }
-
+    
     public function save($query) {
         try {
             $this->connect(); // تأكد من فتح الاتصال
@@ -58,14 +57,18 @@ class Database {
             if ($stmt === false) {
                 throw new Exception("Statement execution failed: " . mysqli_error($this->conn));
             }
-            $this->close(); // أغلق الاتصال
+
+
+            mysqli_free_result($stmt); 
+            $this->close(); 
+            
             return true;
         } catch (Exception $e) {
             echo "<script>
                     alert('{$e->getMessage()}');
                     window.location.href = '';
                 </script>";
-            $this->close(); // أغلق الاتصال في حالة الخطأ أيضًا
+            $this->close(); 
             exit();
         }
     }
