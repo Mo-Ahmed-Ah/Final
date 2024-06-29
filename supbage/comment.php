@@ -3,12 +3,13 @@
     $login = new Login();
     $user_data = $login->check_login($_SESSION['mrbook_userid']);
 
+    $post_id = $_GET['post_id'];
+    $user_id = $_SESSION["mrbook_userid"];
+
     $ch_image = new Check_Images();
     $html_filter = new Flter();
     $user = new User();
     $post_s = new Post();
-    $post_id = $_GET['post_id'];
-    $user_id = $_SESSION["mrbook_userid"];
     $image_class = new Image();
 
     $post = $post_s->get_one_post($post_id);
@@ -69,12 +70,14 @@
     <?php include_once("header.php"); ?>
     <div class="post_class">
         <div class="post">
-            <?php 
-                $image = $ch_image->is_user_have_image($user_data_post['profile_image'], $user_data_post['gender']);
-            ?>
+                <?php 
+                    $image = $ch_image->is_user_have_image($user_data_post['profile_image'], $user_data_post['gender']);
+                ?>
+            <a href="../pages/profile.php?ID=<?=$user_data_post['user_id'];?>">
             <div>
-                <img src="<?php echo $image; ?>" alt="" class="post_img">
+                <img src="<?php echo $image; ?>" alt="" class="uaer_img">
             </div>
+            </a>
             <div class="post_content">
                 <div class="post_num"> 
                     <?php 
@@ -90,7 +93,9 @@
                         }
                     ?>
                 </div>
-                <?php echo $post['post']; ?>
+                <div class="post_text">
+                    <?php echo $post['post']; ?>
+                </div>
                 <br><br>
                 <?php
                 if (file_exists($post['image'])) {

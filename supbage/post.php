@@ -1,6 +1,7 @@
 <?php
     $html_filter = new Flter();
     $post_ch = new Post();
+    
 
     $image_class = new Image();
     $image = $ch_image->is_user_have_image($user_data_post['profile_image'],$user_data_post['gender']);
@@ -8,35 +9,36 @@
 ?>
 <link rel="stylesheet" href="../style/post.css">
 <div class="posts">
-    
-    <div>
-        <img src="<?php echo $image ?>" alt="" class="post_img">
-    </div>
+    <a href="../pages/profile.php?ID=<?=$user_data_post['user_id'];?>">
+        <div>
+            <img src="<?php echo $image ?>" alt="" class="post_img">
+        </div>
+    </a>
     <div class="post_content">
         <div class="post_num"> 
             <?php 
-            echo $user_data_post['first_name'] . " " . $user_data_post['last_name'];
-
-            if($post['is_profile_image']){
-                $pronoun = "his";
-                if($user_data_post["gender"]=="Female"){
-                    $pronoun = "her";
+                echo $user_data_post['first_name'] . " " . $user_data_post['last_name'];
+                if($post['is_profile_image']){
+                    $pronoun = "his";
+                    if($user_data_post["gender"]=="Female"){
+                        $pronoun = "her";
+                    }
+                    echo "<span class='updated_profile_and_cover_post'> updated $pronoun profile image </span>";
+                }elseif($post['is_cover_image']){
+                    $pronoun = "his";
+                    if($user_data_post["gender"]=="Female"){
+                        $pronoun = "her";
+                    }
+                    echo "<span class='updated_profile_and_cover_post'> updated  cover image </span>";
                 }
-                echo "<span class='updated_profile_and_cover_post'> updated $pronoun profile image </span>";
-            }elseif($post['is_cover_image']){
-                $pronoun = "his";
-                if($user_data_post["gender"]=="Female"){
-                    $pronoun = "her";
-                }
-                echo "<span class='updated_profile_and_cover_post'> updated  cover image </span>";
-            }
             ?>
         </div>
-        <?php
-            echo $post['post'] ;
-        ?>
+        <div class="post_text">
+            <?php
+                echo $post['post'] ;
+            ?>
+        </div>
         <br><br>
-
         <?php
         if (file_exists($post['image'])){
             $post_image = $image_class->get_thumb_post($post['image']);
@@ -81,7 +83,6 @@
                 echo "</span>";
             
             ?>
-
         </div>
     </div>
 </div>

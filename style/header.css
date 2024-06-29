@@ -35,11 +35,11 @@ body {
     text-decoration: none;
     margin-top: 3px;
     margin-left: 3px;
-    transition: transform 0.5s ease; /* إضافة التحول */
+    transition: transform 0.5s ease; 
 }
 
 .timeline:hover {
-    transform: scale(1.2); /* تكبير العنصر عند مرور المؤشر عليه */
+    transform: scale(1.2); 
 }
 
 .search_box {
@@ -68,11 +68,11 @@ body {
     margin: 10px;
     color: white;
     text-decoration: none;
-    transition: transform 1s ease; /* إضافة التحول */
+    transition: transform 1s ease;
 }
 
 .logout:hover {
-    transform: scale(1.2); /* تكبير العنصر عند مرور المؤشر عليه */
+    transform: scale(1.2);
     font-weight: bolder;
 }
 

@@ -5,7 +5,9 @@
 ?>
 <div class="post_comment_array">
     <div class="image_text">
-        <img src="<?php echo $image?>" class="comment_image">
+        <a href="../pages/profile.php?ID=<?=$user_data_post['user_id'];?>" class="user_post_link">
+            <img src="<?php echo $image?>" class="comment_image">
+        </a>
         <div class="comment_user">
             <div class="user_name"><?php echo $user_data_post['first_name']." " . $user_data_post['last_name']?></div>
             <div class="comment_text_area"> <?php echo $comment["comment_content"]; ?></div>

@@ -1,30 +1,111 @@
 /* Adjusting the styling for the cover div */
 .cover_div_timeline {
-    width: 100%;
+    width: 80%;
     max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    margin: 20px auto;
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 5px solid rgba(27, 27, 27, 0.1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 16px rgba(0, 68, 255, 0.356);
 }
 
 .timeline_pro {
     text-decoration: none;
-    color: #233e8b;
+    color: #999;
+    font-weight: bolder;
     transition: all 0.5s ease;
-        
+    display: inline-block;
 }
 
 .timeline_pro:hover {
-    transform: translateY(-5px) scale(1.010);
-    color: #233e8b;
+    transform: translateY(-5px) scale(1.10);
+    color: #ffffff;
 }
 
-/* Styling for the profile content */
+.cover_smal_img_timeline {
+    width: 100px;
+    border-radius: 50%;
+    border: 5px solid rgba(0, 0, 0, .2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.cover_smal_img_timeline:hover{
+    box-shadow: 0 8px 16px rgba(0, 68, 255, 0.295); 
+}
+
+.post_pox {
+    width: 65%;
+    border: 5px solid rgba(27, 27, 27, 0.1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 16px rgba(0, 68, 255, 0.356);
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.post_textarea {
+    width: 80%;
+    flex: 1;
+    padding: 10px;
+    background: transparent;
+    border: 5px solid rgba(27, 27, 27, 0.3);
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    resize: none;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post_textarea:focus {
+    border: 5px solid rgba(27, 27, 27, 0.5);
+    box-shadow: 0 8px 16px rgba(0, 17, 255, 0.445);
+    outline: none;
+}
+
+.post_textarea::placeholder {
+    color: #999;
+}
+
+.file-label {
+    background: transparent;
+    border: 5px solid rgba(0, 0, 0, .2);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.file-label:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 17, 255, 0.445);
+}
+
+.post_button {
+    background: transparent;
+    color: #fff;
+    border: 5px solid rgba(0, 0, 0, .2);
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post_button:hover {
+    transform: translateY(-5px) scale(1.10);
+    box-shadow: 0 8px 16px rgba(0, 17, 255, 0.445);
+}
+
 .profile_content_timeline {
     width: 100%;
     max-width: 800px;
@@ -34,7 +115,37 @@
     align-items: center;
 }
 
-/* Adjusting the styling for the friends section */
+.post_timeline {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    padding-right: 40px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 16px rgba(0, 68, 255, 0.356);
+    border: 5px solid rgba(0, 0, 0, .2);
+
+
+}
+
+.posts_bar_timeline {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 12px;
+}
+/* end time line */
+.post_content {
+    flex: 1;
+}
+.post-inputs {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .friedns {
     width: 100%;
     max-width: 800px;
@@ -44,7 +155,6 @@
     margin-top: 20px;
 }
 
-/* Styling for the friends bar */
 .friedns_bar_timeline {
     text-align: center;
     font-size: 20px;
@@ -53,131 +163,43 @@
     margin-right: 10px;
 }
 
-/* Styling for individual posts */
-.post_timeline {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    margin-top: 20px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-.post_pox {
-    width: 70%;
-    background-color: #ffffff;
-    margin-bottom: 30px;
-    padding: 10px;
-    border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.post-inputs {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.post_textarea {
-    width: 85%;
-    flex: 1;
-    padding: 12px;
-    border: 2px solid #ccc;
-    border-radius: 12px;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    resize: none;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-}
-
-.file-label {
-    background: linear-gradient(45deg, #233e8b, #893e8b);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.file-label:hover {
-    background: linear-gradient(45deg, #893e8b, #233e8b);
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
 .file {
     opacity: 0;
     position: absolute;
     z-index: -1;
 }
 
-.post_button {
-    background: linear-gradient(45deg, #8e24aa, #6a1b9a);
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.post_button:hover {
-    background: linear-gradient(45deg, #7b1fa2, #4527a0);
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-/* Styling for the posts bar */
-.posts_bar_timeline {
-    width: 100%;
-    max-width: 800px;
-    margin-top: 20px;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
 
-/* Styling for individual posts in the timeline */
-.posts_timeline {
+/* .posts_timeline {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 12px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-}
+} */
 
-/* Styling for post images */
+/* 
 .post_img_timeline {
     width: 50px;
     height: 50px;
     margin-right: 10px;
     border-radius: 50%;
     object-fit: cover;
-}
+} */
 
 /* Styling for post content */
-.post_content {
-    flex: 1;
-}
+
 
 /* Styling for post numbers */
-.post_num_timeline {
+/* .post_num_timeline {
     font-weight: bold;
     color: #405d9b;
-}
+} */
 
-/* Styling for post data */
+/* Styling for post data
 .post_data_timeline {
     color: #999;
-}
+} */
 
-/* Styling for the cover image */
-.cover_smal_img_timeline {
-    width: 100px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}

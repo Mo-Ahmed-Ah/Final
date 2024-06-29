@@ -20,7 +20,7 @@
     <div class="post_conten">
         <div class="post_num"> 
             <?php 
-            echo $html_filter->html_filter($user_data_post['first_name']) . " " . $html_filter->html_filter($user_data_post['last_name']);
+            echo $user_data_post['first_name'] . " " .$user_data_post['last_name'];
             ?>
         </div>
         <?php
