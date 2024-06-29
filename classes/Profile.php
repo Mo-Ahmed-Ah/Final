@@ -13,7 +13,7 @@ class Profile{
         }
 
         $filters = new Flter();
-        $id = $filters->sql_filter($id);
+        $id = $filters->flter_data($id);
         $DB = new Database();
         $query = "SELECT * FROM users WHERE user_id = '$id' LIMIT 1";
         $result = $DB->read($query);

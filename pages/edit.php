@@ -4,7 +4,6 @@
     $login = new Login();
     $user_data = $login->check_login($_SESSION['mrbook_userid']);     
     $POST = new Post();
-    $error = "";
     $post = false;
 
     if(isset($_SERVER['HTTP_REFERER'])){
@@ -82,10 +81,8 @@
 
 <body>
     <?php include ("../supbage/header.php"); ?>
-    <div class="container">
-        <div class="post-container">
             <div class="post-box">
-                    <h2>Edit comment</h2>
+                    <h2>Edit Post</h2>
                     <form action="" method="post" enctype="multipart/form-data" onsubmit="confirmDeletion(event)" >
                         <div class="form-group">
                             <textarea name="post_content" class="post_textarea" placeholder="What's on your mind"><?php echo htmlspecialchars($post['post']); ?></textarea>
@@ -107,8 +104,6 @@
                         </div>
                     </form>
             </div>
-        </div>
-    </div>
     <script>
         function previewImage(event) {
             var reader = new FileReader();

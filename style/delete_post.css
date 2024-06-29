@@ -1,64 +1,17 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
 
-.container {
-    width: 800px;
-    margin: auto;
-}
-
-.content {
-    display: flex;
-}
 
 .post-container {
-    min-height: 400px;
-    flex: 2.5;
-    padding: 20px;
-    padding-right: 0px;
-    background-color: transparent;
-}
-
-.post-box {
-    border: solid 1px #aaa;
-    padding: 8px;
-    background-color: white;
-    border-radius: 30px;
-    height: 60%;
-}
-
-.delete-post-button {
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    float: right;
-    display: inline;
-}
-
-.delete-post-button:hover {
-    background-color: #c9302c;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-7px);
-}
-
-.delete-post-button:active {
-    background-color: #ac2925;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-}
-
-.form-group {
+    width: 800px;
+    margin: auto;
+    margin-top: 40px;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     padding: 20px;
+    backdrop-filter: blur(20px);
+    color: #f1f1f1;
+    border: 5px solid rgba(27, 27, 27, 0.555);
+    box-shadow: 0 8px 16px rgba(0, 162, 255, 0.486);
+    border-radius: 40px;
 }
 
 .button-container {
@@ -67,32 +20,56 @@ body {
     padding-top: 10px;
 }
 
+.delete-post-button {
+    background: transparent;
+    backdrop-filter: blur(20px);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 3px solid rgba(27, 27, 27, 0.555);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    float: right;
+    display: inline;
+    transition: all 0.5s ease;
+}
+
+.delete-post-button:hover {
+    background-color: #c9302c;
+    box-shadow: 0 6px 12px rgba(255, 0, 0, 0.511);
+    transform: translateY(-7px);
+}
+
+.form-group {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+
 .image-preview {
     display: flex;
     justify-content: center;
     margin-top: 10px;
 }
 
-/* Customize the scrollbar */
 .post_textarea::-webkit-scrollbar {
     width: 12px;
-    /* Width of the scrollbar */
 }
 
 .post_textarea::-webkit-scrollbar-track {
     background: #f1f1f1;
-    /* Background color of the scrollbar track */
     border-radius: 10px;
 }
 
 .post_textarea::-webkit-scrollbar-thumb {
     background: #888;
-    /* Color of the scrollbar thumb */
     border-radius: 10px;
 }
 
 .post_textarea::-webkit-scrollbar-thumb:hover {
     background: #555;
-    /* Color of the scrollbar thumb when hovered */
 }
 

@@ -4,7 +4,6 @@ include("../classes/autoloder.php");
 $login = new Login();
 $user_data = $login->check_login($_SESSION['mrbook_userid']);     
 $POST = new Post();
-$error = "";
 $post = false;
 
 if(isset($_SERVER['HTTP_REFERER'])){
@@ -80,25 +79,21 @@ if($_SESSION["page"] == "profile"){
 
 <body>
     <?php include ("../supbage/header.php"); ?>
-    <div class="container">
         <div class="post-container">
-            <div class="post-box">
                     <h2>Delete Post</h2>
                     <?php
-                    $user = new User();
-                    $user_data_post = $user->get_user_data_post($post["user_id"]);
-                    include ("../supbage/delete_post.php");
+                        $user = new User();
+                        $user_data_post = $user->get_user_data_post($post["user_id"]);
+                        include ("../supbage/delete_post.php");
                     ?>
                     <form action="" method="post" onsubmit="confirmDeletion(event)">
-                        <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
+                        <input type="hidden" name="post_id" value="<?php echo $post['post_id'];?>">
                         <div class="button-container">
                             <input type="submit" class="delete-post-button" value="Delete">
                         </div>
                     </form>
 
-            </div>
         </div>
-    </div>
 </body>
 
 </html>

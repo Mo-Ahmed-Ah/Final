@@ -1,56 +1,42 @@
 /* CSS for Friend Blocks */
 .friend {
-    display: inline-block;
+    display: ruby;
     width: 100px;
-    /* تعديل حسب الحاجة */
     margin: 10px;
-    /* تباعد بين الأصدقاء */
     text-align: center;
+
 }
 
 .friend_link {
     text-decoration: none;
-    color: #405d9b;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    color: #999;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
 .friend_link:hover {
-    transform: translateY(-10px) scale(1.05);
-    color: #ffeb3b;
+    transform:scale(1.05);
+    color: white;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-    background: linear-gradient(45deg, #893e8b, #233e8b);
 }
 
 /* This targets the image inside a hovered .friend_link */
 .friend_link:hover .friends_img {
-    transform: translateY(-10px) scale(1.05);
+    transform:  scale(1.05);
     border-color: #405d9b;
 }
 
 .friends_img {
     width: 50px;
-    /* تعديل مقاس الصور */
     height: 50px;
-    /* تعديل مقاس الصور */
     border-radius: 50%;
-    border: 2px solid #fff;
+    border: 3px solid rgba(27, 27, 27, 0.486);
+    box-shadow: 0 8px 16px rgba(0, 162, 255, 0.486);
     transition: border-color 0.3s ease, transform 0.3s ease;
-}
-
-.friends_bar {
-    background-color: white;
-    min-height: 200px;
-    color: #aaa;
-    padding: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    /* توسيط الصف الأفقي */
 }
 
 .Frindes_par {
     font-size: 28px;
     font-weight: bold;
     margin-top: 20px;
-    color: #405d9b;
 }

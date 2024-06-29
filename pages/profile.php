@@ -96,7 +96,7 @@
                                 </a>";
                     } else {
                         echo "  <a href='../supbage/like.php?type=follwers&id=$user_id'>
-                                    <input type='submit' class='Frindes_button' value='Friends'>
+                                    <input type='submit' class='folow_button' value='Friends'>
                                 </a>";
                     }
                 }

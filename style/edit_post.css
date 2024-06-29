@@ -1,32 +1,23 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
+.post-box {
     width: 800px;
     margin: auto;
-}
-
-.content {
+    margin-top: 40px;
     display: flex;
-}
-
-.post-container {
-    min-height: 400px;
-    flex: 2.5;
+    flex-direction: column;
     padding: 20px;
-    padding-right: 0px;
-    background-color: transparent;
+    backdrop-filter: blur(20px);
+    color: #f1f1f1;
+    border: 5px solid rgba(27, 27, 27, 0.555);
+    box-shadow: 0 8px 16px rgba(0, 162, 255, 0.486);
+    border-radius: 40px;
 }
 
-.post-box {
-    border: solid 1px #aaa;
-    padding: 8px;
-    background-color: white;
-    border-radius: 30px;
-    height: 60%;
+.form-group {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 .edit-post-button {
@@ -98,11 +89,6 @@ body {
     z-index: -1;
 }
 
-.form-group {
-    display: flex;
-    align-items: flex-start;
-    padding: 20px;
-}
 
 .button-container {
     display: flex;
