@@ -58,8 +58,6 @@ class Database {
                 throw new Exception("Statement execution failed: " . mysqli_error($this->conn));
             }
 
-
-            mysqli_free_result($stmt); 
             $this->close(); 
             
             return true;
