@@ -3,6 +3,7 @@ include_once ("Function.php");
 
 class Login {
 
+
     public function evaluate($email , $password) {
         // Prepare query to search user account
         $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";

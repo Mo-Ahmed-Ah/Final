@@ -87,8 +87,8 @@ class Flter{
 
     public function check_password_it_ok($password , $email){
         $referrer = $_SERVER['HTTP_REFERER'];
-        $password = $this->html_filter($password);
-        $password = $this->sql_filter($password);
+        $password = $this->flter_data($password);
+
         $password = $this->password_hash($password);
         $user = new User();
         $user_data = $user->get_data_login($email);
